@@ -1,0 +1,315 @@
+<header class="main-header ">
+  <div class="d-flex align-items-center logo-box justify-content-start">
+    <!-- Logo -->
+    <a href="javascript:;" class="logo">
+      <!-- logo-->
+      <div class="logo-lg">
+        <span class="light-logo"><img src="../../../../assets/images/logo.png" alt="logo"></span>
+        <!-- <span class="dark-logo"><img src="../../../../assets/images/logo-white.png" alt="logo"></span> -->
+      </div>
+    </a>
+  </div>
+  <!-- Header Navbar -->
+  <nav class="navbar navbar-static-top shadow-sm py-2">
+    <!-- Sidebar toggle button-->
+    <div class="app-menu">
+      <ul class="header-megamenu nav">
+        <li class="btn-group nav-item">
+          <a href="javascript:;" class="waves-effect waves-light nav-link push-btn ctm-btn ms-0" data-toggle="push-menu"
+            role="button">
+            <i class="fa-solid fa-bars"></i>
+            <!-- <i data-feather="menu"></i> -->
+          </a>
+        </li>
+        <!-- <li class="btn-group d-lg-inline-flex d-none">
+          <div class="app-menu">
+            <div class="search-bx mx-5">
+              <form>
+                <div class="input-group">
+                  <input type="search" class="form-control" placeholder="Search">
+                  <div class="input-group-append">
+                    <button class="btn" type="submit" id="button-addon3"><i
+                        class="fa-solid fa-magnifying-glass"></i></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </li> -->
+      </ul>
+    </div>
+
+    <div class="navbar-custom-menu r-side">
+      <ul class="nav navbar-nav" >
+        <li class="w-300 d-lg-block mb-md-2 d-none" *ngIf="User?.userTypeId == 3">
+          <select class="form-select mt-2 bg-white border-0 py-3 fw-600 text-dark mb-3" [(ngModel)]="EnrollmentId"
+          name="Enrolled"
+          (change)="ChangeEnrollment($event)" aria-label="Default select example">
+            <option *ngFor="let item of StudentEnrollments"  [value]="item.Id">{{item.EnrollmentNumber}}</option> 
+           
+          </select>
+        </li>
+        <li class="btn-group d-md-inline-flex d-none">
+          <a href="javascript:;" title="skin Change" class="waves-effect skin-toggle waves-light">
+            <label class="switch">
+              <input type="checkbox" data-mainsidebarskin="toggle" id="toggle_left_sidebar_skin">
+              <!-- <span class="switch-on"><i class="fa-solid fa-moon"></i></span> -->
+              <!-- <span class="switch-off"><i class="fa-regular fa-moon"></i></span> -->
+            </label>
+          </a>
+        </li>
+        <li class="dropdown notifications-menu btn-group d-lg-block d-none">
+          <a href="javascript:;" class="waves-effect waves-light  svg-bt-icon bg-transparent" (click)="TargetNotification()" data-bs-toggle="dropdown"
+            title="Notifications">
+            <div *ngIf="ReadCount && User?.userTypeId != 1" class="readcount">
+              {{ReadCount}}
+            </div>
+            <!-- <i data-feather="bell"></i> -->
+            <i class="fa-regular fa-bell"></i>
+            <div class="pulse-wave"></div>
+          </a>
+          
+        </li>
+        <li class="btn-group nav-item d-xl-inline-flex d-none">
+          <a href="javascript:;" class="waves-effect waves-light nav-link  svg-bt-icon" title="" id="live-chat">
+            <!-- <i data-feather="message-circle"></i> -->
+            <i class="fa-regular fa-comment"></i>
+          </a>
+        </li>
+
+
+
+        <li class="btn-group nav-item d-xl-inline-flex d-none">
+          <a href="javascript:;" data-provide="fullscreen" class="waves-effect waves-light nav-link  svg-bt-icon" title="Full Screen">
+            <!-- <i data-feather="maximize"></i> -->
+            <i class="fa-solid fa-expand"></i>
+          </a>
+        </li>
+
+        <!-- User Account-->
+        <li class="dropdown user user-menu">
+          <a href="javascript:;"
+            class="waves-effect waves-light dropdown-toggle w-auto l-h-12 bg-transparent p-0 no-shadow" title="User"
+            data-bs-toggle="modal" data-bs-target="#quick_user_toggle">
+            <div class="d-flex align-items-center">
+              <div class="text-end me-10">
+                <p class="pt-5 fs-14 mb-0 fw-700">{{User.fullName}}</p>
+                <small class="fs-10 mb-0 text-uppercase text-mute">{{User.role}}</small>
+              </div>
+              <img src="{{User.pictureUrl?User.pictureUrl:'../../../../assets/images/avatar/avatar-15.png'}}"
+                class="avatar rounded-circle bg-primary-light h-40 w-40" alt="" />
+            </div>
+          </a>
+        </li>
+        <!-- User Account-->
+        <!-- Control Sidebar Toggle Button -->
+        <!-- <li class="btn-group nav-item d-xl-inline-flex d-none">
+          <a href="javascript:;" data-toggle="control-sidebar" title="Setting"
+            class="waves-effect waves-light nav-link btn-primary-light svg-bt-icon me-0">
+            <i data-feather="sliders"></i>
+            <i class="fa-solid fa-sliders"></i>
+          </a>
+        </li> -->
+
+      </ul>
+    </div>
+  </nav>
+</header>
+<div class="modal modal-right fade" id="quick_user_toggle" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content slim-scroll3 ps ps--active-y">
+      <div class="modal-body p-30 bg-white">
+        <div class="d-flex align-items-center justify-content-between pb-30">
+          <!-- <h4 class="m-0">User Profile
+            <small class="text-fade fs-12 ms-5">12 Notifications</small>
+          </h4> -->
+          <a href="javascript:;" class="btn btn-icon btn-danger-light btn-sm no-shadow" id="closerightpopup" data-bs-dismiss="modal">
+            <span class="fa fa-close"></span>
+          </a>
+        </div>
+        <div>
+          <div class="d-flex flex-row align-items-center">
+            <div class=""><img src="{{User.pictureUrl?User.pictureUrl:'../../../../assets/images/avatar/avatar-15.png'}}" alt="user" class="rounded w-100"
+                width="100"></div>
+            <div class="ps-20">
+              <h5 class="mb-0">{{User.fullName}}</h5>
+              <p class="my-5 text-fade">{{User.role}}</p>
+              <!-- <a href="mailto:dummy@gmail.com"><span class="icon-Mail-notification me-5 text-success"><span class="path1"></span><span class="path2"></span></span> dummy@gmail.com</a> -->
+              <a href="javascript:;">{{User.email}}</a>
+              <!-- <button class="btn btn-success-light btn-sm mt-5"><i class="ti-plus"></i> Follow</button> -->
+            </div>
+          </div>
+        </div>
+        <div class="dropdown-divider my-30"></div>
+        <div>
+          <div class="d-flex align-items-center mb-30">
+            <div class="me-15 bg-primary-light h-50 w-50 l-h-60 rounded text-center">
+              <span class="icon-Library fs-24"><span class="path1"></span><span class="path2"></span></span>
+            </div>
+            <div class="d-flex flex-column fw-500">
+              <a href="javascript:;" (click)="Profile()" class="text-dark hover-primary mb-1 fs-16">My Profile</a>
+              <span class="text-fade">Account settings and more</span>
+            </div>
+          </div>
+          <div class="d-flex align-items-center mb-30">
+            <div class="me-15 bg-danger-light h-50 w-50 l-h-60 rounded text-center">
+              <span class="icon-Write fs-24"><span class="path1"></span><span class="path2"></span></span>
+            </div>
+            <div class="d-flex flex-column fw-500">
+              <a href="javascript:;" (click)="TargetNotification()" class="text-dark hover-danger mb-1 fs-16">My Notifications</a>
+              <span class="text-fade">Updates and Tasks</span>
+            </div>
+          </div>
+          <!-- <div class="d-flex align-items-center mb-30">
+                  <div class="me-15 bg-danger-light h-50 w-50 l-h-60 rounded text-center">
+                      <span class="icon-Write fs-24">
+                          <img src="../../../../assets/images/icons/resource.png">
+                      </span>
+                  </div>
+                  <div class="d-flex flex-column fw-500">
+                      <a href="resources.php" class="text-dark hover-danger mb-1 fs-16">My Resources</a>
+                      <span class="text-fade">Learning Resources</span>
+                  </div>
+              </div> -->
+          <div class="d-flex align-items-center mb-30">
+            <div class="me-15 bg-danger-light h-50 w-50 l-h-60 rounded text-center">
+              <span class="icon-Write fs-24">
+                <img src="../../../../assets/images/icons/password.png">
+              </span>
+            </div>
+            <div class="d-flex flex-column fw-500">
+              <a href="javascript:;"  (click)="ChangePassword()" class="text-dark hover-danger mb-1 fs-16">Password</a>
+              <span class="text-fade">Change Password</span>
+            </div>
+          </div>
+          <!-- <div class="d-flex align-items-center mb-30">
+                  <div class="me-15 bg-success-light h-50 w-50 l-h-60 rounded text-center">
+                      <span class="icon-Group-chat fs-24"><span class="path1"></span><span class="path2"></span></span>
+                  </div>
+                  <div class="d-flex flex-column fw-500">
+                      <a href="setting.html" class="text-dark hover-success mb-1 fs-16">Settings</a>
+                      <span class="text-fade">Accout Settings</span>
+                  </div>
+              </div> -->
+          <!-- <div class="d-flex align-items-center mb-30">
+                  <div class="me-15 bg-info-light h-50 w-50 l-h-60 rounded text-center">
+                      <span class="icon-Attachment1 fs-24"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
+                  </div>
+                  <div class="d-flex flex-column fw-500">
+                      <a href="extra_taskboard.html" class="text-dark hover-info mb-1 fs-16">Project</a>
+                      <span class="text-fade">latest tasks and projects</span>
+                  </div>
+              </div> -->
+        </div>
+        <div class="dropdown-divider my-30"></div>
+        <div>
+          <!-- <div class="media-list">
+                  <a class="media media-single px-0" href="#">
+                    <h4 class="w-50 text-gray fw-500">10:10</h4>
+                    <div class="media-body ps-15 bs-5 rounded border-primary">
+                      <p>Morbi quis ex eu arcu auctor sagittis.</p>
+                      <span class="text-fade">by Johne</span>
+                    </div>
+                  </a>
+
+                  <a class="media media-single px-0" href="#">
+                    <h4 class="w-50 text-gray fw-500">08:40</h4>
+                    <div class="media-body ps-15 bs-5 rounded border-success">
+                      <p>Proin iaculis eros non odio ornare efficitur.</p>
+                      <span class="text-fade">by Amla</span>
+                    </div>
+                  </a>
+
+                  <a class="media media-single px-0" href="#">
+                    <h4 class="w-50 text-gray fw-500">07:10</h4>
+                    <div class="media-body ps-15 bs-5 rounded border-info">
+                      <p>In mattis mi ut posuere consectetur.</p>
+                      <span class="text-fade">by Josef</span>
+                    </div>
+                  </a>
+
+                  <a class="media media-single px-0" href="#">
+                    <h4 class="w-50 text-gray fw-500">01:15</h4>
+                    <div class="media-body ps-15 bs-5 rounded border-danger">
+                      <p>Morbi quis ex eu arcu auctor sagittis.</p>
+                      <span class="text-fade">by Rima</span>
+                    </div>
+                  </a>
+
+                  <a class="media media-single px-0" href="#">
+                    <h4 class="w-50 text-gray fw-500">23:12</h4>
+                    <div class="media-body ps-15 bs-5 rounded border-warning">
+                      <p>Morbi quis ex eu arcu auctor sagittis.</p>
+                      <span class="text-fade">by Alaxa</span>
+                    </div>
+                  </a>
+                  <a class="media media-single px-0" href="#">
+                    <h4 class="w-50 text-gray fw-500">10:10</h4>
+                    <div class="media-body ps-15 bs-5 rounded border-primary">
+                      <p>Morbi quis ex eu arcu auctor sagittis.</p>
+                      <span class="text-fade">by Johne</span>
+                    </div>
+                  </a>
+
+                  <a class="media media-single px-0" href="#">
+                    <h4 class="w-50 text-gray fw-500">08:40</h4>
+                    <div class="media-body ps-15 bs-5 rounded border-success">
+                      <p>Proin iaculis eros non odio ornare efficitur.</p>
+                      <span class="text-fade">by Amla</span>
+                    </div>
+                  </a>
+
+                  <a class="media media-single px-0" href="#">
+                    <h4 class="w-50 text-gray fw-500">07:10</h4>
+                    <div class="media-body ps-15 bs-5 rounded border-info">
+                      <p>In mattis mi ut posuere consectetur.</p>
+                      <span class="text-fade">by Josef</span>
+                    </div>
+                  </a>
+
+                  <a class="media media-single px-0" href="#">
+                    <h4 class="w-50 text-gray fw-500">01:15</h4>
+                    <div class="media-body ps-15 bs-5 rounded border-danger">
+                      <p>Morbi quis ex eu arcu auctor sagittis.</p>
+                      <span class="text-fade">by Rima</span>
+                    </div>
+                  </a>
+
+                  <a class="media media-single px-0" href="#">
+                    <h4 class="w-50 text-gray fw-500">23:12</h4>
+                    <div class="media-body ps-15 bs-5 rounded border-warning">
+                      <p>Morbi quis ex eu arcu auctor sagittis.</p>
+                      <span class="text-fade">by Alaxa</span>
+                    </div>
+                  </a>
+                </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+ 
+<div class="toastr-notification"> 
+  <ng-container *ngFor="let item of Notifications" >
+  <div class="toast-list"  >
+    <div class="notification-head">
+      <div class="row">
+        <div class="toast-icon" >
+          <i class="{{item.iconUrl}}"></i>
+        </div>
+          <div class="toast-title-noti">
+        <a href="javascript:;"  (click)="TargetNotification()">
+            {{item.notificationTitle}}
+          </a>
+        </div>
+      </div> 
+      <div class="toast-description">
+        <a href="javascript:;" (click)="TargetNotification()">
+        {{item.summary}}
+      </a>
+      </div>
+    </div>
+  </div>
+</ng-container>
+</div>

@@ -1,0 +1,19 @@
+<div class="modal fade prg-popup show" id="PreviewModal" style="display: block;"  aria-labelledby="exampleModalLabel"
+     >
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <button type="button" class="btn-close" (click)="cancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-body py-3">
+                <div class="row justify-content-center">
+
+                    <div class="col-lg-12 mb-2 mt-3">
+                        <span>{{SelectedObj.createdOn | date}}</span>
+                        <label>{{SelectedObj.title}}</label>
+                        <p class="text-center">{{SelectedObj.description}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div> 

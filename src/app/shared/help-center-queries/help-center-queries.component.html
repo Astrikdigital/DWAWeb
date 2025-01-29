@@ -1,0 +1,96 @@
+<div class="content-wrapper">
+    <div class="container-full">
+        <!-- Main content -->
+        <section class="content">
+
+
+            <div class="box">
+                <div class="box-body">
+                    <div class="help-center">
+                        <div class="help-center-top mb-5">
+                            <div class="row align-items-center border-bottom-3 pb-2">
+                                <div class="col-lg-7 col-md-7">
+                                    <h3 class="fw-bold">Help Center Queries</h3>
+                                </div>
+                                <div class="col-lg-3 col-md-3 mt-3">
+                                    <!-- <div class="form-group">
+                                      <input type="search" placeholder="seacrh">
+                                      <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                  </div> -->
+                                </div>
+                                <div class="col-lg-2 col-md-2 text-center">
+                                    <!-- <button type="button" class="cmp-btn"><i class="fa-solid fa-filter"></i> Filters</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Page content -->
+
+
+                    <div class="row border-bottom border-light py-3 mb-3">
+                        <div class="col-lg-3 col-md-3 mb-0">
+                            <label class="fs-15 text-body fw-600">Query Subject</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 mb-0">
+                            <label class="fs-15 text-body fw-600">Query Body</label>
+                        </div>
+                        <div class="col-lg-2 col-md-2 mb-0">
+                            <label class="fs-15 text-body fw-600">Date/Time</label>
+                        </div>
+                        <div class="col-lg-1 col-md-1 mb-0">
+                            <label class="fs-15 text-body fw-600">Status</label>
+                        </div>
+                      
+                        <div class="col-lg-2 col-md-2 mb-0">
+                            <label class="fs-15 text-body fw-600">Created by</label>
+                        </div>
+                        <div class="col-lg-1 col-md-1 mb-0">
+                            &nbsp;
+                        </div>
+                    </div>
+
+
+                    <div class="row border-bottom border-light py-2 mb-3" *ngIf="!Queries?.length">
+                        <div class="col-lg-12 col-md-12 mb-0 text-center">
+                            <label class="fs-12 text-body">No Record</label>
+                        </div> 
+                    </div>
+
+                    <div class="row border-bottom border-light py-2 mb-3" *ngFor="let item of Queries;let i = index">
+                        <div class="col-lg-3 col-md-3 mb-0">
+                            <label class="fs-12 text-body">{{item.Subject}}</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 mb-0">
+                            <label class="fs-12 text-body">
+                                <div [innerHtml]="item.Body"></div>
+                            </label>
+                        </div>
+                        <div class="col-lg-2 col-md-2 mb-0">
+                            <label class="fs-12 text-body">{{item.CreatedOn | date : 'dd/MM/yyyy HH:mm a'}}</label>
+                        </div>
+                        <div class="col-lg-1 col-md-1 mb-0">
+                            <label class="fs-12 text-body">
+                                
+                                <span class="badge {{item.ThreadStatusId == 1 ? 'text-bg-success rounded-pill' : 'text-bg-danger rounded'}} "></span>
+                                {{item.ThreadStatus}}</label>
+                        </div>
+                    
+                        <div class="col-lg-2 col-md-2 mb-0">
+                            <label class="fs-12 text-body"> {{item.FromUser}} </label>
+                        </div>
+                        <div class="col-lg-1 col-md-1 text-end">
+                            <a class="px-3 pt-5" href="javascript:;" (click)="RouteToQuery(item)"
+                                ><i class="fa fa-ellipsis-v"></i></a>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>

@@ -1,0 +1,134 @@
+<div class="content-wrapper">
+    <div class="container-full">
+        <!-- Main content -->
+        <section class="content">
+            <div class="box">
+                <div class="box-body">
+                    <div class="row align-items-center">
+                        <div class="col-lx-6 col-lg-6 col-sm-12 mb-3">
+                            <h3 class="fw-600 box-title py-3 mb-0">All Registration</h3>
+                        </div>
+
+                        
+
+                        <div class="col-lx-8 col-lg-6 col-md-12 mb-3 text-end">
+                            <div class="row align-items-center d-lg-flex d-grid justify-content-end">
+
+                                <div class="col-lg-5 d-flex justify-content-end">
+                                    <button class="cmp-btn" id="downloadButton" (click)="onDownloadClick()">
+                                        <i class="fa fa-download me-15"></i>Download Excel
+                                    </button>
+    
+                                    <div class="col-lg-5 d-flex justify-content-end">
+                                        <a id="downloadLink" href="#" class="cmp-btn" download style="display: none;">
+                                            <i class="fa fa-download me-15"></i>Download Excel
+                                        </a>
+                                    </div>
+
+                                    <a href="javascript:;" routerLink="/admin/add-registration" class="cmp-btn"><i class="fa fa-plus me-15"></i>Add Registration</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center">
+                        <div class="col-xl-3 col-lg-4 col-12 mt-3">
+                            <div class="form-group">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="seacrh" [(ngModel)]="FacultyModel.SerachText" placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-4 col-12 mt-3">
+                            <div class="form-group">
+                                <input type="date" id="" name="date" [(ngModel)]="FacultyModel.DateOfJoining"  class="px-2" />
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="search-btn">
+                                <button (click)="getfaculties()">Search</button>
+                            </div>
+                            <label></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box pull-up px-1 py-2 mb-3" *ngFor="let item of faculties;let i =index;">
+                <div class="table-responsive rounded-3">
+                    <table class="table mb-0 py-0 px-0">
+                        <tbody>
+                            <tr class="border-transparent">
+                                <td scope="col" class="" width="150">
+                                    <div class="text-center">
+                                        <!-- <img style="width:50px;height:50px;" [src]=" item.pictureUrl ? (item.pictureUrl) : '../../../assets/images/avatar/avatar-15.png'" -->
+                                        <!-- <img style="width:50px;height:50px;" [src]="'http://localhost:5255' + item.Image" /> -->
+                                        <img 
+                                        [src]="'http://217.76.53.78:9010/'+(item.Image || 'default-avatar.jpg')" 
+                                        class="bg-primary-light avatar avatar-lg rounded-circle" 
+                                        alt="User Avatar"/>
+                                    
+                                        
+                                    </div>
+                                </td>
+                                <td scope="col" width="350">
+                                    <span class="text-dark fw-600">Name</span>
+                                    <p class="text-danger fw-600 mb-0">{{item.Name}}</p>
+                                </td>
+
+                                <td scope="col"  class="text-center" width="200">
+                                    <span class="text-dark fw-600">Date</span>
+                                    <p class="text-body mb-0">{{item.Date | date}}</p>
+                                </td>
+                                <td scope="col"  class="text-center" width="200">
+                                    <span class="text-dark fw-600">Registration/Code  No.</span>
+                                    <p class="text-body mb-0">{{item.CodeNo}}</p>
+                                </td>
+                                <td scope="col" width="350">
+                                    <span class="text-dark fw-600">Needs and Remarks</span>
+                                    <p class="text-danger fw-600 mb-0">{{item.NeedsRemarks}}</p>
+                                </td>
+
+                                <td scope="col" width="350">
+                                    <span class="text-dark fw-600">Disability</span>
+                                    <p class="text-danger fw-600 mb-0">{{item.DisabilityTitle}}</p>
+                                </td>
+                                <td scope="col" width="350">
+                                    <span class="text-dark fw-600">Cause of Disability</span>
+                                    <p class="text-danger fw-600 mb-0">{{item.CauseDisabilityTitle}}</p>
+                                </td>
+                                <td scope="col" class="text-center" width="80">
+                                    <span class="text-dark fw-600 d-block mb-1">Action</span>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="javascript:;" (click)="EditFaculty(item.Id)" class="text-warning px-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="javascript:;" class="" (click)="OpenDeleteModal(item.Id)"><i class="fa-solid fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="box pull-up px-1 py-2 mb-3" *ngIf="!faculties.length">
+                <div class="table-responsive rounded-3">
+                    <table class="table mb-0 py-0 px-0">
+                        <tbody>
+                            <tr class="border-transparent">
+                                <td class="" width="100">
+                                    <p class="no-record">
+                                        No Record Found
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</div>
+
+
+

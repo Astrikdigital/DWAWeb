@@ -1,0 +1,102 @@
+<div class="content-wrapper" style="min-height: 533.5px;">
+    <div class="container-full">
+        <!-- Main content -->
+        <section class="content">
+            <div class="box">
+                <div class="box-body">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-lg-3">
+                            <h3 class="fw-600 box-title mb-4 mt-4">All Users</h3>
+                        </div>
+                        <div class="col-lg-3 d-flex justify-content-end">
+                            <a href="javascript:;" routerLink="/admin/add-user" class="cmp-btn">
+                              <i class="fa fa-plus me-15"></i>Add Admin User</a>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center  justify-content-start">
+                        <div class="col-lg-4 col-md-4 mb-2 mt-3">
+                            <div class="form-group">
+                                <label for="" class="mb-1">Search user’s data </label>
+                                <input type="search" [(ngModel)]="UserModel.SearchText"
+                                    placeholder="Search user's data">
+                                <!-- <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button> -->
+                            </div>
+
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="search-btn">
+                                <button (click)="getUsers()">Search</button>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="table-responsive rounded-4">
+                <table class="table table-bordered table-hover ">
+                    <thead class="table-secondary">
+                        <tr>
+                            <td scope="col" style="width: 90px;"></td>
+                            <td scope="col"><span class="fs-14 fw-600">Full Name</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">User Type</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Email</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">UserName</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Password</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Action</span></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="!users?.length">
+                            <td colspan="8" class="text-center">No Record </td>
+                        </tr>
+
+                        <tr *ngFor="let item of users;">
+                            <td>
+                                <img
+                                    [src]="item.PictureUrl ? (item.PictureUrl) : '../../../assets/images/avatar/avatar-15.png'"
+                                    class="rounded-circle w-80 set-table" alt="">
+                            </td>
+                            <td>
+                                <p class="text-body mb-0">{{item.FullName}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0">{{item.UserType}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0">{{item.Email}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0">{{item.UserName}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0"[title]="item.Password">
+                                    <ng-container *ngIf="!item.IsShow">
+                                        ******* <i  (click)="item.IsShow = !item.IsShow"  class="fa-solid fa-eye ml-2 clr-blue"></i>
+                                    </ng-container>
+                                    <ng-container *ngIf="item.IsShow">
+                                        {{item.Password}}  <i (click)="item.IsShow = !item.IsShow"  class="fa-solid fa-eye-slash ml-2  clr-blue"></i>
+                                    </ng-container>
+                                </p>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-start">
+                                    <a href="javascript:;" (click)="EditUser(item.Id)" class="text-warning px-2"><i
+                                            class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="javascript:;" (click)="OpenDeleteModal(item.Id)"><i
+                                            class="fa-solid fa-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </div>
+
+</div>

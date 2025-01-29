@@ -1,0 +1,115 @@
+<div class="content-wrapper" style="min-height: 417.5px;">
+    <div class="container-full">
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="box px-lg-4 px-md-2 py-lg-3 py-md-2">
+                <div class="row mb-5">
+                    <div class="col-lg-2 px-2">
+                        <h3 class="nt-title fw-600 text-dark px-3">All Notifications</h3>
+
+                    </div>
+                </div>
+                <ng-container *ngIf="User.userTypeId == 1">
+                    
+
+                    <div class="row align-items-center mb-4 border-1 bg-primary-light py-3 rounded-2">
+                        <div class="col-lg-8 col-md-8">
+                            <div class="d-flex align-items-center">
+                                <div class="cmp-btn fs-20 py-3 px-3 w-60 text-center margin-x">
+                                    <i class="fa-solid fa-bell"></i>
+                                </div>
+                                <div class="text-left px-4">
+                                    <span class="fs-18 fw-600 text-dark d-block">Create Notifications</span>
+                                    <span class="fs-14  text-body">Notify students, faculty and other staff about
+                                        important updates</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 d-flex justify-content-end">
+                            <a href="javascript:;" routerLink="/admin/add-notification" class="cmp-btn">Add New
+                                Notifications</a>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center justify-content-between mb-4">
+                        <div class="col-lg-4 col-md-4">
+                            <label class="fs-15 fw-600 text-dark mb-1">Category</label>
+                            <select class="form-select" (change)="GetNotifications()"
+                                [(ngModel)]="NotificationModel.NotificationTypeId" aria-label="Default select example">
+                                <option value="" selected="">Select All</option>
+                                <option *ngFor="let item of notificationType" [value]="item.id">{{item.type}}</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <label class="fs-15 fw-600 text-dark mb-1">Date </label>
+                            <input type="date" (change)="GetNotifications()" [(ngModel)]="NotificationModel.DateFilter"
+                                placeholder="16 September 2020">
+                        </div>
+                    </div>
+                </ng-container>
+                <div class="box-body">
+                    <div class="row align-items-center mb-4 border-1 bg-secondary-light py-3 rounded-2" *ngIf="!Notifications?.length">
+                        <div class="col-lg-12 col-md-12 text-center">
+                            <span class="fs-18 text-center">No Record</span>
+                        </div>
+                        </div>
+                    <ng-container *ngFor="let item of Notifications;let i = index">
+                        <div class="row align-items-center mb-3 pull-up "   [ngClass]="item.isRead ? { 'ntfg': item.isRead } : { 'ntfg1': !item.isRead }">
+                            <div class="col-xl-9 col-lg-9 col-md-9 mb-0">
+                                <div class="notification-bar">
+                                    <div class="notification-bar-icon"  >
+                                        <i class="{{item.iconUrl}}"></i>
+
+                                    </div>
+                                    <div class="notification-bar-text">
+                                        <h4 class="fs-18 fw-bold text-dark mb-0">{{item.notificationType}}</h4>
+                                        <span class="fs-16 text-dark">{{item.summary}}</span>
+                                        <div class="n-btn-holder">
+                                            <a href="javascript:;" class="mt-3" (click)="ViewDetail(item,i)">View
+                                                Details</a>
+                                            <a href="javascript:;" id="view-detail" class="mt-3 d-none"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModal1"></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 text-center">
+                                <div class="notification-bar-end mt-4">
+                                    <p> <span class="px-2"> {{item.createdOn | date}} at </span> <i class="fa-regular fa-clock"></i>
+                                        {{item.createdOn | date : "hh:mm a" }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+
+
+
+        </section>
+    </div>
+
+</div>
+
+<div class="modal fade prg-popup" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+    style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-body py-3">
+                <div class="row justify-content-center">
+
+                    <div class="col-lg-12 mb-2 mt-3">
+                        <span>{{SelectedObj.createdOn | date}}</span>
+                        <label>{{SelectedObj.notificationTitle}}</label>
+                        <p class="text-center">{{SelectedObj.summary}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

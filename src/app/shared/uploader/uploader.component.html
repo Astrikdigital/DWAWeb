@@ -1,0 +1,13 @@
+<div class="div-uploader px-4">
+    <div class="image-upload-container">
+        <div *ngIf="selectedImage">
+            <img [src]="selectedImage" alt="Preview Image" class="preview-image" />
+        </div>
+
+        <div (click)="UploadBtn()">
+            <div class="div-placeholder" *ngIf="!selectedImage"><i class="fa-solid fa-user"></i></div>
+            <div class="uploadimage"> Choose File</div>
+        </div>
+    </div>
+    <input type="file" id="uploadimage" class="d-none" (change)="Upload($event)" accept="image/*" />     
+</div>  

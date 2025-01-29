@@ -1,0 +1,15 @@
+.status-thread span.Open {
+    color: #26b9ff;
+}
+.status-thread span.Close {
+    color: #ff2626;
+}
+span.MarkToClose {
+    background: red;
+    color: white;
+    padding: 2px 7px;
+    font-size: 12px;
+    font-family: system-ui;
+    border-radius: 6px;
+    cursor: pointer;
+}

@@ -1,0 +1,56 @@
+.readcount {
+    margin: 0;
+    padding: 0 9px;
+    font-size: 11px;
+    background: #ff3a3a;
+    position: absolute;
+    display: inline-block;
+    color: white;
+    align-items: center;
+    font-weight: 700;
+    font-family: system-ui;
+    border-radius: 48px;
+    top: 0;
+    right: 0;
+    width: 23px;
+    height: 23px;
+}
+.toastr-notification {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 8000;
+    margin-top: 15px;
+ 
+}
+.toast-list{
+    background: white;
+    margin: 5px 19px 0 0;
+    padding: 16px 35px;
+    border: 2px solid #9c3134;
+    border-radius: 8px;
+    width: 350px;
+}
+.toast-icon {
+    width: 20px;
+    padding: 0;
+    text-align: center;
+    font-size: 21px;
+    color: #9c3134;
+    align-content: center;
+}.toast-title-noti {
+    width: 80%;
+    font-weight: 700;
+    font-family: system-ui;
+    align-content: center;
+    font-size: 15px;
+}
+.toast-description {
+    width: 100%;
+    text-align: left;
+    padding: 2px 0 0;
+    margin: 0;
+    font-family: system-ui;
+    font-size: 13px;
+    font-weight: 600;
+}

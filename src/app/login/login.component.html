@@ -1,0 +1,44 @@
+<!-- <h2>Login Form</h2> -->
+
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+  <div class="imgcontainer mt-130">
+    <img src="../../assets/images/avatar/1.jpg" alt="Avatar" class="avatar rounded-4">
+  </div>
+
+  <div class="container">
+    <div class="row align-items-center justify-content-center mt-5">
+      <!-- pattern="[^@\s]+@[^@\s]+\.[^@\s]+" -->
+      <div class="col-xl-4 col-lg-5">
+        <label for="uname"><b>User *</b></label>
+        <input type="text" placeholder="Enter User" name="uname" #uname="ngModel"
+          [(ngModel)]="UserModel.userId" maxlength="100" [pattern]="'^[a-zA-Z0-9.-]*$'"  required>
+          <ng-container *ngIf="uname.touched && !uname.value">
+            <p class="error-red">User is required </p>
+        </ng-container>
+        <ng-container *ngIf="uname.touched && uname.invalid && uname.value">
+            <p class="error-red">User should not contain spaces or special characters </p>
+        </ng-container> 
+        <label for="pass"><b>Password *</b></label>
+        <input type="password" placeholder="Enter Password" minlength="3" name="pass" #pass="ngModel" [(ngModel)]="UserModel.Password"
+        maxlength="100"  required>
+        <ng-container *ngIf="pass.touched && !pass.value">
+          <p class="error-red">Password is required </p>
+      </ng-container>
+      <ng-container *ngIf="pass.touched && pass.invalid && pass.value">
+          <p class="error-red">Password is Invalid </p>
+      </ng-container>  
+        <button type="submit" [disabled]="form.invalid" class="fw-600">
+<ng-container *ngIf="!IsLoader">
+  Login
+</ng-container>
+<ng-container *ngIf="IsLoader">
+  <i class="fa fa-spinner fa-spin"></i> Loading
+</ng-container>
+        </button>
+      </div>
+    </div>
+   
+  </div>
+
+
+</form>

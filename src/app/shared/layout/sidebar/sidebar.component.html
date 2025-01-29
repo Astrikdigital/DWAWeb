@@ -1,0 +1,49 @@
+<aside class="main-sidebar">
+    <section class="sidebar position-relative">
+	  	<div class="multinav">
+		  <div class="multinav-scroll" style="height:97%;overflow-y:auto;">
+			  <ul class="sidebar-menu" data-widget="tree">
+				<li class="h-50">
+
+				  </li>
+				  <ng-container *ngFor="let item of Menus;let i =index;">
+				<li routerLinkActive="active" *ngIf="!item.IsChild" >
+				  <a [routerLink]="item.Route" routerLinkActive="active" href="javascript:;" >
+					<i class="{{item.Icon}}"></i>
+					<span>{{item.Title}}</span>
+				  </a>
+				</li>
+				<li class="treeview menuNo-{{i}}" *ngIf="item.IsChild">
+					<a href="javascript:;" (click)="OpenChildMenu(i)">
+						<i class="{{item.Icon}}"></i>
+					  <span>{{item.Title}}</span>
+					  <span class="pull-right-container">
+						<i class="fa fa-angle-right pull-right"></i>
+					  </span>
+					</a>
+					<ul class="treeview-menu menuNo-{{i}}">
+					<li class=""  *ngFor="let child of item.Childs">
+						  <a href="javascript:;" [routerLink]="child.Route">
+						  <i [class]="child.Icon"></i>{{child.Title}}
+						  </a>
+					  </li>
+					</ul>
+				  </li>
+				</ng-container>
+				<li>
+					<a href="javascript:;"><span>&nbsp;</span></a>
+				</li>
+				<li>
+					<a href="javascript:;"><span>&nbsp;</span></a>
+				</li>
+				<li>
+					<a  href="javascript:;"  (click)="Profile()"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+				  </li>
+				  <li>
+					<a href="javascript:;" (click)="Logout()"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+				  </li>
+			  </ul>
+		  </div>
+		</div>
+    </section>
+  </aside>

@@ -1,0 +1,105 @@
+<div class="content-wrapper" style="min-height: 533.5px;">
+    <div class="container-full">
+        <!-- Main content -->
+        <section class="content">
+            <div class="box">
+                <div class="box-body">
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-1" role="tabpanel"
+                            aria-labelledby="pills-1-tab" tabindex="0">
+                            <form #form="ngForm" (ngSubmit)="AddUser()">
+
+                                <div class="personal-inform-box">
+                                    <h2 class="title-blue mb-1 fw-600">Add an admin user </h2>
+                                    <p class="mb-4">Use the fields below to add an admin to your institute’s area </p>
+
+
+                                    <div class="row mt-3">
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label>Full Name * </label>
+                                            <div class="form-group">
+                                                <i class="fa-solid fa-user"></i>
+                                                <input type="text" placeholder="Mention Full Name here"
+                                                    name="FullName" #FullName="ngModel"
+                                                    [(ngModel)]="UserModel.FullName"    maxlength="100" [pattern]="'^[a-z A-Z]*$'" required>
+                                                    <ng-container *ngIf="FullName.touched && !FullName.value">
+                                                        <p class="error-red">Full Name is required </p>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="FullName.touched && FullName.invalid && FullName.value">
+                                                        <p class="error-red">Full Name should not contain number or special characters </p>
+                                                    </ng-container>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label>Email *</label>
+                                            <div class="form-group">
+                                                <i class="fa-solid fa-user"></i>
+                                                <input type="Email"  pattern="[^@\s]+@[^@\s]+\.[^@\s]+"  placeholder="Mention Email here"
+                                                    name="Email" #Email="ngModel"
+                                                    [(ngModel)]="UserModel.Email" maxlength="100" required>
+                                                    <ng-container *ngIf="Email.touched && !Email.value">
+                                                        <p class="error-red">Email is required </p>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="Email.touched && Email.invalid && Email.value">
+                                                        <p class="error-red">Email is Invalid </p>
+                                                    </ng-container> 
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label>User Name *</label>
+                                            <div class="form-group">
+                                                <i class="fa-solid fa-user"></i>
+                                                <input type="text" placeholder="Mention User Name here"
+                                                    name="UserName" #UserName="ngModel"    (ngModelChange)="ChangeUserName($event)"
+                                                    [(ngModel)]="UserModel.UserName"    maxlength="100" [pattern]="'^[a-zA-Z0-9.-]*$'" required>
+                                                    <ng-container *ngIf="IsUserNameErr">
+                                                        <p class="error-red">UserName is already exists </p>
+                                                    </ng-container>
+                                                <ng-container *ngIf="UserName.touched && !UserName.value">
+                                                    <p class="error-red">User Name is required </p>
+                                                </ng-container>
+                                                <ng-container *ngIf="UserName.touched && UserName.invalid && UserName.value">
+                                                    <p class="error-red">User Name should not contain spaces or special characters </p>
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label>Password *</label>
+                                            <div class="form-group">
+                                                <i class="fa-solid fa-user"></i>
+                                                <input type="text" placeholder="Mention Password here"
+                                                    name="Password" #Password="ngModel"
+                                                    [(ngModel)]="UserModel.Password" maxlength="50" required>
+                                                    <ng-container *ngIf="Password.touched && !Password.value">
+                                                        <p class="error-red">Password is required </p>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="Password.touched && Password.invalid && Password.value">
+                                                        <p class="error-red">Password is Invalid </p>
+                                                    </ng-container>  
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 mb-2">
+                                            <label class="mb-1 px-4">Upload Profile Picture</label>
+
+                                            <app-uploader
+                                                [selectedImage]="UserModel?.PictueUrl ? UserModel?.PictueUrl : null"
+                                                (Update)="ChangeImage($event)"></app-uploader>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-end mt-3">
+                                    <div class="col-lg-2 text-end">
+                                        <button type="submit" class="cmp-btn" [disabled]="form.invalid">Submit
+                                            User</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
