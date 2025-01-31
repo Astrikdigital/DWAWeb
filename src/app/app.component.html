@@ -1,5 +1,12 @@
  
 <router-outlet></router-outlet>  
-<div class="CommonLoader" *ngIf="store.IsLoader">
-    <i class="fa fa-spinner fa-spin"></i>
-</div>
+
+<ng-http-loader 
+    [backdrop]="false"
+    [backgroundColor]="'#890404'"
+    [debounceDelay]="100"
+    [extraDuration]="300"
+    [minDuration]="300"
+    [backdropBackgroundColor]="'#777777'"
+    [spinner]="spinkit.skWave">
+</ng-http-loader>

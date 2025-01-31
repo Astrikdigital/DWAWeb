@@ -76,7 +76,6 @@ export class AddFacultyComponent implements OnInit {
   }
 
   async getfaculties(Id: any) {
-    debugger;
     let res: any = await this.api.getfaculties({ Id: Id });
     if (res.statusCode == 200) {
       debugger
@@ -107,6 +106,7 @@ export class AddFacultyComponent implements OnInit {
     const button = document.getElementById('pills-2-tab');
     button?.click();
   }
+  
   async GetUserName() {
     let res: any = await this.api.GetUserName();
     if (res.statusCode == 200) {

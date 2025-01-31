@@ -84,7 +84,6 @@ export class HttpApiService {
 
     }
     async AddFaculty(body: any): Promise<any> {
-debugger
         const formData = new FormData();
         formData.append('ProjectId', body.ProjectId);
         formData.append('Date', body.Date);
@@ -494,6 +493,9 @@ debugger
     async getAllUsers(body:any): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/get-users',body) 
     }
+    async getAllEmployee(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-employee') 
+    }
     async getAllQueries(body:any): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/get-help-center-query',body) 
     }
@@ -548,6 +550,149 @@ debugger
     async AddInventoryComponent(userForm: any, any: any): Promise<any> {
         return await this.httpService.post<any>('api/Admin/InsertUpdateInventory', this.userForm.value)
     }
+    async getDesignation(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-designation');
+    }
+
+    async getAssignment(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-assignment');
+    }
+    async getDepartment(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-department');
+    }
+    async getGender(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-gender');
+    }
+    async getShift(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-shift');
+    }
+    async getStatus(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-status');
+    }
+    async getReligion(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-religion');
+    }
+    async getMaritalStatus(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-marital-status');
+    }
+    async getContractType(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-contract-type');
+    }
+    async getCity(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-cities');
+    }
+    async getEmpType(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-employment-type');
+    }
+
+    async AddEmployee(body: any): Promise<any> {
+        debugger
+        const formData = new FormData();
+        if (body.Id) formData.append('Id', body.Id);
+       // Append nullable integer properties
+      formData.append("Id", body.Id ?? '');
+      formData.append("DesignationId", body.DesignationId ?? '');
+      formData.append("DepartmentId", body.DepartmentId ?? '');
+      formData.append("EmployementTypeId", body.EmployementTypeId ?? '');
+      formData.append("ContractTypeId", body.ContractTypeId ?? '');
+      formData.append("ShiftId", body.ShiftId ?? '');
+      if (body.ProfilePicture) formData.append("ProfilePicture", body.ProfilePicture ?? '');
+      if (body.attachmentUrl) formData.append("attachmentUrl", body.attachmentUrl ?? '');
+      formData.append("GenderId", body.GenderId ?? '');
+      formData.append("MaritalStatusId", body.MaritalStatusId ?? '');
+      formData.append("ReligionId", body.ReligionId ?? '');
+      formData.append("CityId", body.CityId ?? '');
+      formData.append("StatusId", body.StatusId ?? '');
+      formData.append("Salary", body.Salary ?? '');
+      formData.append("EmergencyContactNo", body.EmergencyContactNo ?? '');
+      formData.append("PersonalPhoneNumber", body.PersonalPhoneNumber ?? '');
     
+      // Append string properties
+      formData.append("Name", body.Name ?? '');
+      formData.append("Email", body.Email ?? '');
+      formData.append("Phone", body.Phone ?? '');
+      formData.append("Location", body.Location ?? '');
+      formData.append("EmergencyContactRelation", body.EmergencyContactRelation ?? '');
+      formData.append("CNIC", body.CNIC ?? '');
+      formData.append("FatherName", body.FatherName ?? '');
+      formData.append("PersonalEmail", body.PersonalEmail ?? '');
+      formData.append("PermanentAddress", body.PermanentAddress ?? '');
+      formData.append("ResidentialAddress", body.ResidentialAddress ?? '');
+    
+      // Append date properties (ensure proper format)
+      formData.append("DateOfJoining", body.DateOfJoining ? body.DateOfJoining : '');
+      formData.append("DateOfExit", body.DateOfExit ? body.DateOfExit : '');
+      formData.append("DateOfBirth", body.DateOfBirth ? body.DateOfBirth : '');
+    
+      // Append file properties
+      if (body.Attachment) formData.append("Attachment", body.Attachment);
+      if (body.Profile) formData.append("Profile", body.Profile);
+       console.log(formData);
+
+        return await this.httpService.postFormData<any>('Admin/insert-update-employee', formData)
+
+    }
+
+    async getEmpById(Id?:any): Promise<any> {
+        debugger
+        return await this.httpService.getAsync<any>(`Admin/get-employee-by-id?Id=${Id}`)
+
+    }
+
+    async getVolunteerById(Id?:any): Promise<any> {
+        debugger
+        return await this.httpService.getAsync<any>(`Admin/get-volunteer-by-id?Id=${Id}`)
+
+    }
+
+    async deleteDynamicRow(body:any): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/DeleteTableRow',body); 
+    }
+    
+    async getVolunteers(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-volunteer') 
+    }
+
+    async AddVolunteer(body: any): Promise<any> {
+      debugger
+        const formData = new FormData();
+        if(body.Id) formData.append('Id',body.Id); 
+        if(body.ProjectAssigmentId) formData.append('ProjectAssigmentId',body.ProjectAssigmentId); 
+        if(body.DepartmentId) formData.append('DepartmentId',body.DepartmentId); 
+        if(body.VolunteerRoleId) formData.append('VolunteerRoleId',body.VolunteerRoleId); 
+        if(body.AvailabilityTime) formData.append('AvailabilityTime',body.AvailabilityTime); 
+        if(body.AvailabilityDayIds) formData.append('AvailabilityDayIds',body.AvailabilityDayIds); 
+        if(body.GenderId) formData.append('GenderId',body.GenderId); 
+        if(body.MaritalStatusId) formData.append('MaritalStatusId',body.MaritalStatusId); 
+        if(body.ReligionId) formData.append('ReligionId',body.ReligionId); 
+        if(body.CityId) formData.append('CityId',body.CityId); 
+        if(body.StatusId) formData.append('StatusId',body.StatusId); 
+        if (body.ProfilePicture) formData.append("ProfilePicture", body.ProfilePicture ?? '');
+      if (body.attachmentUrl) formData.append("attachmentUrl", body.attachmentUrl ?? '');
+        if(body.Name) formData.append('Name',body.Name); 
+        if(body.Email) formData.append('Email',body.Email); 
+        if(body.Phone) formData.append('Phone',body.Phone); 
+        if(body.PermanentAddress) formData.append('PermanentAddress',body.PermanentAddress); 
+        if(body.DateOfJoining) formData.append('DateOfJoining',body.DateOfJoining); 
+        if(body.DateOfExit) formData.append('DateOfExit',body.DateOfExit); 
+        if(body.Location) formData.append('Location',body.Location); 
+        if(body.EmergencyContactNo) formData.append('EmergencyContactNo',body.EmergencyContactNo); 
+        if(body.EmergencyContactRelation) formData.append('EmergencyContactRelation',body.EmergencyContactRelation); 
+        if(body.Cnic) formData.append('Cnic',body.Cnic); 
+        if(body.DateOfBirth) formData.append('DateOfBirth',body.DateOfBirth); 
+        if(body.FatherName) formData.append('FatherName',body.FatherName); 
+        if(body.ResidentialAddress) formData.append('ResidentialAddress',body.ResidentialAddress); 
+        if(body.PersonalPhoneNumber) formData.append('PersonalPhoneNumber',body.PersonalPhoneNumber); 
+        if(body.PersonalEmail) formData.append('PersonalEmail',body.PersonalEmail); 
+
+        if(body.Profile) formData.append('Profile',body.Profile); 
+        if(body.Attachment) formData.append('Attachment',body.Attachment);
+
+
+        console.log(formData);
+
+        return await this.httpService.postFormData<any>('Admin/insert-volunteer', formData)
+
+    }
     
 }
