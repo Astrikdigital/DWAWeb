@@ -41,8 +41,6 @@ export class AddFacultyComponent implements OnInit {
     });
   
     await this.GetRegistrationDDL();
- 
-
   }
   async AddFaculty() {
     let res: any = await this.api.AddFaculty(this.BeneficiaryModel);

@@ -111,9 +111,7 @@ export class HttpApiService {
     async DeleteDonor(body:any): Promise<any> {
         return await this.httpService.post<any>('Admin/delete-donor',null,body) 
     } 
-    async AddInventoryComponent(userForm: any, any: any): Promise<any> {
-        return await this.httpService.post<any>('api/Admin/InsertUpdateInventory', this.userForm.value)
-    }
+    
     async GetDonor(body?:any): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/GetDonor',body)
     }
@@ -147,5 +145,22 @@ export class HttpApiService {
     async UpdateDonationStatus(body?:any): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/UpdateDonationStatus',body) 
     }
+    
+    async UpdateQueryStatus(body:any): Promise<any> {
+        return await this.httpService.post<any>('Admin/update-query-status',null,body) 
+    }
+    async UpdateSemesterStatus(body:any): Promise<any> {
+        return await this.httpService.post<any>('Admin/update-semester-status',null,body) 
+    }
+    async GetSemesterStatus(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-semester-status'); 
+    }
+    async AddInventoryComponent(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetInventory');
+    }
+    async UpdateInventory(body:any): Promise<any> {
+        return await this.httpService.post<any>('Admin/InsertUpdateInventory',null,body)
+    }    
+    
     
 }

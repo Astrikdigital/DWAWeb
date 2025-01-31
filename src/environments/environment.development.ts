@@ -4,4 +4,5 @@ export const environment = {
     //  apiUrl: 'http://217.76.53.78:9118/api', // server
      apiUrl: 'https://localhost:7093/api',
     // Replace with your API base URL
+
 };

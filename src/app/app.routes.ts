@@ -45,6 +45,10 @@ export const routes: Routes = [
                 path: 'add-donation',
                 loadComponent: () => import('./admin/donation-add/donation-add.component').then(m => m.DonationAddComponent),   
             },  
+            {
+                path: 'add-inventory',
+                loadComponent: () => import('./admin/add-inventory/add-inventory.component').then(m => m.AddInventoryComponent)
+            },
         ]
     }
 
