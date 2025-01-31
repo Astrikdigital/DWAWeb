@@ -1,0 +1,106 @@
+<div class="content-wrapper" style="min-height: 533.5px;">
+    <div class="container-full">
+        <!-- Main content -->
+        <section class="content">
+            <div class="box">
+                <div class="box-body">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-lg-3">
+                            <h3 class="fw-600 box-title mb-4 mt-4">All Donors</h3>
+                        </div>
+                        <div class="col-lg-3 d-flex justify-content-end">
+                            <a href="javascript:;" routerLink="/admin/add-donor" class="cmp-btn">
+                              <i class="fa fa-plus me-15"></i>Add Donor</a>
+                        </div>
+                    </div>
+
+                  
+                </div>
+            </div>
+
+
+            <div class="table-responsive rounded-4">
+                <table class="table table-bordered table-hover ">
+                    <thead class="table-secondary">
+                        <tr>
+                            <td scope="col" style="width: 90px;"></td>
+                            <td scope="col"><span class="fs-14 fw-600">Name</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Email</span></td>  
+                            <td scope="col"><span class="fs-14 fw-600">Phone</span></td>  
+
+                            <td scope="col"><span class="fs-14 fw-600">Donation Type</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Donation Detail Type</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Transaction ID</span></td>  
+                            <td scope="col"><span class="fs-14 fw-600">Attachment</span></td>  
+                            <td scope="col"><span class="fs-14 fw-600">Date</span></td>  
+                            <td scope="col"><span class="fs-14 fw-600">Amount</span></td>  
+
+                            <td scope="col"><span class="fs-14 fw-600">Status</span></td>
+                            <td scope="col" class="text-center"><span class="fs-14 fw-600">Action</span></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="!donors?.length">
+                            <td colspan="10" class="text-center">No Record </td>
+                        </tr>
+
+                        <tr *ngFor="let item of donors;">
+                            <td>
+                                <img
+                                    [src]="item.PictureUrl ? (Env+item.PictureUrl) : '../../../assets/images/avatar/avatar-15.png'"
+                                    class="rounded-circle w-80 set-table" alt="">
+                            </td>
+                            <td>
+                                <p class="text-body mb-0">{{item.Name}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0">{{item.Email}}</p>
+                            </td> 
+                            <td>
+                                <p class="text-body mb-0">{{item.PhoneNumber}}</p>
+                            </td> 
+                            <td>
+                                <p class="text-body mb-0">{{item.LastDonation.DonationType}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0">{{item.LastDonation.DonationDetailType}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0">{{item.LastDonation.TransactionId ? item.LastDonation.TransactionId : 'N/A'}}</p>
+                            </td>
+                            <td class="text-center">
+                                <img
+                                    [src]="item.LastDonation.Attachment ? (Env+item.LastDonation.Attachment) : '../../../assets/images/avatar/avatar-15.png'"
+                                    class="rounded-circle w-50 set-table" alt="">
+                            </td> 
+                            <td>
+                                <p class="text-body mb-0">{{item.LastDonation.Date | date}}</p>
+                            </td> 
+                            <td>
+                                <p class="text-body mb-0">
+                                 {{item.LastDonation.Amount ? item.LastDonation.Amount : 'N/A'}}
+                                </p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0">
+                                 {{item.LastDonation.DonationStatus}}
+                                </p>
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-start">
+                                    <a href="javascript:;"(click)="AddDonation(item)"    class="btn-dnote">Add Donation</a>
+                                    <a href="javascript:;"(click)="EditDonor(item.Id)"    class="text-warning px-2"><i
+                                            class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="javascript:;" (click)="OpenDeleteModal(item.Id)" ><i
+                                            class="fa-solid fa-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </div>
+
+</div>

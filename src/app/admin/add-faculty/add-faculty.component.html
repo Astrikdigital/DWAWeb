@@ -19,7 +19,7 @@
                                         <div class="form-group">
                                             <i class="fa-solid fa-user"></i>
                                             <input type="text" placeholder="Enter Title" name="title"
-                                                #Title="ngModel" [(ngModel)]="FacultyModel.Title" maxlength="100" [pattern]="'[a-z A-Z]*'"    required>
+                                                #Title="ngModel" [(ngModel)]="BeneficiaryModel.Title" maxlength="100" [pattern]="'[a-z A-Z]*'"    required>
                                                 <ng-container *ngIf="Title.touched && !Title.value">
                                                     <p class="error-red">Last Name is required </p>
                                                 </ng-container>
@@ -34,7 +34,7 @@
                                         <div class="form-group">
                                             <i class="fa-solid fa-user"></i>
                                             <select class="form-select" name="title" 
-                                                    #Title="ngModel" [(ngModel)]="FacultyModel.ProjectId" required>
+                                                    #Title="ngModel" [(ngModel)]="BeneficiaryModel.ProjectId" required>
                                                 <option value="" disabled selected>Select Project Title</option>
                                                 <option *ngFor="let project of projects" [value]="project.Id">{{ project.Title }}</option>
                                             </select>
@@ -55,7 +55,7 @@
                                         <label class="mb-1">Date*</label>
                                         <div class="form-group">
                                             <input type="date" id="date" name="date" #Date="ngModel"
-                                                [(ngModel)]="FacultyModel.Date" class="px-2" required>
+                                                [(ngModel)]="BeneficiaryModel.Date" class="px-2" required>
                                                 <ng-container *ngIf="Date.touched && !Date.value">
                                                     <p class="error-red">Date is required </p>
                                                 </ng-container>
@@ -73,7 +73,7 @@
                                                 id="Date" 
                                                 name="Date" 
                                                 #Date="ngModel"
-                                                [(ngModel)]="FacultyModel.Date" 
+                                                [(ngModel)]="BeneficiaryModel.Date" 
                                                 class="px-2" 
                                                 required
                                             >
@@ -92,7 +92,7 @@
                                         <div class="form-group">
                                             <i class="fa fa-barcode"></i>
                                             <input type="text" placeholder="Enter SeriolNo" name="seriolNo"
-                                                #SeriolNo="ngModel" [(ngModel)]="FacultyModel.SeriolNo" maxlength="200"
+                                                #SeriolNo="ngModel" [(ngModel)]="BeneficiaryModel.SeriolNo" maxlength="200"
                                                  required>
                                     
                                             <ng-container *ngIf="SeriolNo.touched && !SeriolNo.value">
@@ -106,7 +106,7 @@
                                         <div class="form-group">
                                             <i class="fa fa-tag"></i>
                                             <input type="text" placeholder="Enter CodeNo" name="CodeNo"
-                                                #CodeNo="ngModel" [(ngModel)]="FacultyModel.CodeNo" maxlength="200"
+                                                #CodeNo="ngModel" [(ngModel)]="BeneficiaryModel.CodeNo" maxlength="200"
                                                   required>
                                             <ng-container *ngIf="CodeNo.touched && !CodeNo.value">
                                                 <p class="error-red">Registration/Code No. </p>
@@ -119,7 +119,7 @@
                                         <div class="form-group">
                                             <i class="fa fa-id-card"></i>
                                             <input type="text" placeholder="Enter CNIC Number" name="cnic"  maxlength="13" id="cnic"  [pattern]="'^[0-9]*$'"
-                                                #NationalityNo="ngModel" [(ngModel)]="FacultyModel.CNIC" required>
+                                                #NationalityNo="ngModel" [(ngModel)]="BeneficiaryModel.CNIC" required>
                                                 <ng-container *ngIf="NationalityNo.touched && !NationalityNo.value">
                                                     <p class="error-red">CNIC is required </p>
                                                 </ng-container>   
@@ -131,8 +131,9 @@
                                         <div class="form-group">
                                             <i class="fa fa-venus"></i>
                                             <select class="form-select" aria-label="Default select example"
-                                                name="gender" #gender="ngModel" [(ngModel)]="FacultyModel.GenderId"
+                                                name="gender" #gender="ngModel" [(ngModel)]="BeneficiaryModel.GenderId"
                                                 required>
+                                                <option value="" disabled>Select Gender</option>
                                                 <option value="1">Male</option>
                                                 <option value="2">Female</option>
                                                 <option value="3">Transgender</option>
@@ -151,7 +152,7 @@
                                         <div class="form-group">
                                             <i class="fa-solid fa-user"></i>
                                             <input type="text" placeholder="Enter Name" name="name"
-                                                #Name="ngModel" [(ngModel)]="FacultyModel.Name" maxlength="100" [pattern]="'[a-z A-Z]*'"    required>
+                                                #Name="ngModel" [(ngModel)]="BeneficiaryModel.Name" maxlength="100" [pattern]="'[a-z A-Z]*'"    required>
                                                 <ng-container *ngIf="Name.touched && !Name.value">
                                                     <p class="error-red">Last Name is required </p>
                                                 </ng-container>
@@ -166,7 +167,7 @@
                                         <div class="form-group">
                                             <i class="fa fa-heart"></i>
                                             <input type="text" placeholder="Enter Father Name" name="fatherName"
-                                                #FatherName="ngModel" [(ngModel)]="FacultyModel.FatherName" maxlength="100" [pattern]="'[a-z A-Z]*'"    required>
+                                                #FatherName="ngModel" [(ngModel)]="BeneficiaryModel.FatherName" maxlength="100" [pattern]="'[a-z A-Z]*'"    required>
                                                 <ng-container *ngIf="FatherName.touched && !FatherName.value">
                                                     <p class="error-red">Father name is required </p>
                                                 </ng-container>
@@ -181,7 +182,7 @@
                                         <label class="mb-1">Date of Birth*</label>
                                         <div class="form-group">
                                             <input type="date" id="DOB" name="DOB" #DOB="ngModel"
-                                                [(ngModel)]="FacultyModel.DOB" class="px-2" required>
+                                                [(ngModel)]="BeneficiaryModel.DOB" class="px-2" required>
                                                 <ng-container *ngIf="DOB.touched && !DOB.value">
                                                     <p class="error-red">Date Of Birth is required </p>
                                                 </ng-container>
@@ -199,7 +200,7 @@
                                                 id="DOB" 
                                                 name="DOB" 
                                                 #DOB="ngModel"
-                                                [(ngModel)]="FacultyModel.DOB" 
+                                                [(ngModel)]="BeneficiaryModel.DOB" 
                                                 class="px-2" 
                                                 required
                                             >
@@ -219,7 +220,7 @@
                                         <div class="form-group">
                                             <i class="fa fa-calendar"></i>
                                             <input type="number" placeholder="Enter  Age" name="Age"  maxlength="3"  [pattern]="'^[0-9]*$'"
-                                                #Age="ngModel" [(ngModel)]="FacultyModel.Age" required>
+                                                #Age="ngModel" [(ngModel)]="BeneficiaryModel.Age" required>
                                                 <ng-container *ngIf="Age.touched && !Age.value">
                                                     <p class="error-red">Age is required </p>
                                                 </ng-container>
@@ -234,7 +235,7 @@
                                         <div class="form-group">
                                             <i class="fa fa-praying-hands"></i>
                                             <input type="text" placeholder="Enter Religion" name="Religion"
-                                                #Religion="ngModel" [(ngModel)]="FacultyModel.Religion" maxlength="100" [pattern]="'[a-z A-Z]*'"    required>
+                                                #Religion="ngModel" [(ngModel)]="BeneficiaryModel.Religion" maxlength="100" [pattern]="'[a-z A-Z]*'"    required>
                                                 <ng-container *ngIf="Religion.touched && !Religion.value">
                                                     <p class="error-red">Religion is required </p>
                                                 </ng-container>
@@ -246,8 +247,9 @@
                                         <div class="form-group">
                                             <i class="fa fa-praying-hands"></i>
                                             <select class="form-select" aria-label="Default select example"
-                                                    name="Religion" #Religion="ngModel" [(ngModel)]="FacultyModel.ReligionId"
+                                                    name="Religion" #Religion="ngModel" [(ngModel)]="BeneficiaryModel.ReligionId"
                                                     required>
+                                                <option value="">Select Religion</option>
                                                 <option *ngFor="let religion of religions" [value]="religion.Id">{{ religion.Title }}</option>
                                             </select>
                                             <ng-container *ngIf="Religion.touched && !Religion.value">
@@ -261,7 +263,7 @@
                                         <div class="form-group">
                                             <i class="fa fa-chalkboard-teacher"></i>
                                             <input type="text" placeholder="Enter Qualification" name="qualification"
-                                                #Qualification="ngModel" [(ngModel)]="FacultyModel.Qualification" maxlength="100" [pattern]="'[a-z A-Z]*'"    required>
+                                                #Qualification="ngModel" [(ngModel)]="BeneficiaryModel.Qualification" maxlength="100" [pattern]="'[a-z A-Z]*'"    required>
                                                 <ng-container *ngIf="Qualification.touched && !Qualification.value">
                                                     <p class="error-red">Qualification is required </p>
                                                 </ng-container>  
@@ -273,7 +275,7 @@
                                         <div class="form-group">
                                             <i class="fa fa-chalkboard-teacher"></i>
                                             <select class="form-select" name="qualification" 
-                                                    #Qualification="ngModel" [(ngModel)]="FacultyModel.QualificationId" required>
+                                                    #Qualification="ngModel" [(ngModel)]="BeneficiaryModel.QualificationId" required>
                                                 <option value="" disabled selected>Select Qualification</option>
                                                 <option *ngFor="let qualification of qualifications" [value]="qualification.Id">{{ qualification.Title }}</option>
                                             </select>
@@ -290,7 +292,7 @@
                                         <div class="form-group">
                                             <i class="fa fa-clipboard"></i>
                                             <input type="text" placeholder="Enter Experience" name="Experience"
-                                                #Experience="ngModel" [(ngModel)]="FacultyModel.Experience" maxlength="100"    required>
+                                                #Experience="ngModel" [(ngModel)]="BeneficiaryModel.Experience" maxlength="100"    required>
                                                 <ng-container *ngIf="Experience.touched && !Experience.value">
                                                     <p class="error-red">Religion is required </p>
                                                 </ng-container>
@@ -305,7 +307,7 @@
                                         <div class="form-group">
                                             <i class="fa fa-street-view"></i>
                                             <input type="text" placeholder="Enter Address" name="address"    
-                                                #Address="ngModel" [(ngModel)]="FacultyModel.Address"
+                                                #Address="ngModel" [(ngModel)]="BeneficiaryModel.Address"
                                                 required>
                                                 <ng-container *ngIf="Address.touched && !Address.value">
                                                     <p class="error-red">Residential Address is required </p>
@@ -318,7 +320,7 @@
                                         <div class="form-group">
                                             <i class="fa-solid fa-phone"></i>
                                             <input type="text" placeholder="Enter Your Phone Number" name="phone"  maxlength="15"  [pattern]="'^[0-9]*$'"
-                                                #phone="ngModel" [(ngModel)]="FacultyModel.PhoneNo" required>
+                                                #phone="ngModel" [(ngModel)]="BeneficiaryModel.PhoneNo" required>
                                                 <ng-container *ngIf="phone.touched && !phone.value">
                                                     <p class="error-red">Phone is required </p>
                                                 </ng-container>
@@ -333,7 +335,7 @@
                                         <div class="form-group">
                                             <i class="fa fa-mobile-alt"></i>
                                             <input type="text" placeholder="Enter Your MobileNo Number" name="MobileNo"  maxlength="15"  [pattern]="'^[0-9]*$'"
-                                                #MobileNo="ngModel" [(ngModel)]="FacultyModel.MobileNo" required>
+                                                #MobileNo="ngModel" [(ngModel)]="BeneficiaryModel.MobileNo" required>
                                                 <ng-container *ngIf="MobileNo.touched && !MobileNo.value">
                                                     <p class="error-red">MobileNo is required </p>
                                                 </ng-container>
@@ -348,7 +350,7 @@
                                         <div class="form-group">
                                             <i class="fab fa-whatsapp"></i>
                                             <input type="text" placeholder="Enter Your WhatsAppNo Number" name="WhatsAppNo"  maxlength="15"  [pattern]="'^[0-9]*$'"
-                                                #WhatsAppNo="ngModel" [(ngModel)]="FacultyModel.WhatsAppNo" required>
+                                                #WhatsAppNo="ngModel" [(ngModel)]="BeneficiaryModel.WhatsAppNo" required>
                                                 <ng-container *ngIf="WhatsAppNo.touched && !WhatsAppNo.value">
                                                     <p class="error-red">Phone is required </p>
                                                 </ng-container>
@@ -364,7 +366,7 @@
                                             <i class="fa-solid fa-envelope"></i>
                                             <input type="email" placeholder="Enter Your Email Address" name="email"
                                             pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
-                                                #emal="ngModel" [(ngModel)]="FacultyModel.Email" required>
+                                                #emal="ngModel" [(ngModel)]="BeneficiaryModel.Email" required>
                                                 <ng-container *ngIf="emal.touched && !emal.value">
                                                     <p class="error-red">Email is required </p>
                                                 </ng-container>
@@ -379,7 +381,7 @@
                                         <div class="form-group">
                                             <i class="fas fa-wheelchair"></i>
                                             <input type="text" placeholder="Enter Disability" name="Disability"    
-                                                #Disability="ngModel" [(ngModel)]="FacultyModel.Disability"
+                                                #Disability="ngModel" [(ngModel)]="BeneficiaryModel.Disability"
                                                 required>
                                                 <ng-container *ngIf="Disability.touched && !Disability.value">
                                                     <p class="error-red">Disability field is required </p>
@@ -392,7 +394,7 @@
                                         <div class="form-group">
                                             <i class="fas fa-wheelchair"></i>
                                             <select class="form-select" name="Disability" 
-                                                    #Disability="ngModel" [(ngModel)]="FacultyModel.DisabilityId" required>
+                                                    #Disability="ngModel" [(ngModel)]="BeneficiaryModel.DisabilityId" required>
                                                 <option value="" disabled selected>Select Disability</option>
                                                 <option *ngFor="let disability of disabilities" [value]="disability.Id">{{ disability.Title }}</option>
                                             </select>
@@ -408,7 +410,7 @@
                                         <div class="form-group">
                                             <i class="fas fa-heartbeat"></i>
                                             <input type="text" placeholder="Cause of Disability" name="causeDisability"    
-                                                #CauseDisability="ngModel" [(ngModel)]="FacultyModel.CauseDisability"
+                                                #CauseDisability="ngModel" [(ngModel)]="BeneficiaryModel.CauseDisability"
                                                 required>
                                                 <ng-container *ngIf="CauseDisability.touched && !CauseDisability.value">
                                                     <p class="error-red">Cause of Disability is required </p>
@@ -422,7 +424,7 @@
                                         <div class="form-group">
                                             <i class="fas fa-heartbeat"></i>
                                             <select class="form-select" name="causeDisability" 
-                                                    #CauseDisability="ngModel" [(ngModel)]="FacultyModel.CauseDisabilityId" required>
+                                                    #CauseDisability="ngModel" [(ngModel)]="BeneficiaryModel.CauseDisabilityId" required>
                                                 <option value="" disabled selected>Select Cause of Disability</option>
                                                 <option *ngFor="let cause of causeOfDisability" [value]="cause.Id">{{ cause.Title }}</option>
                                             </select>
@@ -439,7 +441,7 @@
                                         <div class="form-group">
                                             <i class="fas fa-thumbtack"></i>
                                             <input type="text" placeholder="Enter Reference" name="Reference"    
-                                                #Reference="ngModel" [(ngModel)]="FacultyModel.Reference"
+                                                #Reference="ngModel" [(ngModel)]="BeneficiaryModel.Reference"
                                                 required>
                                                 <ng-container *ngIf="Reference.touched && !Reference.value">
                                                     <p class="error-red">Reference is required </p>
@@ -452,12 +454,12 @@
                                         <div class="form-group">
                                             <i class="fas fa-hand-paper"></i>
                                             <textarea placeholder="     Enter Needs and Remarks" name="NeedsRemarks"  id="NeedsRemarks"   
-                                            #NeedsRemarks="ngModel" [(ngModel)]="FacultyModel.NeedsRemarks"
+                                            #NeedsRemarks="ngModel" [(ngModel)]="BeneficiaryModel.NeedsRemarks"
                                             required>
 
                                             </textarea>
                                             <!-- <input type="text" placeholder="Enter Needs and Remarks" name="NeedsRemarks"  id="NeedsRemarks"   
-                                                #NeedsRemarks="ngModel" [(ngModel)]="FacultyModel.NeedsRemarks"
+                                                #NeedsRemarks="ngModel" [(ngModel)]="BeneficiaryModel.NeedsRemarks"
                                                 required> -->
                                                 <ng-container *ngIf="Address.touched && !Address.value">
                                                     <p class="error-red">Needs and Remarks is required </p>
@@ -471,7 +473,7 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 mb-2">
                                         <label class="mb-2 px-4">Upload Profile Picture</label>
-                                        <app-uploader [selectedImage]="FacultyModel?.pictureUrl?FacultyModel?.pictureUrl:null" (Update)="ChangeImage($event)"></app-uploader>
+                                        <app-uploader [selectedImage]="BeneficiaryModel?.pictureUrl?BeneficiaryModel?.pictureUrl:null" (Update)="ChangeImage($event)"></app-uploader>
                                     </div>
                                 </div>
                             </div>

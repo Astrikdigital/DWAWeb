@@ -6,7 +6,7 @@
                 <div class="box-body">
                     <div class="row align-items-center">
                         <div class="col-lx-6 col-lg-6 col-sm-12 mb-3">
-                            <h3 class="fw-600 box-title py-3 mb-0">All Registration</h3>
+                            <h3 class="fw-600 box-title py-3 mb-0">All Beneficiary</h3>
                         </div>
 
                         
@@ -14,18 +14,18 @@
                         <div class="col-lx-8 col-lg-6 col-md-12 mb-3 text-end">
                             <div class="row align-items-center d-lg-flex d-grid justify-content-end">
 
-                                <div class="col-lg-5 d-flex justify-content-end">
+                                <div class="d-flex justify-content-end">
                                     <button class="cmp-btn" id="downloadButton" (click)="onDownloadClick()">
                                         <i class="fa fa-download me-15"></i>Download Excel
                                     </button>
     
-                                    <div class="col-lg-5 d-flex justify-content-end">
+                                    <div class="d-flex justify-content-end">
                                         <a id="downloadLink" href="#" class="cmp-btn" download style="display: none;">
                                             <i class="fa fa-download me-15"></i>Download Excel
                                         </a>
                                     </div>
 
-                                    <a href="javascript:;" routerLink="/admin/add-registration" class="cmp-btn"><i class="fa fa-plus me-15"></i>Add Registration</a>
+                                    <a href="javascript:;" routerLink="/admin/add-beneficiary" class="cmp-btn"><i class="fa fa-plus me-15"></i>Add Registration</a>
                                 </div>
                             </div>
                         </div>
@@ -35,18 +35,18 @@
                         <div class="col-xl-3 col-lg-4 col-12 mt-3">
                             <div class="form-group">
                                 <i class="fa-solid fa-magnifying-glass"></i>
-                                <input type="seacrh" [(ngModel)]="FacultyModel.SerachText" placeholder="" />
+                                <input type="seacrh" [(ngModel)]="beneficiaryModel.SerachText" placeholder="" />
                             </div>
                         </div>
 
                         <div class="col-xl-3 col-lg-4 col-12 mt-3">
                             <div class="form-group">
-                                <input type="date" id="" name="date" [(ngModel)]="FacultyModel.DateOfJoining"  class="px-2" />
+                                <input type="date" id="" name="date" [(ngModel)]="beneficiaryModel.DateOfJoining"  class="px-2" />
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="search-btn">
-                                <button (click)="getfaculties()">Search</button>
+                                <button (click)="getBeneficiary()">Search</button>
                             </div>
                             <label></label>
                         </div>
@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="box pull-up px-1 py-2 mb-3" *ngFor="let item of faculties;let i =index;">
+            <div class="box pull-up px-1 py-2 mb-3" *ngFor="let item of beneficiaries;let i =index;">
                 <div class="table-responsive rounded-3">
                     <table class="table mb-0 py-0 px-0">
                         <tbody>
@@ -64,7 +64,7 @@
                                         <!-- <img style="width:50px;height:50px;" [src]=" item.pictureUrl ? (item.pictureUrl) : '../../../assets/images/avatar/avatar-15.png'" -->
                                         <!-- <img style="width:50px;height:50px;" [src]="'http://localhost:5255' + item.Image" /> -->
                                         <img 
-                                        [src]="'http://217.76.53.78:9010/'+(item.Image || 'default-avatar.jpg')" 
+                                        [src]="Env+(item.Image || 'default-avatar.jpg')" 
                                         class="bg-primary-light avatar avatar-lg rounded-circle" 
                                         alt="User Avatar"/>
                                     
@@ -110,7 +110,7 @@
                 </div>
             </div>
 
-            <div class="box pull-up px-1 py-2 mb-3" *ngIf="!faculties.length">
+            <div class="box pull-up px-1 py-2 mb-3" *ngIf="!beneficiaries.length">
                 <div class="table-responsive rounded-3">
                     <table class="table mb-0 py-0 px-0">
                         <tbody>

@@ -15,48 +15,38 @@ import { environment } from '../../../environments/environment';
   styleUrl: './add-faculty.component.css'
 })
 export class AddFacultyComponent implements OnInit {
-  FacultyModel: any = { nationalityId: "", genderId: "", countryResidenceId: "" };
-  countries: any[] = [];
-  programs: any[] = [];
-  usernames: any[] = [];
+  BeneficiaryModel: any = {   GenderId: "", ReligionId:"",QualificationId:"",ProjectId:"",DisabilityId:"",CauseDisabilityId:"" };
+  countries: any[] = [];  
   religions: any = [];  
   projects: any = []; 
   disabilities: any = []; 
   causeOfDisability: any = []; 
-  qualifications: any = []; 
-
-  faculty: any;
-  IsUserNameErr: any = false;
+  qualifications: any = [];   
   selectedImage: string | ArrayBuffer | null = null;
   environment = environment.apiUrl.replace("/api", "");
   constructor(private api: HttpApiService, private route: Router, private toastr: ToastrService, private activeroute: ActivatedRoute, private datePipe: DatePipe) {
 
   }
-  ChangeUserName($event: any) {  
-    if (this.usernames.find((x: any) => x.UserName?.toLowerCase() == $event?.toLowerCase())) this.IsUserNameErr = true;
-    else this.IsUserNameErr = false;
-  }
+ 
   async ngOnInit(): Promise<void> {
-    await this.getCountries();
+    //await this.getCountries();
     // await this.GetUserName();
   
     this.activeroute.queryParams.subscribe(params => {
       
-      if (params['FacultyId']) {
-        this.FacultyModel.id  =params['ProgramId']; 
-        this.getfaculties(params['FacultyId']);
+      if (params['BeneficiaryId']) {
+        this.BeneficiaryModel.Id  =params['BeneficiaryId']; 
+        this.getBeneficiary(params['BeneficiaryId']);
       }
     });
   
     await this.GetRegistrationDDL();
- 
-
   }
   async AddFaculty() {
-    let res: any = await this.api.AddFaculty(this.FacultyModel);
+    let res: any = await this.api.AddFaculty(this.BeneficiaryModel);
       if (res.statusCode == 200) {
         this.toastr.success(res.message);
-        this.route.navigate(['/admin/get-registration']);
+        this.route.navigate(['/admin/beneficiary']);
       } else   this.toastr.error(res.message);
       return;
   }
@@ -75,24 +65,23 @@ export class AddFacultyComponent implements OnInit {
     }
   }
 
-  async getfaculties(Id: any) {
-    let res: any = await this.api.getfaculties({ Id: Id });
+  async getBeneficiary(Id: any) {
+    debugger;
+    let res: any = await this.api.getBeneficiary({ Id: Id });
     if (res.statusCode == 200) {
       debugger
-      this.FacultyModel = res.data[0];
-      if (this.FacultyModel.DOB) {
-        this.FacultyModel.DOB = this.datePipe.transform(this.FacultyModel.DOB, 'yyyy-MM-dd'); // For date input
+      this.BeneficiaryModel = res.data[0];
+      if (this.BeneficiaryModel.DOB) {
+        this.BeneficiaryModel.DOB = this.datePipe.transform(this.BeneficiaryModel.DOB, 'yyyy-MM-dd');
       }
 
-      if (this.FacultyModel.Date) {
-        this.FacultyModel.Date = this.datePipe.transform(this.FacultyModel.Date, 'yyyy-MM-dd'); // For date input
+      if (this.BeneficiaryModel.Date) {
+        this.BeneficiaryModel.Date = this.datePipe.transform(this.BeneficiaryModel.Date, 'yyyy-MM-dd');
       }
-
-      //this.FacultyModel.dateOfBirth = this.datePipe.transform(this.FacultyModel.dateOfBirth, 'yyyy-MM-dd');
     }
   }
   ChangeImage($event: any) {
-    this.FacultyModel.attachProfilePicture = $event;
+    this.BeneficiaryModel.attachProfilePicture = $event;
   }
   
   async getCountries() {
@@ -101,16 +90,6 @@ export class AddFacultyComponent implements OnInit {
       this.countries = res.data;
     }
   }
-
-  NextStep() {
-    const button = document.getElementById('pills-2-tab');
-    button?.click();
-  }
+ 
   
-  async GetUserName() {
-    let res: any = await this.api.GetUserName();
-    if (res.statusCode == 200) {
-      this.usernames = res.data;
-    }
-  }
 }

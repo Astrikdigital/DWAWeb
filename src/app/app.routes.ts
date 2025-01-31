@@ -22,11 +22,11 @@ export const routes: Routes = [
                 loadComponent: () => import('./admin/add-user/add-user.component').then(m => m.AddUserComponent),   
             }, 
             {
-                path: 'get-registration',
+                path: 'beneficiary',
                 loadComponent: () => import('./admin/all-faculty/all-faculty.component').then(m => m.AllFacultyComponent),   
             },  
             {
-                path: 'add-registration',
+                path: 'add-beneficiary',
                 loadComponent: () => import('./admin/add-faculty/add-faculty.component').then(m => m.AddFacultyComponent),   
             },   
             {
@@ -45,7 +45,27 @@ export const routes: Routes = [
             {
                 path: 'volunteers',
                 loadComponent: () => import('./admin/all-volunteer/all-volunteer.component').then(m => m.AllVolunteerComponent),   
-            }, 
+            },
+            { 
+                path: 'donors',
+                loadComponent: () => import('./admin/donor-list/donor-list.component').then(m => m.DonorListComponent),   
+            },  
+            {
+                path: 'add-donor',
+                loadComponent: () => import('./admin/donor-add/donor-add.component').then(m => m.DonorAddComponent),   
+            },  
+            {
+                path: 'donations',
+                loadComponent: () => import('./admin/donation-list/donation-list.component').then(m => m.DonationListComponent),   
+            },  
+            {
+                path: 'add-donation',
+                loadComponent: () => import('./admin/donation-add/donation-add.component').then(m => m.DonationAddComponent),   
+            },  
+            {
+                path: 'add-inventory',
+                loadComponent: () => import('./admin/add-inventory/add-inventory.component').then(m => m.AddInventoryComponent)
+            },
         ]
     }
 

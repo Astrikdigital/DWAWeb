@@ -18,24 +18,36 @@ Menus:any[]=[];
 
 admin:any []= [
   {
-      "Title": "Registration", 
+      "Title": "Beneficiary", 
       "IsChild":true,
       "Icon": "fas fa-user-plus",
       "Childs":[
           {
-              "Title":"All Registrations",
+              "Title":"All Beneficiary",
               "Icon": "fa-solid fa-chalkboard-user",
             //   "Route":"/admin/add-registration"
               // "Route":"/admin/faculty"
-              "Route":"/admin/get-registration"
+              "Route":"/admin/beneficiary"
           },
           {
-              "Title":"Add New Registration",
+              "Title":"Add Beneficiary",
               "Icon": "fa-solid fa-plus",
-              "Route":"/admin/add-registration"
+              "Route":"/admin/add-beneficiary"
           }
       ]
   },
+  {
+    "Title": "Donor", 
+    "IsChild":false,
+    "Icon": "fas fa-user-plus",
+    "Route":"/admin/donors"
+}, {
+  "Title": "Donation", 
+  "IsChild":false,
+  "Icon": "fas fa-user-plus",
+  "Route":"/admin/donations"
+}
+
 ];
 constructor(private auth:AuthService,private route:Router,private el: ElementRef,private renderer: Renderer2,private store:StorageService){  
     this.User = store.getItem("User");

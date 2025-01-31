@@ -1,0 +1,131 @@
+<div class="content-wrapper" style="min-height: 533.5px;">
+    <div class="container-full">
+        <!-- Main content -->
+        <section class="content">
+            <form #form="ngForm">
+                <div class="box">
+                    <div class="box-body">
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-1" role="tabpanel"
+                                aria-labelledby="pills-1-tab" tabindex="0">
+
+                                <div class="row mt-3 px-3">
+                                    <div class="col-lg-6 col-md-6 mb-3">
+                                        <h2 class="box-title mb-1">Add Donation</h2>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <button href="javascript:;" (click)="location.back()" class="cmp-btn" type="button" >Back</button>
+                                    </div>
+                                    
+                                    <div class="col-lg-12 col-md-12 mb-3">
+                                        <h6 class="head-donor">Donor: <span>{{DonationModel.Name}}</span></h6>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 mb-2" *ngIf="!DonationModel.DonorId">
+                                        <label class="mb-1">Donor *</label>
+                                        <div class="form-group">
+                                            <i class="fa-solid fa-user"></i>
+                                            <select name="Donor" #Donor="ngModel"
+                                                [(ngModel)]="DonationModel.DonorId" maxlength="100" required>
+                                                <option value="">Select Donor</option>
+                                                <option *ngFor="let item of donors" [value]="item.Id">
+                                                    {{item.Name}}</option>
+                                            </select>
+                                            <ng-container *ngIf="Donor.touched && !Donor.value">
+                                                <p class="error-red">Donor is required </p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 mb-2">
+                                        <label class="mb-1">Donation Type *</label>
+                                        <div class="form-group">
+                                            <i class="fa-solid fa-user"></i>
+                                            <select name="DonationType" #donationTypeId="ngModel"
+                                                [(ngModel)]="DonationModel.DonationTypeId" maxlength="100" required>
+                                                <option value="">Select Donation Type</option>
+                                                <option *ngFor="let item of donationtypes" [value]="item.Id">
+                                                    {{item.Title}}</option>
+                                            </select>
+                                            <ng-container *ngIf="donationTypeId.touched && !donationTypeId.value">
+                                                <p class="error-red">Donation Type is required </p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                   
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label class="mb-1">Donation Detail Type *</label>
+                                            <div class="form-group">
+                                                <i class="fa-solid fa-user"></i>
+                                                <select name="donationDetailTypeId" #donationDetailTypeId="ngModel"
+                                                    [(ngModel)]="DonationModel.DonationDetailTypeId"  maxlength="100"
+                                                    required>
+                                                    <option value="">Select Donation Detail Type</option>
+                                                    <option *ngFor="let item of detailtypes" [value]="item.Id">
+                                                        {{item.Title}}</option>
+                                                </select>
+                                                <ng-container *ngIf="donationDetailTypeId.touched && !donationDetailTypeId.value">
+                                                    <p class="error-red">Donation Detail Type is required </p>
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                        <ng-container *ngIf="DonationModel.DonationDetailTypeId != 5">
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label class="mb-1">Transaction ID *</label>
+                                            <div class="form-group">
+                                                <i class="fa-solid fa-user"></i>
+                                                <input type="text" placeholder="Enter Transaction ID"
+                                                    name="transactionId" #transactionId="ngModel"
+                                                    [(ngModel)]="DonationModel.TransactionId" maxlength="100" required>
+                                                <ng-container *ngIf="transactionId.touched && !transactionId.value">
+                                                    <p class="error-red">Transaction ID is required </p>
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label class="mb-1">Donation Amount *</label>
+                                            <div class="form-group">
+                                                <i class="fa-solid fa-user"></i>
+                                                <input type="number" placeholder="Enter Donation Amount"
+                                                    name="DonationAmount" #DonationAmount="ngModel"
+                                                    [(ngModel)]="DonationModel.Amount" maxlength="100" required>
+                                                <ng-container *ngIf="DonationAmount.touched && !DonationAmount.value">
+                                                    <p class="error-red">Donation Amount ID is required </p>
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <div class="col-lg-4 col-md-4 mb-2">
+                                        <label class="mb-1">Date *</label>
+                                        <div class="form-group">
+                                            <i class="fa-solid fa-user"></i>
+                                            <input type="date" placeholder="Enter Date" name="Date" #Date="ngModel"
+                                                [(ngModel)]="DonationModel.Date" maxlength="100" required>
+                                            <ng-container *ngIf="Date.touched && !Date.value">
+                                                <p class="error-red">Date is required </p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="mb-1">Attachment *</label>
+                                        <input type="file" (change)="Upload($event)"  >
+                                        <span class="spn-title" *ngIf="Attachment">{{Attachment}}</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row justify-content-end mt-4">
+                            <div class="col-md-8 text-end px-4 py-4">
+                                <button href="javascript:;" *ngIf="!IsView" class="cmp-btn" [disabled]="form.invalid"
+                                    (click)="AddDonation()">Submit</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>

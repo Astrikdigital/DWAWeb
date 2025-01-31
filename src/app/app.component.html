@@ -10,3 +10,7 @@
     [backdropBackgroundColor]="'#777777'"
     [spinner]="spinkit.skWave">
 </ng-http-loader>
+<div class="CommonLoader" *ngIf="store.IsLoader">
+    <i class="fa fa-spinner fa-spin"></i>
+</div>
+
