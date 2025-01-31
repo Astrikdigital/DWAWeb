@@ -30,6 +30,23 @@ export const routes: Routes = [
                 loadComponent: () => import('./admin/add-faculty/add-faculty.component').then(m => m.AddFacultyComponent),   
             },   
             {
+                path: 'employees',
+                loadComponent: () => import('./admin/all-employee/all-employee.component').then(m => m.AllEmployeeComponent),   
+            },  
+            {
+                path: 'add-employee',
+                loadComponent: () => import('./admin/add-employee/add-employee.component').then(m => m.AddEmployeeComponent),   
+            }, 
+            
+            {
+                path: 'add-volunteer',
+                loadComponent: () => import('./admin/add-volunteer/add-volunteer.component').then(m => m.AddVolunteerComponent),   
+            },  
+            {
+                path: 'volunteers',
+                loadComponent: () => import('./admin/all-volunteer/all-volunteer.component').then(m => m.AllVolunteerComponent),   
+            },
+            { 
                 path: 'donors',
                 loadComponent: () => import('./admin/donor-list/donor-list.component').then(m => m.DonorListComponent),   
             },  

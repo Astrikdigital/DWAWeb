@@ -13,11 +13,12 @@ import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/mat
 import { SignalrService } from '../services/NotificationSignalR';
 import { AuthGuard } from '../auth/auth.guard';
 import { AngularEditorModule, AngularEditorService } from '@kolkov/angular-editor';
+import { NgHttpLoaderComponent, Spinkit } from 'ng-http-loader';
  
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HttpClientModule,NgFor,NgIf,RouterLink,AngularEditorModule],
+  imports: [RouterOutlet,HttpClientModule,NgFor,NgIf,RouterLink,AngularEditorModule,NgHttpLoaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers: [HttpService, AlertService, StorageService,AuthService,AuthApiService,HttpApiService,DatePipe,SignalrService,AuthGuard,
@@ -36,6 +37,7 @@ import { AngularEditorModule, AngularEditorService } from '@kolkov/angular-edito
  
 })
 export class AppComponent implements OnInit {
+  public spinkit = Spinkit;
   title = 'converge';
   Notifications:any[]=[]
     constructor(public store:StorageService,private route:Router){

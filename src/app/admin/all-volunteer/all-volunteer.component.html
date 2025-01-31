@@ -1,0 +1,127 @@
+<div class="content-wrapper" style="min-height: 533.5px;">
+    <div class="container-full">
+        <!-- Main content -->
+        <section class="content">
+            <div class="box">
+                <div class="box-body">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-lg-3">
+                            <h3 class="fw-600 box-title mb-4 mt-4">All Volunteer</h3>
+                        </div>
+                        <div class="col-lg-3 d-flex justify-content-end">
+                            <a href="javascript:;" [routerLink]="['/admin/add-volunteer']" class="cmp-btn">
+                                <i class="fa fa-plus me-15"></i>Add Volunteer</a>
+                        </div>
+                    </div>
+
+                    <!-- <div class="row align-items-center  justify-content-start">
+                        <div class="col-lg-4 col-md-4 mb-2 mt-3">
+                            <div class="form-group">
+                                <label for="" class="mb-1">Search Employee</label>
+                                <input type="search" placeholder="Search Employee">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="search-btn">
+                                <button>Search</button>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+
+
+            <div class="table-responsive rounded-4">
+                <table class="table table-bordered table-hover ">
+                    <thead class="table-secondary">
+                        <tr>
+                            <td scope="col" style="width: 90px;"></td>
+                            <td scope="col"><span class="fs-14 fw-600">Name</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Role</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Department</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Work Email</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Work Phone</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Project Assignment</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Availability Days</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Availability Time</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">D.O.J / Exit</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Location</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Status</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Action</span></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(this.volunteerList.length == 0){
+                        <tr>
+                            <td colspan="8" class="text-center">No Record </td>
+                        </tr>
+                        }
+                        @for (item of volunteerList; track item.id) {
+                        <tr>
+                            <td>
+                                <img [src]="Env+(item.Picture || 'default-avatar.jpg')"
+                                    class="bg-primary-light avatar avatar-lg rounded-circle" alt="User Avatar" />
+
+                                <!-- <img [src]="'http://localhost:5255/api'+item.Picture ? (item.Picture) : '../../../assets/images/avatar/avatar-15.png'"
+                                    class="rounded-circle w-80 set-table" alt=""> -->
+                            </td>
+                            <td>
+                                <p class="text-body mb-0">{{item?.Name}} </p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0"> {{item?.Role}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0">{{item.Department}} </p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0"> {{item.WorkEmail}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0"> {{item.WorkPhone}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0"> {{item.ProjectAssignment}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0"> {{item.Days}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0"> {{item.AvailabilityTime}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0">
+                                    <span>
+                                        {{item.DateOfJoining | date}}
+                                    </span>
+                                    <br>
+                                    <br>
+
+                                    <span class="text-danger">
+                                        {{item.DateOfExit | date}}
+                                    </span>
+                                </p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0"> {{item.Location}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0"> {{item.Status}}</p>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-start">
+                                    <a href="javascript:;" (click)="EditVolunteer(item.Id)" class="text-warning px-2"><i
+                                            class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="javascript:;" (click)="OpenDeleteModal(item.Id)"><i
+                                            class="fa-solid fa-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+</div>
