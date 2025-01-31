@@ -5,19 +5,7 @@
 			  <ul class="sidebar-menu" data-widget="tree">
 				<li class="h-50">
 
-				  </li>
-				  <li routerLinkActive="active" >
-					<a [routerLink]="['employees']" routerLinkActive="active" href="javascript:;" >
-					  <i class="fa-solid fa-user"></i>
-					  <span>Employee</span>
-					</a>
-				  </li>
-				  <li routerLinkActive="active" >
-					<a [routerLink]="['volunteers']" routerLinkActive="active" href="javascript:;" >
-					  <i class="fa-solid fa-user"></i>
-					  <span>Volunteer</span>
-					</a>
-				  </li>
+				  </li> 
 				  <ng-container *ngFor="let item of Menus;let i =index;">
 				<li routerLinkActive="active" *ngIf="!item.IsChild" >
 				  <a [routerLink]="item.Route" routerLinkActive="active" href="javascript:;" >
