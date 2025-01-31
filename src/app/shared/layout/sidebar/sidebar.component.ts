@@ -46,7 +46,13 @@ admin:any []= [
   "IsChild":false,
   "Icon": "fas fa-user-plus",
   "Route":"/admin/donations"
+}, {
+  "Title": "Inventory", 
+  "IsChild":false,
+  "Icon": "fas fa-user-plus",
+  "Route":"/admin/inventory"
 }
+
 
 ];
 constructor(private auth:AuthService,private route:Router,private el: ElementRef,private renderer: Renderer2,private store:StorageService){  

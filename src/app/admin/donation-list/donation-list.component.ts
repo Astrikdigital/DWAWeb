@@ -48,15 +48,22 @@ Search:any;
     if(res.statusCode == 200){  
       this.toastr.success("you have successfuly update status")
        this.store.IsLoader = false;
+       this.GetDonation();
     }
   }
   
  
-  EditDpnation(id:any,View:any = false) {
+  EditDpnation(id:any) {
     this.router.navigate(
       ['/admin/add-donation'],
-      { queryParams: { DonationId: id,View:View } }
+      { queryParams: { DonationId: id } }
     );
   }
   
+  ViewDpnation(id:any) {
+    this.router.navigate(
+      ['/admin/add-donation'],
+      { queryParams: { DonationId: id,View:true } }
+    );
+  }
 }

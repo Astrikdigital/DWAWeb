@@ -96,6 +96,33 @@
                                             </div>
                                         </div>
                                     </ng-container>
+                                    <ng-container *ngIf="DonationModel.DonationDetailTypeId == 5">
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label class="mb-1">Inventory *</label>
+                                            <div class="form-group">
+                                                <i class="fa-solid fa-user"></i>
+                                                <select    name="InventoryId"
+                                                #InventoryId="ngModel" [(ngModel)]="DonationModel.InventoryId" maxlength="100" required>
+                                                <option value="">Select Inventory</option>  
+                                                    <option *ngFor="let item of inventores" [value]="item.Id"><img [src]="Env+item.Image" width="50px" height="50px" alt=""> {{item.ItemName}}</option>
+                                                </select>
+                                                    <ng-container *ngIf="InventoryId.touched && !InventoryId.value">
+                                                        <p class="error-red">Inventory is required </p>
+                                                    </ng-container>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label class="mb-1">Quantity *</label>
+                                            <div class="form-group">
+                                                <i class="fa-solid fa-user"></i>
+                                                <input type="number" placeholder="Enter Quantity" name="Quantity"
+                                                #Quantity="ngModel" [(ngModel)]="DonationModel.Quantity" maxlength="100" required>
+                                                    <ng-container *ngIf="Quantity.touched && !Quantity.value">
+                                                        <p class="error-red">Quantity is required </p>
+                                                    </ng-container>
+                                            </div>
+                                        </div>
+                                    </ng-container>
                                     <div class="col-lg-4 col-md-4 mb-2">
                                         <label class="mb-1">Date *</label>
                                         <div class="form-group">

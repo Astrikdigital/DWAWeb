@@ -48,7 +48,7 @@
                             <td scope="col"><span class="fs-14 fw-600">Detail Type</span></td>   
                             <td scope="col"><span class="fs-14 fw-600">Donation Status</span></td>
                             <td scope="col"><span class="fs-14 fw-600">Transaction ID</span></td>  
-                            <td scope="col"><span class="fs-14 fw-600">Attach</span></td>  
+                            <td scope="col"><span class="fs-14 fw-600">Attachment</span></td>  
                             <td scope="col"><span class="fs-14 fw-600">Inventory</span></td>  
                             <td scope="col"><span class="fs-14 fw-600">Quantity</span></td>  
                             <td scope="col"><span class="fs-14 fw-600">Action</span></td>
@@ -79,13 +79,13 @@
                                 <p  *ngIf="item.DonationStatusId == 2" class="text-body mb-0 {{item.DonationStatus}}">{{item.DonationStatus ? item.DonationStatus : 'N/A'}}</p> </td>
                             <td>  <p class="text-body mb-0">{{item.TransactionId ? item.TransactionId : 'N/A'}}</p> </td>
                             <td>  <a [href]="Env+item.Attachment" target="_blank">View</a> </td>
-                            <td>  <p class="text-body mb-0">{{item.Inventory ? item.Inventory : 'N/A'}}</p> </td>
+                            <td> <ng-container *ngIf="!item.Inventory">-</ng-container> <img *ngIf="item.Inventory" [src]="Env+item.Inventory" width="65px" height="65px" alt=""></td>
                             <td>  <p class="text-body mb-0">{{item.Quantity ? item.Quantity : 'N/A'}}</p> </td>
                              
                             <td>
                                 <div class="d-flex justify-content-start">
                               
-                                    <a *ngIf="item.DonationStatusId == 2"  href="javascript:;"(click)="EditDpnation(item.Id,true)"    class="text-warning px-2">
+                                    <a *ngIf="item.DonationStatusId == 2"  href="javascript:;"(click)="ViewDpnation(item.Id)"    class="text-warning px-2">
                                         <i class="fa-regular fa-eye"></i>
                                     </a> 
                                     <a *ngIf="item.DonationStatusId != 2"  href="javascript:;"(click)="EditDpnation(item.Id)"    class="text-warning px-2"><i
