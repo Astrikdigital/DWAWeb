@@ -1,0 +1,123 @@
+<!-- 
+<div class="content-wrapper" style="min-height: 533.5px;">
+    <div class="container-full">
+      
+        <section class="content">
+            <form #form="ngForm">
+                <div class="box">
+                    <div class="box-body">
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-1" role="tabpanel"
+                                aria-labelledby="pills-1-tab" tabindex="0">
+
+                                <div class="row mt-3 px-3">
+                                    <div class="col-lg-12 col-md-12 mb-3">
+                                        <h2 class="box-title mb-1">Add Inventory</h2>
+                                    </div>
+                                    
+
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label class="mb-2 px-4">Upload Picture</label>
+                                            <app-uploader [selectedImage]="InventoryModel?.pictureUrl?InventoryModel?.pictureUrl:null" (Update)="ChangeImage($event)"></app-uploader>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 mb-2">
+                                        <label class="mb-1">Item Name*</label>
+                                        <div class="form-group">
+                                            <i class="fa-solid fa-user"></i>
+                                            <input type="text" placeholder="Enter Item Name" name="name"
+                                                #Name="ngModel" [(ngModel)]="InventoryModel.Name" maxlength="100" [pattern]="'[a-z A-Z]*'" required>
+                                                <ng-container *ngIf="Name.touched && !Name.value">
+                                                    <p class="error-red">Item Name is required</p>
+                                                </ng-container>
+                                                <ng-container *ngIf="Name.touched && Name.invalid && Name.value">
+                                                    <p class="error-red">Item Name should not contain number or special characters</p>
+                                                </ng-container>  
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 mb-2">
+                                        <label class="mb-1">Date*</label>
+                                        <div class="form-group">
+                                            <input 
+                                                type="date" 
+                                                id="Date" 
+                                                name="Date" 
+                                                #Date="ngModel"
+                                                [(ngModel)]="InventoryModel.Date" 
+                                                class="px-2" 
+                                                required
+                                            >
+                                            <ng-container *ngIf="Date.touched && !Date.value">
+                                                <p class="error-red">Date Of Birth is required </p>
+                                            </ng-container>
+                                            <ng-container *ngIf="Date.touched && Date.invalid && Date.value">
+                                                <p class="error-red">Date</p>
+                                            </ng-container>    
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 mb-2">
+                                        <label class="mb-1">Category*</label>
+                                        <div class="form-group">
+                                            <i class="fa fa-venus"></i>
+                                            <select class="form-select" aria-label="Default select example"
+                                                name="Quantity" #Quantity="ngModel" [(ngModel)]="InventoryModel.Category"
+                                                required>
+                                                <option value="1">Select Category</option>
+                                                <option value="2"></option>
+                                                <option value="3"></option>
+                                            </select> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 mb-2">
+                                        <label class="mb-1">Condition*</label>
+                                        <div class="form-group">    
+                                            <i class="fa fa-venus"></i>
+                                            <select class="form-select" aria-label="Default select example"
+                                                name="Quantity" #Quantity="ngModel" [(ngModel)]="InventoryModel.Condition"
+                                                required>
+                                                <option value="1">Select Condition</option>
+                                                <option value="2"></option>
+                                                <option value="3"></option>
+                                            </select> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-8 col-md-8 mb-4">
+                                        <label class="mb-1">Description*</label>
+                                        <div class="form-group">
+                                            <i class="fas fa-hand-paper"></i>
+                                            <textarea placeholder="Enter Description" name="Description"  id="Description"   
+                                            #NeedsRemarks="ngModel" [(ngModel)]="InventoryModel.Description"
+                                            required>
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-end mt-4">
+                            <div class="col-md-8 text-end px-4 py-4">
+                                <a href="javascript:;" class="cmp-btn" (click)="AddFaculty()">Add Donor</a>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-end mt-4">
+                            <div class="col-md-8 text-end px-4 py-4">
+                                <a href="javascript:;" class="cmp-btn" (click)="AddFaculty()">Back To Inventory Management</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+ -->

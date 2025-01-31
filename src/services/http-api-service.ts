@@ -545,9 +545,12 @@ debugger
     async GetSemesterStatus(): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/get-semester-status'); 
     }
-    async AddInventoryComponent(userForm: any, any: any): Promise<any> {
-        return await this.httpService.post<any>('api/Admin/InsertUpdateInventory', this.userForm.value)
+    async AddInventoryComponent(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetInventory');
     }
+    async UpdateInventory(body:any): Promise<any> {
+        return await this.httpService.post<any>('Admin/InsertUpdateInventory',null,body)
+    }    
     
     
 }

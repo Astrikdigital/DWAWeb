@@ -29,6 +29,14 @@ export const routes: Routes = [
                 path: 'add-registration',
                 loadComponent: () => import('./admin/add-faculty/add-faculty.component').then(m => m.AddFacultyComponent),   
             },   
+            {
+                path: 'add-inventory',
+                loadComponent: () => import('./admin/add-inventory/add-inventory.component').then(m => m.AddInventoryComponent)
+            },
+            {
+                path: 'insert-inventory',
+                loadComponent: () => import('./admin/insert-inventory/insert-inventory.component').then(m => m.InsertInventoryComponent)
+            }
         ]
     }
 
