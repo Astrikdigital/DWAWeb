@@ -178,4 +178,33 @@ p.no-record {
         background-color: #f0f8ff;
         padding: 0 6px 10px 6px;
     }
+}td p.Pending {
+    background: #ebc715;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 2px 2px;
+}
+td p.Reject {
+    background: #b10000;
+    text-align: center;
+    color: white !important; 
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 2px 2px;
+}
+td p.Received {
+    background: #009100;
+    color: white !important;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 2px 2px;
+} 
+td p.Approved {
+    background: #003eb1;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 2px 2px;
 }

@@ -18,10 +18,12 @@ import { firstValueFrom } from 'rxjs';
   styleUrl: './all-faculty.component.css'
 })
 export class AllFacultyComponent implements OnInit {
-  FacultyModel: any = { PageNumber: 1 };
-  faculties: any[] = [];
+  beneficiaryModel: any = { PageNumber: 1 };
+  beneficiaries: any[] = [];
   lastScrollTop = 0;
   isLoading: boolean = false;
+    
+  Env = environment.apiUrl.replace("/api","");
   TotalRecord: number = 0;
   Environment = environment.apiUrl.replace("api", "");
   facultycourses: any = [];
@@ -31,7 +33,7 @@ export class AllFacultyComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.getfaculties();
+    this.getBeneficiary();
   }
   OpenDeleteModal(Id: any) {
     let dialogDelete = this.dialog.open(DeletePopupComponent, {
@@ -47,29 +49,29 @@ export class AllFacultyComponent implements OnInit {
     let res: any = await this.api.DeleteFaculty({ Id: Id });
     if (res.statusCode == 200) {
       this.toastr.success("Delete Successfully");
-      this.getfaculties();
+      this.getBeneficiary();
     }
   }
   @HostListener('window:scroll', ['$event'])
   onScroll(event: any): void {
     const currentScrollTop = window.scrollY;
-    if (currentScrollTop > this.lastScrollTop && !this.isLoading && this.faculties.length != this.TotalRecord) {
+    if (currentScrollTop > this.lastScrollTop && !this.isLoading && this.beneficiaries.length != this.TotalRecord) {
       const scrollPosition = window.innerHeight + currentScrollTop;
       const documentHeight = document.documentElement.scrollHeight;
       if (scrollPosition >= documentHeight - 100) {
-        this.FacultyModel.PageNumber = this.FacultyModel?.PageNumber + 1;
-        this.getfaculties(true);
+        this.beneficiaryModel.PageNumber = this.beneficiaryModel?.PageNumber + 1;
+        this.getBeneficiary(true);
       }
     }
     this.lastScrollTop = currentScrollTop;
   }
-  async getfaculties(IsPagination: any = false) {
+  async getBeneficiary(IsPagination: any = false) {
     debugger
     //this.store.IsLoader = true;
-    let res: any = await this.api.getfaculties(this.FacultyModel);
+    let res: any = await this.api.getBeneficiary(this.beneficiaryModel);
     if (res.statusCode == 200) {
-      if (!IsPagination) { this.faculties = res.data ; } else {
-        this.faculties.push(...res.data);
+      if (!IsPagination) { this.beneficiaries = res.data ; } else {
+        this.beneficiaries.push(...res.data);
       }
       this.TotalRecord = res.data[0].TotalRecords;
       //this.store.IsLoader = false;
@@ -78,8 +80,8 @@ export class AllFacultyComponent implements OnInit {
   EditFaculty(id: any) {
     debugger
     this.router.navigate(
-      ['/admin/add-registration'],
-      { queryParams: { FacultyId: id } }
+      ['/admin/add-beneficiary'],
+      { queryParams: { BeneficiaryId: id } }
     );
   }
   onDownloadClick(): void {
@@ -110,15 +112,5 @@ export class AllFacultyComponent implements OnInit {
   }
 
 
-  async ViewCourse(facultyId: any, id: any) {
-    let obj: any = {
-      facultyId: facultyId
-    }
-    let res: any = await this.api.getFacultyCourses(obj);
-    if (res.statusCode == 200) {
-      this.facultycourses = res.data;
-      const button = document.getElementById(id);
-      button?.click();
-    }
-  }
+  
 }
