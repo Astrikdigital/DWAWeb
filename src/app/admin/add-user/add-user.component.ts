@@ -42,6 +42,7 @@ ChangeUserName($event: any) {
   if (this.usernames.find((x: any) => x.UserName?.toLowerCase() == $event?.toLowerCase())) this.IsUserNameErr = true;
   else this.IsUserNameErr = false;
 }
+
 async GetUserName() {
   let res: any = await this.api.GetUserName();
   if (res.statusCode == 200) {

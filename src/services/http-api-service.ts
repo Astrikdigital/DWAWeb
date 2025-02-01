@@ -492,10 +492,10 @@ debugger
         return await this.httpService.getAsync<any>('Faculty/get-assignments',body) 
     }
     async getAllUsers(body:any): Promise<any> {
-        return await this.httpService.getAsync<any>('Admin/get-users',body) 
+        return await this.httpService.getAsync<any>('Admin/get-users',body)
     }
     async getAllQueries(body:any): Promise<any> {
-        return await this.httpService.getAsync<any>('Admin/get-help-center-query',body) 
+        return await this.httpService.getAsync<any>('Admin/get-help-center-query',body)
     }
     async getThreadQueries(body:any): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/get-query-by-thread-id',body) 

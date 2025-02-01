@@ -21,7 +21,7 @@
                                                 <i class="fa-solid fa-user"></i>
                                                 <input type="text" placeholder="Mention Full Name here"
                                                     name="FullName" #FullName="ngModel"
-                                                    [(ngModel)]="UserModel.FullName"    maxlength="100" [pattern]="'^[a-z A-Z]*$'" required>
+                                                    [(ngModel)]="UserModel.FullName" maxlength="100" [pattern]="'^[a-z A-Z]*$'" required>
                                                     <ng-container *ngIf="FullName.touched && !FullName.value">
                                                         <p class="error-red">Full Name is required </p>
                                                     </ng-container>
@@ -53,10 +53,10 @@
                                                     name="UserName" #UserName="ngModel"    (ngModelChange)="ChangeUserName($event)"
                                                     [(ngModel)]="UserModel.UserName"    maxlength="100" [pattern]="'^[a-zA-Z0-9.-]*$'" required>
                                                     <ng-container *ngIf="IsUserNameErr">
-                                                        <p class="error-red">UserName is already exists </p>
+                                                        <p class="error-red">UserName is already exists</p>
                                                     </ng-container>
                                                 <ng-container *ngIf="UserName.touched && !UserName.value">
-                                                    <p class="error-red">User Name is required </p>
+                                                    <p class="error-red">User Name is required</p>
                                                 </ng-container>
                                                 <ng-container *ngIf="UserName.touched && UserName.invalid && UserName.value">
                                                     <p class="error-red">User Name should not contain spaces or special characters </p>
