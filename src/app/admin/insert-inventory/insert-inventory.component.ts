@@ -41,7 +41,7 @@ export class InsertInventoryComponent {
       
       if (params['FacultyId']) {
         this.FacultyModel.id  =params['ProgramId']; 
-        this.getfaculties(params['FacultyId']);
+        
       }
     });
   
@@ -70,25 +70,7 @@ export class InsertInventoryComponent {
       this.religions = res.data.religion;
     }
   }
-
-  async getfaculties(Id: any) {
-    debugger;
-    let res: any = await this.api.getfaculties({ Id: Id });
-    if (res.statusCode == 200) {
-      debugger
-      this.InventoryModel = res.data[0];
-      if (this.InventoryModel.DOB) {
-        this.InventoryModel.DOB = this.datePipe.transform(this.InventoryModel.DOB, 'yyyy-MM-dd'); // For date input
-      }
-
-      if (this.InventoryModel.Date) {
-        this.InventoryModel.Date = this.datePipe.transform(this.InventoryModel.Date, 'yyyy-MM-dd'); // For date input
-      }
-
-      //this.InventoryModel.dateOfBirth = this.datePipe.transform(this.InventoryModel.dateOfBirth, 'yyyy-MM-dd');
-    }
-
-  }
+ 
   ChangeImage($event: any) {
     this.InventoryModel.attachProfilePicture = $event;
   }
