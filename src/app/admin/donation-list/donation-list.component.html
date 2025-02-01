@@ -1,0 +1,103 @@
+<div class="content-wrapper" style="min-height: 533.5px;">
+    <div class="container-full">
+        <!-- Main content -->
+        <section class="content">
+            <div class="box">
+                <div class="box-body">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-lg-3">
+                            <h3 class="fw-600 box-title mb-4 mt-4">All Donors</h3>
+                        </div>
+                        <div class="col-lg-3 d-flex justify-content-end">
+                            <a href="javascript:;" routerLink="/admin/add-donation" class="cmp-btn">
+                              <i class="fa fa-plus me-15"></i>Add Donation</a>
+                        </div>
+                    </div>
+
+                    <!-- <div class="row align-items-center  justify-content-start">
+                        <div class="col-lg-4 col-md-4 mb-2 mt-3">
+                            <div class="form-group">
+                                <label for="" class="mb-1">Search Donor’s data </label>
+                                <input type="search" [(ngModel)]="DonorModel.SearchText"
+                                    placeholder="Search Donor's data"> 
+                            </div>
+
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="search-btn">
+                                <button (click)="getDonors()">Search</button>
+                            </div>
+                        </div>
+
+
+
+                    </div> -->
+                </div>
+            </div>
+
+
+            <div class="table-responsive rounded-4">
+                <table class="table table-bordered table-hover ">
+                    <thead class="table-secondary">
+                        <tr>
+                            <td scope="col" style="width: 90px;"></td>
+                            <td scope="col"><span class="fs-14 fw-600">Name</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Amount</span></td>  
+                            <td scope="col"><span class="fs-14 fw-600">Date</span></td>   
+                            <td scope="col"><span class="fs-14 fw-600">Donation Type</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Detail Type</span></td>   
+                            <td scope="col"><span class="fs-14 fw-600">Donation Status</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Transaction ID</span></td>  
+                            <td scope="col"><span class="fs-14 fw-600">Attachment</span></td>  
+                            <td scope="col"><span class="fs-14 fw-600">Inventory</span></td>  
+                            <td scope="col"><span class="fs-14 fw-600">Quantity</span></td>  
+                            <td scope="col"><span class="fs-14 fw-600">Action</span></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="!donations?.length">
+                            <td colspan="10" class="text-center">No Record </td>
+                        </tr>
+
+                        <tr *ngFor="let item of donations;let i = index">
+                            <td>
+                                <img
+                                    [src]="item.PictureUrl ? (Env+item.PictureUrl) : '../../../assets/images/avatar/avatar-15.png'"
+                                    class="rounded-circle w-80 set-table" alt="">
+                            </td>
+                            <td>  <p class="text-body mb-0">{{item.Name ? item.Name : 'N/A'}}</p> </td>
+                            <td>  <p class="text-body mb-0">{{item.Amount ? item.Amount : 'N/A'}}</p> </td>
+                            <td>  <p class="text-body mb-0">{{item.Date | date}}</p> </td>
+                            <td>  <p class="text-body mb-0">{{item.DonationType ?item.DonationType : 'N/A'}}</p> </td>
+                            <td>  <p class="text-body mb-0">{{item.DetailType ? item.DetailType : 'N/A'}}</p> </td>
+                            <td>  
+                                <select *ngIf="item.DonationStatusId != 2"   [name]="i+'Status'" class="control-select" 
+                                [(ngModel)]="item.DonationStatusId" (ngModelChange)="ChangeDonationStatus(item)"
+                                id="">
+                                    <option *ngFor="let dta of donationstatus" [value]="dta.Id">{{dta.Title}}</option>
+                            </select>
+                                <p  *ngIf="item.DonationStatusId == 2" class="text-body mb-0 {{item.DonationStatus}}">{{item.DonationStatus ? item.DonationStatus : 'N/A'}}</p> </td>
+                            <td>  <p class="text-body mb-0">{{item.TransactionId ? item.TransactionId : 'N/A'}}</p> </td>
+                            <td>  <a [href]="Env+item.Attachment" target="_blank">View</a> </td>
+                            <td> <ng-container *ngIf="!item.Inventory">-</ng-container> <img *ngIf="item.Inventory" [src]="Env+item.Inventory" width="65px" height="65px" alt=""></td>
+                            <td>  <p class="text-body mb-0">{{item.Quantity ? item.Quantity : 'N/A'}}</p> </td>
+                             
+                            <td>
+                                <div class="d-flex justify-content-start">
+                              
+                                    <a *ngIf="item.DonationStatusId == 2"  href="javascript:;"(click)="ViewDpnation(item.Id)"    class="text-warning px-2">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </a> 
+                                    <a *ngIf="item.DonationStatusId != 2"  href="javascript:;"(click)="EditDpnation(item.Id)"    class="text-warning px-2"><i
+                                            class="fa-solid fa-pen-to-square"></i></a> 
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </div>
+
+</div>

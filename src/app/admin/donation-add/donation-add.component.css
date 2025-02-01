@@ -1,0 +1,16 @@
+span.spn-title {
+    background: #0070bf;
+    padding: 4px 20px;
+    border-radius: 25px;
+    color: white;
+    position: relative;
+    top: 7px;
+    left: 0;
+}
+h6.head-donor {
+    font-weight: 600;
+    font-size: 17px;
+}
+h6.head-donor span {
+    font-weight: 400;
+}

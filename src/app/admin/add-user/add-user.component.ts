@@ -26,8 +26,7 @@ ngOnInit(): void {
         this.UserModel.Id  =params['UserId']; 
       this.getAllUsers();
     } 
-}); 
-this.GetUserName();
+});  
 }
 
 async getAllUsers(){ 
@@ -42,13 +41,7 @@ ChangeUserName($event: any) {
   if (this.usernames.find((x: any) => x.UserName?.toLowerCase() == $event?.toLowerCase())) this.IsUserNameErr = true;
   else this.IsUserNameErr = false;
 }
-
-async GetUserName() {
-  let res: any = await this.api.GetUserName();
-  if (res.statusCode == 200) {
-    this.usernames = res.data;
-  }
-}
+ 
 ChangeImage($event:any){
   this.UserModel.attachProfilePicture=$event;
 }
