@@ -31,9 +31,9 @@ DonationModel:any = {DonationDetailTypeId:"",DonationTypeId:"",DonorId:"",Invent
 
   }
 async ngOnInit(): Promise<void> { 
-  await this.GetDonationType();
-  await this.GetDonationDetailType(); 
-  await this.Inventory();
+    this.GetDonationType();
+    this.GetDonationDetailType(); 
+    this.Inventory();
   this.activeroute.queryParams.subscribe(params => {
     if(params['DonorId']){
       this.DonationModel.DonorId = params['DonorId']; 
@@ -75,7 +75,7 @@ async AddDonation(){
   let res:any = await this.api.AddDonation(this.DonationModel);
   if(res.statusCode == 200){
     this.toastr.success(res.message);
-    this.route.navigate(['/admin/donations']);
+    this.route.navigate(['/admin/income']);
   } else   this.toastr.error(res.message);
   return; 
 }

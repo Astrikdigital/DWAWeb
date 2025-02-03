@@ -29,10 +29,12 @@ export class AllVolunteerComponent {
     }
   
     async getVolunteer(){
+      this.store.IsLoader = true;
       let res: any = await this.api.getVolunteers();
       if(res.statusCode == 200){  
          this.volunteerList = res.data;
       }
+      this.store.IsLoader = false;
     }
   
     EditVolunteer(id:any) {
@@ -53,11 +55,13 @@ export class AllVolunteerComponent {
       })
     }
     async DeleteDonor(Id:any){
+      this.store.IsLoader = true;
       let res:any = await this.api.deleteDynamicRow({tableName:'Volunteer',Id:Id});
       if(res.statusCode == 200) {
         this.toastr.success("Delete Successfully");
         this.getVolunteer();
       }
+      this.store.IsLoader = false;
     }
 
 }

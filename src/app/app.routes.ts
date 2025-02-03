@@ -55,7 +55,7 @@ export const routes: Routes = [
                 loadComponent: () => import('./admin/donor-add/donor-add.component').then(m => m.DonorAddComponent),   
             },  
             {
-                path: 'donations',
+                path: 'income',
                 loadComponent: () => import('./admin/donation-list/donation-list.component').then(m => m.DonationListComponent),   
             },  
             {

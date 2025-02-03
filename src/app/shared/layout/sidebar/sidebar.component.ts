@@ -24,11 +24,23 @@ export class SidebarComponent {
       "Route": "/admin/donors"
     },
     {
+      "Title": "income",
+      "IsChild": false,
+      "Icon": "fas fa-user-plus",
+      "Route": "/admin/income"
+    },
+    {
       "Title": "Beneficiary",
       "IsChild": false,
       "Icon": "fas fa-user-plus",
       "Route": "/admin/beneficiary"
     },
+    {
+     "Title": "Inventory",
+     "IsChild": false,
+     "Icon": "fas fa-user-plus",
+     "Route": "/admin/inventory"
+   },
     {
       "Title": "Employee",
       "IsChild": false,
@@ -40,17 +52,6 @@ export class SidebarComponent {
       "IsChild": false,
       "Icon": "fas fa-user-plus",
       "Route": "/admin/volunteers"
-    },
-    {
-      "Title": "Donation",
-      "IsChild": false,
-      "Icon": "fas fa-user-plus",
-      "Route": "/admin/donations"
-    }, {
-      "Title": "Inventory",
-      "IsChild": false,
-      "Icon": "fas fa-user-plus",
-      "Route": "/admin/inventory"
     }
 
 

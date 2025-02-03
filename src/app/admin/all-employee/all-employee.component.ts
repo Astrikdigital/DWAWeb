@@ -4,7 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { StorageService } from '../../../services/local-storage.service';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { DeletePopupComponent } from '../../shared/delete-popup/delete-popup.component';
 
@@ -28,10 +28,12 @@ baseUrl:string= environment.apiUrl
   }
 
   async getEmployee(){
+    this.store.IsLoader = true;
     let res: any = await this.api.getAllEmployee();
     if(res.statusCode == 200){  
        this.employeeList = res.data;
     }
+    this.store.IsLoader = false;
   }
 
   EditEmployee(id:any) {
@@ -52,10 +54,12 @@ baseUrl:string= environment.apiUrl
     })
   }
   async DeleteDonor(Id:any){
+    this.store.IsLoader = true;
     let res:any = await this.api.deleteDynamicRow({tableName:'Employee',Id:Id});
     if(res.statusCode == 200) {
       this.toastr.success("Delete Successfully");
       this.getEmployee();
     }
+    this.store.IsLoader = false;
   }
 }

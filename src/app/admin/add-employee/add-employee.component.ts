@@ -5,7 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpApiService } from '../../../services/http-api-service';
 import { FormsModule } from '@angular/forms';
 import { UploaderComponent } from '../../shared/uploader/uploader.component';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
+import { StorageService } from '../../../services/local-storage.service';
 
 @Component({
   selector: 'app-add-employee',
@@ -43,23 +44,23 @@ export class AddEmployeeComponent {
     IsUserNameErr: any = false;
     selectedImage: string | ArrayBuffer | null = null;
     environment = environment.apiUrl.replace("/api", "");
-    constructor(private api: HttpApiService, private route: Router, private toastr: ToastrService, private activeroute: ActivatedRoute, private datePipe: DatePipe) {
+    constructor(private api: HttpApiService, private route: Router, private toastr: ToastrService, private activeroute: ActivatedRoute, private datePipe: DatePipe,private store:StorageService) {
   
     }
   
     async ngOnInit(): Promise<void> {
-      await this.getOG();
+
       // await this.getCountries();
       // await this.GetUserName();
-    
+      this.getOG();
       this.activeroute.queryParams.subscribe(params => {
         
         if (params['empId']) {
-          this.FacultyModel.id  =params['empId']; 
+          this.FacultyModel.id  =params['empId'];  
           this.getEmpById(params['empId']);
         }
       });
-    
+      
       // await this.GetRegistrationDDL();
    
   
@@ -118,16 +119,14 @@ export class AddEmployeeComponent {
 
 
     async AddFaculty() {
-      console.log(
-        this.FacultyModel
-      );
-      
+      this.store.IsLoader = true;
       let res: any = await this.api.AddEmployee(this.FacultyModel);
         if (res.statusCode == 200 && res.isSuccess) {
           debugger
           this.toastr.success(res.message);
           this.route.navigate(['/admin/employees']);
         } else   this.toastr.error(res.message);
+        this.store.IsLoader = false;
         return;
     }
     
@@ -144,10 +143,9 @@ export class AddEmployeeComponent {
     // }
   
     async getEmpById(Id: any) {
-      debugger;
+
       let res: any = await this.api.getEmpById(Id);
       if (res.statusCode == 200) {
-        debugger
         this.FacultyModel = res.data[0];
         if (this.FacultyModel.DateOfJoining) {
           this.FacultyModel.DateOfJoining = this.datePipe.transform(this.FacultyModel.DateOfJoining, 'yyyy-MM-dd'); // For date input
@@ -161,6 +159,7 @@ export class AddEmployeeComponent {
           this.FacultyModel.DateOfBirth = this.datePipe.transform(this.FacultyModel.DateOfBirth, 'yyyy-MM-dd'); // For date input
         }  
       }
+      this.store.IsLoader = false;
     }
 
     ChangeImage($event: any) {

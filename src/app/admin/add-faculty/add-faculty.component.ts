@@ -19,6 +19,7 @@ export class AddFacultyComponent implements OnInit {
   countries: any[] = [];  
   religions: any = [];  
   projects: any = []; 
+  Env = environment.apiUrl.replace("/api","");
   disabilities: any = []; 
   causeOfDisability: any = []; 
   qualifications: any = [];   

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpApiService } from '../../../services/http-api-service';
 import { HttpService } from '../../../services/http.service';
-import { NgFor } from '@angular/common';
-import { environment } from '../../../environments/environment.development';
+import { CommonModule, NgFor } from '@angular/common';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-add-inventory',
   standalone: true,
-  imports: [NgFor],
+  imports: [CommonModule,NgFor],
   templateUrl: './add-inventory.component.html',
   styleUrl: './add-inventory.component.css'
 })

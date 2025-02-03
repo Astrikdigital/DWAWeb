@@ -28,11 +28,11 @@ export class DonorAddComponent {
 
   }
 async ngOnInit(): Promise<void> { 
-  await this.GetDonationType();
-  await this.GetDonationDetailType();
-  await this.Inventory();
+    this.GetDonationType();
+    this.GetDonationDetailType();
+    this.Inventory();
   
-  await this.GetDonationStatus();
+    this.GetDonationStatus();
   this.activeroute.queryParams.subscribe(params => {
     if(params['DonorId']){
         this.DonorModel.Id  =params['DonorId']; 

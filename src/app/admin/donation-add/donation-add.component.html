@@ -71,7 +71,7 @@
                                             </div>
                                         </div>
                                         <ng-container *ngIf="DonationModel.DonationDetailTypeId != 5">
-                                        <div class="col-lg-4 col-md-4 mb-2">
+                                        <div class="col-lg-4 col-md-4 mb-2" *ngIf="DonationModel.DonationDetailTypeId != 4">
                                             <label class="mb-1">Transaction ID *</label>
                                             <div class="form-group">
                                                 <i class="fa-solid fa-user"></i>

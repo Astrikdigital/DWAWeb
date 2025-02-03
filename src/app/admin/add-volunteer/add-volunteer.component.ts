@@ -8,6 +8,7 @@ import { HttpApiService } from '../../../services/http-api-service';
 import { UploaderComponent } from '../../shared/uploader/uploader.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { StorageService } from '../../../services/local-storage.service';
 @Component({
   selector: 'app-add-volunteer',
   standalone: true,
@@ -46,12 +47,12 @@ export class AddVolunteerComponent {
       IsUserNameErr: any = false;
       selectedImage: string | ArrayBuffer | null = null;
       environment = environment.apiUrl.replace("/api", "");
-      constructor(private api: HttpApiService, private route: Router, private toastr: ToastrService, private activeroute: ActivatedRoute, private datePipe: DatePipe) {
+      constructor(private api: HttpApiService, private route: Router, private toastr: ToastrService, private activeroute: ActivatedRoute, private datePipe: DatePipe,private store:StorageService) {
     
       }
     
       async ngOnInit(): Promise<void> {
-        await this.getOG();
+          this.getOG();
         // await this.getCountries();
         // await this.GetUserName();
       
@@ -121,7 +122,8 @@ export class AddVolunteerComponent {
       }
   
   
-      async AddFaculty() {
+      async AddVolunteer() {
+        this.store.IsLoader = true;
         console.log('Volunteer Model',
           this.VolunteerModel
         );
@@ -131,6 +133,7 @@ export class AddVolunteerComponent {
             this.toastr.success(res.message);
             this.route.navigate(['/admin/volunteers']);
           } else   this.toastr.error(res.message);
+          this.store.IsLoader = false;
           return;
       }
       
@@ -147,6 +150,7 @@ export class AddVolunteerComponent {
       // }
     
       async getVolunteerById(Id: any) {
+        this.store.IsLoader = true;
         let res: any = await this.api.getVolunteerById(Id);
         if (res.statusCode == 200) {
           this.VolunteerModel = res.data;
@@ -172,6 +176,7 @@ export class AddVolunteerComponent {
             
           }
         }
+        this.store.IsLoader = false;
       }
   
       ChangeImage($event: any) {

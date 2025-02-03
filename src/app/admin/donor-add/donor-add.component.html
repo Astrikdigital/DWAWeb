@@ -89,7 +89,7 @@
                                             </div>
                                             <ng-container *ngIf="DonorModel.DonationDetailTypeId != 5">
 
-                                            <div class="col-lg-4 col-md-4 mb-2">
+                                            <div class="col-lg-4 col-md-4 mb-2" *ngIf="DonorModel.DonationDetailTypeId != 4">
                                                 <label class="mb-1">Transaction ID *</label>
                                                 <div class="form-group">
                                                     <i class="fa-solid fa-user"></i>
@@ -124,6 +124,17 @@
                                                     </select>
                                                         <ng-container *ngIf="InventoryId.touched && !InventoryId.value">
                                                             <p class="error-red">Inventory is required </p>
+                                                        </ng-container>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 mb-2">
+                                                <label class="mb-1">Quantity *</label>
+                                                <div class="form-group">
+                                                    <i class="fa-solid fa-user"></i>
+                                                    <input type="number" placeholder="Enter Quantity" name="Quantity"
+                                                    #Quantity="ngModel" [(ngModel)]="DonorModel.Quantity" maxlength="100" required>
+                                                        <ng-container *ngIf="Quantity.touched && !Quantity.value">
+                                                            <p class="error-red">Quantity is required </p>
                                                         </ng-container>
                                                 </div>
                                             </div>

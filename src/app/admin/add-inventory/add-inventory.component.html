@@ -9,19 +9,19 @@
                   <table class="table table-bordered table-hover ">
                       <thead class="table-secondary">
         <tr>
-          <th scope="col">ID</th>
+          <th scope="col">S.No</th>
           <th scope="col">Date</th>
           <th scope="col">Item</th>
           <th scope="col">Category</th>
-          <th scope="col">Attachment</th>
+          <th scope="col">Image</th>
           <th scope="col">Quantity</th>
           <th scope="col">Conditions</th> 
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users">
-          <td>{{user.Id}}</td>
-          <td>{{user.Date}}</td>
+        <tr *ngFor="let user of users;let i = index;">
+          <td>{{i+1}}</td>
+          <td>{{user.Date | date}}</td>
           <td>{{user.ItemName}}</td>
           <td>{{user.Category}}</td>
           <td><img [src]="bseUrl+user.Image" alt="{{user.Image}}" class="avatar" /></td>

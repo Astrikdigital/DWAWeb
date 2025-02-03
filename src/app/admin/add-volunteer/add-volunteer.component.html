@@ -124,7 +124,7 @@
                                                 <option  [ngValue]="7">Sunday</option>
                                             </select> -->
 
-                                            <mat-form-field>
+                                            <mat-form-field style="width: 100%;">
                                                 <mat-label>Select Days</mat-label>
                                                 <mat-select [(ngModel)]="selectedDays" [ngModelOptions]="{standalone: true}" multiple (selectionChange)="updateAvailability()">
                                                   <mat-option [value]="1">Monday</mat-option>
@@ -457,7 +457,7 @@
                         </div>
                         <div class="row justify-content-end mt-4">
                             <div class="col-md-8 text-end px-4 py-4">
-                                <a href="javascript:;" class="cmp-btn" (click)="AddFaculty()">Add Registration</a>
+                                <a href="javascript:;" class="cmp-btn" (click)="AddVolunteer()">Submit</a>
                             </div>
                         </div>
 
