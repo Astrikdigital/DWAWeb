@@ -28,6 +28,10 @@ export const routes: Routes = [
             {
                 path: 'add-beneficiary',
                 loadComponent: () => import('./admin/add-faculty/add-faculty.component').then(m => m.AddFacultyComponent),   
+            },
+            {
+                path: 'add-inventory',
+                loadComponent: () => import('./admin/insert-inventory/insert-inventory.component').then(m => m.InsertInventoryComponent)
             },   
             {
                 path: 'employees',

@@ -5,16 +5,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule, DatePipe, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { UploaderComponent } from '../../shared/uploader/uploader.component';
 
 @Component({
   selector: 'app-insert-inventory',
   standalone: true,
-  imports: [FormsModule,NgFor,CommonModule],
+  imports: [FormsModule,NgFor,CommonModule,UploaderComponent],
   templateUrl: './insert-inventory.component.html',
   styleUrl: './insert-inventory.component.css'
 })
 export class InsertInventoryComponent {
   InventoryModel: any = { nationalityId: "", genderId: "", countryResidenceId: "" };
+  FacultyModel: any = { nationalityId: "", genderId: "", countryResidenceId: "" };
   countries: any[] = [];
   programs: any[] = [];
   usernames: any[] = [];
@@ -23,7 +25,6 @@ export class InsertInventoryComponent {
   disabilities: any = []; 
   causeOfDisability: any = []; 
   qualifications: any = []; 
-
   faculty: any;
   IsUserNameErr: any = false;
   selectedImage: string | ArrayBuffer | null = null;
@@ -39,22 +40,25 @@ export class InsertInventoryComponent {
     this.activeroute.queryParams.subscribe(params => {
       
       if (params['FacultyId']) {
-        this.InventoryModel.id  =params['ProgramId']; 
-        this.getfaculties(params['FacultyId']);
+        this.FacultyModel.id  =params['ProgramId']; 
+        
       }
     });
   
     await this.GetRegistrationDDL();
   }
   async AddFaculty() {
-    let res: any = await this.api.AddFaculty(this.InventoryModel);
+    let res: any = await this.api.AddFaculty(this.FacultyModel);
       if (res.statusCode == 200) {
         this.toastr.success(res.message);
-        this.route.navigate(['/admin/insert-inventory']);
+        this.route.navigate(['/admin/get-registration']);
       } else   this.toastr.error(res.message);
       return;
   }
-  
+  async addinventory() {
+    this.route.navigate(['/admin/inventory']);
+  }
+      
   async GetRegistrationDDL() {
     debugger
     let res: any = await this.api.GetRegistrationDDL();
@@ -66,25 +70,7 @@ export class InsertInventoryComponent {
       this.religions = res.data.religion;
     }
   }
-
-  async getfaculties(Id: any) {
-    debugger;
-    let res: any = await this.api.getfaculties({ Id: Id });
-    if (res.statusCode == 200) {
-      debugger
-      this.InventoryModel = res.data[0];
-      if (this.InventoryModel.DOB) {
-        this.InventoryModel.DOB = this.datePipe.transform(this.InventoryModel.DOB, 'yyyy-MM-dd'); // For date input
-      }
-
-      if (this.InventoryModel.Date) {
-        this.InventoryModel.Date = this.datePipe.transform(this.InventoryModel.Date, 'yyyy-MM-dd'); // For date input
-      }
-
-      //this.InventoryModel.dateOfBirth = this.datePipe.transform(this.InventoryModel.dateOfBirth, 'yyyy-MM-dd');
-    }
-
-  }
+ 
   ChangeImage($event: any) {
     this.InventoryModel.attachProfilePicture = $event;
   }
