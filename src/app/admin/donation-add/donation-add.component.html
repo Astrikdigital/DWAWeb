@@ -11,19 +11,49 @@
 
                                 <div class="row mt-3 px-3">
                                     <div class="col-lg-6 col-md-6 mb-3">
-                                        <h2 class="box-title mb-1">Add Donation</h2>
+                                        <h2 class="box-title mb-1">Add Income</h2>
                                     </div>
                                     <div class="col-md-6 text-right">
                                         <button href="javascript:;" (click)="location.back()" class="cmp-btn" type="button" >Back</button>
                                     </div>
                                     
-                                    <div class="col-lg-12 col-md-12 mb-3">
+                                    <div class="col-lg-12 col-md-12 mb-3" *ngIf="DonationModel.Name">
                                         <h6 class="head-donor">Donor: <span>{{DonationModel.Name}}</span></h6>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-4 mb-2" *ngIf="!DonationModel.DonorId">
+                                    <div class="col-md-4">
+                                        <label class="mb-1">Type *</label>
+                                        <div class="form-group">
+                                            <i class="fa-solid fa-user"></i>
+                                            <select name="incometype" #incometype="ngModel"
+                                                [(ngModel)]="DonationModel.IncomeTypeId"  required>
+                                                <option value="">Select Income Type</option>
+                                                <option *ngFor="let item of incometypes" [value]="item.Id">
+                                                    {{item.Title}}</option>
+                                            </select>
+                                            <ng-container *ngIf="incometype.touched && !incometype.value">
+                                                <p class="error-red">Income Type is required </p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="mb-1">Bank *</label>
+                                        <div class="form-group">
+                                            <i class="fa-solid fa-user"></i>
+                                            <select name="bank" #bank="ngModel"
+                                                [(ngModel)]="DonationModel.BankId"  required>
+                                                <option value="">Select Type</option>
+                                                <option *ngFor="let item of banks" [value]="item.Id">
+                                                    {{item.Title}}</option>
+                                            </select>
+                                            <ng-container *ngIf="bank.touched && !bank.value">
+                                                <p class="error-red">Bank is required </p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 mb-2" *ngIf="!IsDonar">
                                         <label class="mb-1">Donor *</label>
                                         <div class="form-group">
                                             <i class="fa-solid fa-user"></i>
@@ -70,17 +100,15 @@
                                                 </ng-container>
                                             </div>
                                         </div>
-                                        <ng-container *ngIf="DonationModel.DonationDetailTypeId != 5">
-                                        <div class="col-lg-4 col-md-4 mb-2" *ngIf="DonationModel.DonationDetailTypeId != 4">
+                                        <ng-container *ngIf="DonationModel.DonationDetailTypeId != 6"> 
+                                        <div class="col-lg-4 col-md-4 mb-2" *ngIf="DonationModel.DonationDetailTypeId != 4 && DonationModel.DonationDetailTypeId != 5">
                                             <label class="mb-1">Transaction ID *</label>
                                             <div class="form-group">
                                                 <i class="fa-solid fa-user"></i>
                                                 <input type="text" placeholder="Enter Transaction ID"
                                                     name="transactionId" #transactionId="ngModel"
-                                                    [(ngModel)]="DonationModel.TransactionId" maxlength="100" required>
-                                                <ng-container *ngIf="transactionId.touched && !transactionId.value">
-                                                    <p class="error-red">Transaction ID is required </p>
-                                                </ng-container>
+                                                    [(ngModel)]="DonationModel.TransactionId" maxlength="100"  >
+                                            
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 mb-2">
@@ -96,7 +124,7 @@
                                             </div>
                                         </div>
                                     </ng-container>
-                                    <ng-container *ngIf="DonationModel.DonationDetailTypeId == 5">
+                                    <ng-container *ngIf="DonationModel.DonationDetailTypeId == 6">
                                         <div class="col-lg-4 col-md-4 mb-2">
                                             <label class="mb-1">Inventory *</label>
                                             <div class="form-group">

@@ -89,6 +89,8 @@ export class HttpApiService {
         if (body.DonationStatusId) formData.append('DonationStatusId', body.DonationStatusId);
         if (body.DonationDetailTypeId) formData.append('DonationDetailTypeId', body.DonationDetailTypeId);
         if (body.TransactionId) formData.append('TransactionId', body.TransactionId);
+        if (body.BankId) formData.append('BankId', body.BankId);
+        if (body.IncomeTypeId) formData.append('IncomeTypeId', body.IncomeTypeId);
         if (body.InventoryId) formData.append('InventoryId', body.InventoryId);
         if (body.DonorId) formData.append('DonorId', body.DonorId);
         if (body.Amount) formData.append('Amount', body.Amount);
@@ -112,6 +114,8 @@ export class HttpApiService {
         if (body.Attach) formData.append('Attach', body.Attach)
         if (body.InventoryId) formData.append('InventoryId', body.InventoryId)
         if (body.Quantity) formData.append('Quantity', body.Quantity)
+        if (body.BankId) formData.append('BankId', body.BankId)
+            if (body.IncomeTypeId) formData.append('IncomeTypeId', body.IncomeTypeId)
         return await this.httpService.postFormData<any>('Admin/InsertUpdateDonation', formData)
     }
 
@@ -305,12 +309,15 @@ export class HttpApiService {
 
         if (body.Profile) formData.append('Profile', body.Profile);
         if (body.Attachment) formData.append('Attachment', body.Attachment);
-
-
-        console.log(formData);
-
+ 
         return await this.httpService.postFormData<any>('Admin/insert-volunteer', formData)
 
+    }
+    async GetIncomeTypes(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetIncomeTypes')
+    }
+    async GetBank(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetBanks')
     }
 
 }

@@ -15,12 +15,14 @@ import { environment } from '../../../environments/environment';
   styleUrl: './donor-add.component.css'
 })
 export class DonorAddComponent {
- DonorModel:any = {DonationDetailTypeId:"",DonationTypeId:"",InventoryId:"",DonationStatusId:1};
+ DonorModel:any = {DonationDetailTypeId:"",DonationTypeId:"",InventoryId:"",DonationStatusId:1,BankId:"",IncomeTypeId:""};
   usernames:any[]=[];
   donationtypes:any[]=[];
   detailtypes:any[]=[];
   donationstatus:any[]=[];
   inventores:any[]=[];
+  incometypes:any[]=[];
+  banks:any[]=[];
   
   Env = environment.apiUrl.replace("/api","");
   IsUserNameErr:any =false;
@@ -31,7 +33,8 @@ async ngOnInit(): Promise<void> {
     this.GetDonationType();
     this.GetDonationDetailType();
     this.Inventory();
-  
+    this.getIncomeTypes();
+    this.GetBank();
     this.GetDonationStatus();
   this.activeroute.queryParams.subscribe(params => {
     if(params['DonorId']){
@@ -59,7 +62,7 @@ ChangeImage($event:any){
   this.DonorModel.AttachProfilePicture=$event;
 }
 async AddDonor(){  
-  if(this.DonorModel.DonationDetailTypeId == 4) this.DonorModel.DonationStatusId = 2;
+  if(this.DonorModel.DonationDetailTypeId == 4 || this.DonorModel.DonationDetailTypeId == 5) this.DonorModel.DonationStatusId = 2;
   let res:any = await this.api.AddDonor(this.DonorModel);
   if(res.statusCode == 200){
     this.toastr.success(res.message);
@@ -82,6 +85,14 @@ async Inventory(){
 async GetDonationStatus(){
   let res:any = await this.api.GetDonationStatus();
   if(res) this.donationstatus = res.data;
+}
+async getIncomeTypes(){
+  let res:any = await this.api.GetIncomeTypes();
+  if(res) this.incometypes = res.data;
+}
+async GetBank(){
+  let res:any = await this.api.GetBank();
+  if(res) this.banks = res.data;
 }
 }
 
