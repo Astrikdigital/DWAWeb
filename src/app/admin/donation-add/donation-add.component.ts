@@ -16,10 +16,11 @@ import { Location } from '@angular/common';
   styleUrl: './donation-add.component.css'
 })
 export class DonationAddComponent {
-DonationModel:any = {DonationDetailTypeId:"",DonationTypeId:"",DonorId:"",InventoryId:""};
+DonationModel:any = {DonationDetailTypeId:"",DonationTypeId:"",DonorId:"",InventoryId:"",BankId:"",IncomeTypeId:"",DonationStatusId:1};
   usernames:any[]=[];
   inventores:any[]=[];
-
+  incometypes:any = [];
+  banks:any = [];
   donationtypes:any[]=[];
   detailtypes:any[]=[];
   donationstatus:any[]=[];
@@ -27,6 +28,7 @@ DonationModel:any = {DonationDetailTypeId:"",DonationTypeId:"",DonorId:"",Invent
   Attachment:any;
   Env = environment.apiUrl.replace("/api","");
   IsView:any =false;
+  IsDonar:Boolean = false;
   constructor(private api:HttpApiService,private route:Router,private toastr:ToastrService,private activeroute: ActivatedRoute,private datePipe: DatePipe,public location: Location){
 
   }
@@ -34,13 +36,17 @@ async ngOnInit(): Promise<void> {
     this.GetDonationType();
     this.GetDonationDetailType(); 
     this.Inventory();
+    this.getIncomeTypes();
+    this.GetBank();
   this.activeroute.queryParams.subscribe(params => {
     if(params['DonorId']){
       this.DonationModel.DonorId = params['DonorId']; 
+      this.IsDonar =true;
       this.DonationModel.Name = params['Donor'];    
   } 
     if(params['DonationId']){
         this.DonationModel.Id = params['DonationId'];  
+      this.IsDonar =true; 
         this.IsView = params['View']; 
        this.getDonation();
     } 
@@ -71,7 +77,7 @@ ChangeImage($event:any){
   this.DonationModel.AttachProfilePicture=$event;
 }
 async AddDonation(){   
-  if(this.DonationModel.DonationDetailTypeId == 4) this.DonationModel.DonationStatusId = 2;
+  if(this.DonationModel.DonationDetailTypeId == 4 || this.DonationModel.DonationDetailTypeId == 5) this.DonationModel.DonationStatusId = 2;
   let res:any = await this.api.AddDonation(this.DonationModel);
   if(res.statusCode == 200){
     this.toastr.success(res.message);
@@ -90,6 +96,14 @@ async GetDonationDetailType(){
 async Inventory(){
   let res:any = await this.api.GetInventory();
   if(res) this.inventores = res.data;
+}
+async getIncomeTypes(){
+  let res:any = await this.api.GetIncomeTypes();
+  if(res) this.incometypes = res.data;
+}
+async GetBank(){
+  let res:any = await this.api.GetBank();
+  if(res) this.banks = res.data;
 }
 }
 

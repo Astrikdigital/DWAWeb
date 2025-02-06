@@ -28,7 +28,7 @@ export class SidebarComponent {
       "IsChild": false,
       "Icon": "fas fa-user-plus",
       "Route": "/admin/income"
-    },
+    }, 
     {
       "Title": "Beneficiary",
       "IsChild": false,
@@ -41,6 +41,12 @@ export class SidebarComponent {
      "Icon": "fas fa-user-plus",
      "Route": "/admin/inventory"
    },
+   {
+    "Title": "Inventory Utilization",
+    "IsChild": false,
+    "Icon": "fas fa-user-plus",
+    "Route": "/admin/utilization"
+  },
     {
       "Title": "Employee",
       "IsChild": false,
