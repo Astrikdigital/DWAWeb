@@ -58,8 +58,33 @@
                                                         </ng-container>
                                                 </div>
                                             </div>
-                                            
+                                            <div class="col-lg-4 col-md-4 mb-2">
+                                                <label class="mb-1">Address *</label>
+                                                <div class="form-group">
+                                                    <i class="fa-solid fa-user"></i>
+                                                    <input type="text" placeholder="Enter Address" name="Address"
+                                                        #Address="ngModel" [(ngModel)]="DonorModel.Address"   required>
+                                                        <ng-container *ngIf="Address.touched && !Address.value">
+                                                            <p class="error-red">Address is required </p>
+                                                        </ng-container>
+                                                </div>
+                                            </div>
                                             <ng-container *ngIf="!DonorModel.Id">
+                                                <div class="col-md-4">
+                                                    <label class="mb-1">Project *</label>
+                                                    <div class="form-group">
+                                                        <i class="fa-solid fa-user"></i>
+                                                        <select name="project" #Project="ngModel"
+                                                            [(ngModel)]="DonorModel.ProjectId"  required>
+                                                            <option value="">Select Project</option>
+                                                            <option *ngFor="let item of projects" [value]="item.Id">
+                                                                {{item.Title}}</option>
+                                                        </select>
+                                                        <ng-container *ngIf="Project.touched && !Project.value">
+                                                            <p class="error-red">Project Type is required </p>
+                                                        </ng-container>
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-4">
                                                     <label class="mb-1">Type *</label>
                                                     <div class="form-group">

@@ -1,9 +1,267 @@
-<div class="content-wrapper" style="min-height: 533.5px;">
+<div class="content-wrapper"  style="min-height: 533.5px;">
     <div class="container-full"> 
         <section class="content">
             <div class="box">
-                <div class="box-body">
-                    <p>utilization works!</p>
+                <div class="box-body"> 
+                        <h3 class="fw-600 box-title mb-4 mt-4">Inventory Utilization</h3> 
+
+                    <mat-tab-group>
+                        <mat-tab label="Cash">
+                            
+                            <form #form="ngForm">
+                                <div class="box">
+                                    <div class="box-body">
+                                        <div class="tab-content" id="pills-tabContent">
+                                            <div class="tab-pane fade show active" id="pills-1" role="tabpanel"
+                                                aria-labelledby="pills-1-tab" tabindex="0"> 
+                
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label class="mb-1">Project *</label>
+                                                        <div class="form-group">
+                                                            <i class="fa-solid fa-user"></i>
+                                                            <select name="project" #project="ngModel"
+                                                                [(ngModel)]="cashModel.ProjectId"  required>
+                                                                <option value="">Select project</option>
+                                                                <option *ngFor="let item of projects" [value]="item.Id">
+                                                                    {{item.Title}}</option>
+                                                            </select>
+                                                            <ng-container *ngIf="project.touched && !project.value">
+                                                                <p class="error-red">Project is required </p>
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label class="mb-1">Main Head *</label>
+                                                        <div class="form-group">
+                                                            <i class="fa-solid fa-user"></i>
+                                                            <select name="MainHead" #MainHead="ngModel"
+                                                                [(ngModel)]="cashModel.MainHeadId"  required
+                                                                (ngModelChange)="ChangeMainHead($event)"
+                                                                >
+                                                                <option value="">Select Main Head</option>
+                                                                <option *ngFor="let item of mainhead" [value]="item.Id">
+                                                                    {{item.Title}}</option>
+                                                            </select>
+                                                            <ng-container *ngIf="MainHead.touched && !MainHead.value">
+                                                                <p class="error-red">Main Head is required </p>
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label class="mb-1">Head *</label>
+                                                        <div class="form-group">
+                                                            <i class="fa-solid fa-user"></i>
+                                                            <select name="Head" #Head="ngModel"
+                                                                [(ngModel)]="cashModel.HeadId" (ngModelChange)="ChangeHead($event)" required>
+                                                                <option value="">Select Head</option>
+                                                                <option *ngFor="let item of heads" [value]="item.Id">
+                                                                    {{item.Title}}</option>
+                                                            </select>
+                                                            <ng-container *ngIf="Head.touched && !Head.value">
+                                                                <p class="error-red">Head is required </p>
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label class="mb-1">Sub Head *</label>
+                                                        <div class="form-group">
+                                                            <i class="fa-solid fa-user"></i>
+                                                            <select name="SubHead" #SubHead="ngModel"
+                                                                [(ngModel)]="cashModel.SubHeadId"  required>
+                                                                <option value="">Select Sub Head</option>
+                                                                <option *ngFor="let item of subheads" [value]="item.Id">
+                                                                    {{item.Title}}</option>
+                                                            </select>
+                                                            <ng-container *ngIf="SubHead.touched && !SubHead.value">
+                                                                <p class="error-red">Sub Head is required </p>
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label class="mb-1">Bank *</label>
+                                                        <div class="form-group">
+                                                            <i class="fa-solid fa-user"></i>
+                                                            <select name="Bank" #Bank="ngModel"
+                                                                [(ngModel)]="cashModel.BankId"  required>
+                                                                <option value="">Select Bank</option>
+                                                                <option *ngFor="let item of banks" [value]="item.Id">
+                                                                    {{item.Title}}</option>
+                                                            </select>
+                                                            <ng-container *ngIf="Bank.touched && !Bank.value">
+                                                                <p class="error-red">Bank is required </p>
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 mb-2">
+                                                        <label class="mb-1">Amount *</label>
+                                                        <div class="form-group">
+                                                            <i class="fa-solid fa-user"></i>
+                                                            <input type="number" placeholder="Enter Amount" name="Amount" #Amount="ngModel"
+                                                                [(ngModel)]="cashModel.Amount" (ngModelChange)="ChangeQuantity($event)" required>
+                                                            <ng-container *ngIf="Amount.touched && !Amount.value">
+                                                                <p class="error-red">Amount is required </p>
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                
+                                                </div>
+                
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-end mt-4">
+                                            <div class="col-md-8 text-end px-4 py-4">
+                                                <button href="javascript:;"   class="cmp-btn" [disabled]="form.invalid"
+                                                    (click)="AddTransaction(form)">Submit</button>
+                                            </div>
+                                        </div>
+                
+                                    </div>
+                                </div>
+                            </form>
+                        
+                        
+                            <div class="table-responsive rounded-4">
+                                <table class="table table-bordered table-hover ">
+                                    <thead class="table-secondary">
+                                        <tr>
+                                            <td scope="col" style="width: 90px;"></td>
+                                            <td scope="col"><span class="fs-14 fw-600">Main Head</span></td>
+                                            <td scope="col"><span class="fs-14 fw-600">Head</span></td>  
+                                            <td scope="col"><span class="fs-14 fw-600">Sub Head</span></td>   
+                                            <td scope="col"><span class="fs-14 fw-600">Bank</span></td>
+                                            <td scope="col"><span class="fs-14 fw-600">Branch Name</span></td>   
+                                            <td scope="col"><span class="fs-14 fw-600">Amount</span></td>  
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngIf="!transactions?.length">
+                                            <td colspan="10" class="text-center">No Record </td>
+                                        </tr>
+                
+                                        <tr *ngFor="let item of transactions;let i = index">
+                                            <td>{{i+1}}</td>
+                                            <td>  <p class="text-body mb-0">{{item.MainHead ? item.MainHead : 'N/A'}}</p> </td>
+                                            <td>  <p class="text-body mb-0">{{item.Head ? item.Head : 'N/A'}}</p> </td>
+                                            <td>  <p class="text-body mb-0">{{item.SubHead ? item.SubHead : 'N/A'}}</p> </td>
+                                            <td>  <p class="text-body mb-0">{{item.Bank ? item.Bank : 'N/A'}}</p> </td>
+                                            <td>  <p class="text-body mb-0">{{item.BranchName ? item.BranchName : 'N/A'}}</p> </td>
+                                            <td>  <p class="text-body mb-0">{{item.Amount ? item.Amount : 'N/A'}}</p> </td>
+                             
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        
+                        </mat-tab>
+                        <mat-tab label="In-Kind">
+                            <form #form="ngForm">
+                                <div class="box">
+                                    <div class="box-body">
+                                        <div class="tab-content" id="pills-tabContent">
+                                            <div class="tab-pane fade show active" id="pills-1" role="tabpanel"
+                                                aria-labelledby="pills-1-tab" tabindex="0"> 
+                
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label class="mb-1">Project *</label>
+                                                        <div class="form-group">
+                                                            <i class="fa-solid fa-user"></i>
+                                                            <select name="project" #project="ngModel"
+                                                                [(ngModel)]="inkindmodel.ProjectId"  required>
+                                                                <option value="">Select project</option>
+                                                                <option *ngFor="let item of projects" [value]="item.Id">
+                                                                    {{item.Title}}</option>
+                                                            </select>
+                                                            <ng-container *ngIf="project.touched && !project.value">
+                                                                <p class="error-red">Project is required </p>
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label class="mb-1">Inventory *</label>
+                                                        <div class="form-group">
+                                                            <i class="fa-solid fa-user"></i>
+                                                            <select name="inventory" #inventory="ngModel"
+                                                                [(ngModel)]="inkindmodel.InventoryId"  required>
+                                                                <option value="">Select Inventory</option>
+                                                                <option *ngFor="let item of inventorys" [value]="item.Id">
+                                                                    {{item.ItemName}}</option>
+                                                            </select>
+                                                            <ng-container *ngIf="inventory.touched && !inventory.value">
+                                                                <p class="error-red">Inventory is required </p>
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label class="mb-1">Beneficiary *</label>
+                                                        <div class="form-group">
+                                                            <i class="fa-solid fa-user"></i>
+                                                            <select name="Beneficiary" #Beneficiary="ngModel"
+                                                                [(ngModel)]="inkindmodel.BeneficiaryId"  required>
+                                                                <option value="">Select Beneficiary</option>
+                                                                <option *ngFor="let item of beneficiary" [value]="item.Id">
+                                                                    {{item.Name}}</option>
+                                                            </select>
+                                                            <ng-container *ngIf="Beneficiary.touched && !Beneficiary.value">
+                                                                <p class="error-red">Beneficiary is required </p>
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 mb-2">
+                                                        <label class="mb-1">Quantity *</label>
+                                                        <div class="form-group">
+                                                            <i class="fa-solid fa-user"></i>
+                                                            <input type="number" placeholder="Enter Quantity" name="Quantity" #Quantity="ngModel"
+                                                                [(ngModel)]="inkindmodel.Quantity" (ngModelChange)="ChangeQuantity($event)" required>
+                                                            <ng-container *ngIf="Quantity.touched && !Quantity.value">
+                                                                <p class="error-red">Quantity is required </p>
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                
+                                                </div>
+                
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-end mt-4">
+                                            <div class="col-md-8 text-end px-4 py-4">
+                                                <button href="javascript:;"   class="cmp-btn" [disabled]="form.invalid"
+                                                    (click)="AddInventoryUtilization(form)">Submit</button>
+                                            </div>
+                                        </div>
+                
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="table-responsive rounded-4">
+                                <table class="table table-bordered table-hover ">
+                                    <thead class="table-secondary">
+                                        <tr>
+                                            <td scope="col" style="width: 90px;"></td>
+                                            <td scope="col"><span class="fs-14 fw-600">Inventory</span></td>
+                                            <td scope="col"><span class="fs-14 fw-600">Beneficiary</span></td>  
+                                            <td scope="col"><span class="fs-14 fw-600">Quantity</span></td>    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngIf="!inventories?.length">
+                                            <td colspan="10" class="text-center">No Record </td>
+                                        </tr>
+                
+                                        <tr *ngFor="let item of inventories;let i = index">
+                                            <td>{{i+1}}</td>
+                                            <td>  <p class="text-body mb-0">{{item.Inventory ? item.Inventory : 'N/A'}}</p> </td>
+                                            <td>  <p class="text-body mb-0">{{item.Beneficiary ? item.Beneficiary : 'N/A'}}</p> </td>
+                                            <td>  <p class="text-body mb-0">{{item.Quantity ? item.Quantity : 'N/A'}}</p> </td> 
+                             
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </mat-tab> 
+                      </mat-tab-group>
                 </div>
             </div>
         </section>

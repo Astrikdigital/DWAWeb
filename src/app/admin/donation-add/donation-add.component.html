@@ -24,17 +24,17 @@
 
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label class="mb-1">Type *</label>
+                                        <label class="mb-1">Project *</label>
                                         <div class="form-group">
                                             <i class="fa-solid fa-user"></i>
-                                            <select name="incometype" #incometype="ngModel"
-                                                [(ngModel)]="DonationModel.IncomeTypeId"  required>
-                                                <option value="">Select Income Type</option>
-                                                <option *ngFor="let item of incometypes" [value]="item.Id">
+                                            <select name="project" #Project="ngModel"
+                                                [(ngModel)]="DonationModel.ProjectId"  required>
+                                                <option value="">Select Project</option>
+                                                <option *ngFor="let item of projects" [value]="item.Id">
                                                     {{item.Title}}</option>
                                             </select>
-                                            <ng-container *ngIf="incometype.touched && !incometype.value">
-                                                <p class="error-red">Income Type is required </p>
+                                            <ng-container *ngIf="Project.touched && !Project.value">
+                                                <p class="error-red">Project Type is required </p>
                                             </ng-container>
                                         </div>
                                     </div>

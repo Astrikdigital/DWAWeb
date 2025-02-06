@@ -208,3 +208,6 @@ td p.Approved {
     border-radius: 5px;
     padding: 2px 2px;
 }
+.mat-mdc-tab-labels {
+    width: 25% !important;
+}

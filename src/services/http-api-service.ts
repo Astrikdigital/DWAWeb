@@ -81,6 +81,7 @@ export class HttpApiService {
         if (body.Id) formData.append('Id', body.Id);
         if (body.AttachProfilePicture) formData.append('AttachProfilePicture', body.AttachProfilePicture);
         if (body.AttachmentDocument) formData.append('AttachmentDocument', body.AttachmentDocument);
+        if (body.Address) formData.append('Address', body.Address);
         if (body.Name) formData.append('Name', body.Name);
         if (body.Email) formData.append('Email', body.Email);
         if (body.PhoneNumber) formData.append('PhoneNumber', body.PhoneNumber?.toString());
@@ -96,27 +97,29 @@ export class HttpApiService {
         if (body.Amount) formData.append('Amount', body.Amount);
         if (body.Quantity) formData.append('Quantity', body.Quantity);
         if (body.Date) formData.append('Date', body.Date);
+        if (body.ProjectId) formData.append('ProjectId', body.ProjectId);
         if (body.Attachment) formData.append('Attachment', body.Attachment);
-        return await this.httpService.postFormData<any>('Admin/InsertUpdateDonor', formData)
+        return await this.httpService.postFormData<any>('Admin/InsertUpdateDonor', formData);
     }
     async AddDonation(body: any): Promise<any> {
         const formData = new FormData();
         if (body.Id) formData.append('Id', body.Id)
         if (body.DonationTypeId) formData.append('DonationTypeId', body.DonationTypeId)
         if (body.AttachmentDocument) formData.append('AttachmentDocument', body.AttachmentDocument);
-        if (body.DonationDetailTypeId) formData.append('DonationDetailTypeId', body.DonationDetailTypeId)
-        if (body.TransactionId) formData.append('TransactionId', body.TransactionId)
-        if (body.Amount) formData.append('Amount', body.Amount)
-        if (body.Date) formData.append('Date', body.Date)
-        if (body.DonorId) formData.append('DonorId', body.DonorId)
-        if (body.DonationStatusId) formData.append('DonationStatusId', body.DonationStatusId)
-        if (body.Attachment) formData.append('Attachment', body.Attachment)
-        if (body.Attach) formData.append('Attach', body.Attach)
-        if (body.InventoryId) formData.append('InventoryId', body.InventoryId)
-        if (body.Quantity) formData.append('Quantity', body.Quantity)
-        if (body.BankId) formData.append('BankId', body.BankId)
-            if (body.IncomeTypeId) formData.append('IncomeTypeId', body.IncomeTypeId)
-        return await this.httpService.postFormData<any>('Admin/InsertUpdateDonation', formData)
+        if (body.DonationDetailTypeId) formData.append('DonationDetailTypeId', body.DonationDetailTypeId);
+        if (body.TransactionId) formData.append('TransactionId', body.TransactionId);
+        if (body.Amount) formData.append('Amount', body.Amount);
+        if (body.Date) formData.append('Date', body.Date);
+        if (body.DonorId) formData.append('DonorId', body.DonorId);
+        if (body.DonationStatusId) formData.append('DonationStatusId', body.DonationStatusId);
+        if (body.Attachment) formData.append('Attachment', body.Attachment);
+        if (body.Attach) formData.append('Attach', body.Attach);
+        if (body.ProjectId) formData.append('ProjectId', body.ProjectId);
+        if (body.InventoryId) formData.append('InventoryId', body.InventoryId);
+        if (body.Quantity) formData.append('Quantity', body.Quantity);
+        if (body.BankId) formData.append('BankId', body.BankId);
+            if (body.IncomeTypeId) formData.append('IncomeTypeId', body.IncomeTypeId);
+        return await this.httpService.postFormData<any>('Admin/InsertUpdateDonation', formData);
     }
 
     async DeleteUser(body: any): Promise<any> {
@@ -149,6 +152,9 @@ export class HttpApiService {
     }
     async GetDonationDetailType(): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/get-donation-detail-type')
+    }
+    async GetProject(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetProject')
     }
     async GetDonationStatus(): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/get-donation-status')
@@ -319,5 +325,19 @@ export class HttpApiService {
     async GetBank(): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/GetBanks')
     }
-
+    async GetInventoryUtilizationDll(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetInventoryUtilizationDll')
+    }
+    async InsertUpdateTransaction(body:any): Promise<any> {
+        return await this.httpService.post<any>('Admin/InsertUpdateTransaction',body)
+    }
+    async GetDebitTransactions(body?:any): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetDebitTransactions',body)
+    }
+    async GetInventoryUtilization(body?:any): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetInventoryUtilization',body)
+    }
+    async InsertUpdateInventoryUtilization(body:any): Promise<any> {
+        return await this.httpService.post<any>('Admin/InsertUpdateInventoryUtilization',body)
+    }
 }

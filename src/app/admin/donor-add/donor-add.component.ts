@@ -23,7 +23,7 @@ export class DonorAddComponent {
   inventores:any[]=[];
   incometypes:any[]=[];
   banks:any[]=[];
-  
+  projects:any[]=[];
   Env = environment.apiUrl.replace("/api","");
   IsUserNameErr:any =false;
   constructor(private api:HttpApiService,private route:Router,private toastr:ToastrService,private activeroute: ActivatedRoute,private datePipe: DatePipe){
@@ -34,6 +34,7 @@ async ngOnInit(): Promise<void> {
     this.GetDonationDetailType();
     this.Inventory();
     this.getIncomeTypes();
+    this.GetProject();
     this.GetBank();
     this.GetDonationStatus();
   this.activeroute.queryParams.subscribe(params => {
@@ -69,6 +70,10 @@ async AddDonor(){
     this.route.navigate(['/admin/donors']);
   } else   this.toastr.error(res.message);
   return; 
+}
+async GetProject(){
+  let res:any = await this.api.GetProject();
+  if(res) this.projects = res.data;
 }
 async GetDonationType(){
   let res:any = await this.api.GetDonationType();

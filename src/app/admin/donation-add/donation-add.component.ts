@@ -16,9 +16,10 @@ import { Location } from '@angular/common';
   styleUrl: './donation-add.component.css'
 })
 export class DonationAddComponent {
-DonationModel:any = {DonationDetailTypeId:"",DonationTypeId:"",DonorId:"",InventoryId:"",BankId:"",IncomeTypeId:"",DonationStatusId:1};
+DonationModel:any = {DonationDetailTypeId:"",DonationTypeId:"",DonorId:"",InventoryId:"",BankId:"",IncomeTypeId:"",DonationStatusId:1,ProjectId:""};
   usernames:any[]=[];
   inventores:any[]=[];
+  projects:any[]=[];
   incometypes:any = [];
   banks:any = [];
   donationtypes:any[]=[];
@@ -36,6 +37,7 @@ async ngOnInit(): Promise<void> {
     this.GetDonationType();
     this.GetDonationDetailType(); 
     this.Inventory();
+    this.GetProject();
     this.getIncomeTypes();
     this.GetBank();
   this.activeroute.queryParams.subscribe(params => {
@@ -92,6 +94,10 @@ async GetDonationType(){
 async GetDonationDetailType(){
   let res:any = await this.api.GetDonationDetailType();
   if(res) this.detailtypes = res.data;
+}
+async GetProject(){
+  let res:any = await this.api.GetProject();
+  if(res) this.projects = res.data;
 }
 async Inventory(){
   let res:any = await this.api.GetInventory();
