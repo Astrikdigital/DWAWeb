@@ -27,24 +27,29 @@ export class HttpApiService {
         formData.append('ProjectId', body.ProjectId);
         formData.append('Date', body.Date);
         if (body.Id) formData.append('Id', body.Id);
-        formData.append('CNIC', body.CNIC);
-        formData.append('GenderId', body.GenderId);
-        formData.append('Name', body.Name);
-        formData.append('FatherName', body.FatherName);
-        formData.append('Address', body.Address);
-        formData.append('DOB', body.DOB);
-        formData.append('Age', body.Age);
-        formData.append('ReligionId', body.ReligionId);
-        formData.append('QualificationId', body.QualificationId);
-        formData.append('Experience', body.Experience);
-        formData.append('PhoneNo', body.PhoneNo);
-        formData.append('MobileNo', body.MobileNo);
-        formData.append('WhatsAppNo', body.WhatsAppNo);
-        formData.append('Email', body.Email);
-        formData.append('DisabilityId', body.DisabilityId);
-        formData.append('CauseDisabilityId', body.CauseDisabilityId);
-        formData.append('Reference', body.Reference);
-        formData.append('NeedsRemarks', body.NeedsRemarks);
+        if (body.CNIC)formData.append('CNIC', body.CNIC);
+        if (body.GenderId)formData.append('GenderId', body.GenderId);
+        if (body.Name)formData.append('Name', body.Name);
+        if (body.FatherName)formData.append('FatherName', body.FatherName);
+        if (body.Address)formData.append('Address', body.Address);
+        if (body.DOB)formData.append('DOB', body.DOB);
+        if (body.Age)formData.append('Age', body.Age);
+        if (body.ReligionId)formData.append('ReligionId', body.ReligionId);
+        if (body.QualificationId)formData.append('QualificationId', body.QualificationId);
+        if (body.Experience)formData.append('Experience', body.Experience);
+        if (body.PhoneNo)formData.append('PhoneNo', body.PhoneNo);
+        if (body.MobileNo)formData.append('MobileNo', body.MobileNo);
+        if (body.WhatsAppNo)formData.append('WhatsAppNo', body.WhatsAppNo);
+        if (body.Email)formData.append('Email', body.Email);
+        if (body.DisabilityId)formData.append('DisabilityId', body.DisabilityId);
+        if (body.CauseDisabilityId)formData.append('CauseDisabilityId', body.CauseDisabilityId);
+        if (body.Reference)formData.append('Reference', body.Reference);
+        if (body.NeedsRemarks)formData.append('NeedsRemarks', body.NeedsRemarks);
+        if (body.FirstName)formData.append('FirstName', body.FirstName);
+        if (body.LastName)formData.append('LastName', body.LastName);
+        if (body.BusinessName)formData.append('BusinessName', body.BusinessName);
+        if (body.BusinessType)formData.append('BusinessType', body.BusinessType);
+        if (body.BeneficiaryTypeId)formData.append('BeneficiaryTypeId', body.BeneficiaryTypeId);
         if (body.Image) formData.append('Image', body.Image);
         if (body.attachProfilePicture) formData.append('attachProfilePicture', body.attachProfilePicture);
         return await this.httpService.postFormData<any>('Admin/insert-update-beneficiary', formData)
@@ -340,4 +345,8 @@ export class HttpApiService {
     async InsertUpdateInventoryUtilization(body:any): Promise<any> {
         return await this.httpService.post<any>('Admin/InsertUpdateInventoryUtilization',body)
     }
+    async getBenificiarytype(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-beneficiary-type');
+    }
+
 }

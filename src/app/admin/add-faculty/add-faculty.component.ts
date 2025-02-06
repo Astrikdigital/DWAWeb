@@ -15,8 +15,9 @@ import { environment } from '../../../environments/environment';
   styleUrl: './add-faculty.component.css'
 })
 export class AddFacultyComponent implements OnInit {
-  BeneficiaryModel: any = {   GenderId: "", ReligionId:"",QualificationId:"",ProjectId:"",DisabilityId:"",CauseDisabilityId:"" };
+  BeneficiaryModel: any = {  BeneficiaryTypeId:"", BusinessType:"", GenderId: "", ReligionId:"",QualificationId:"",ProjectId:"",DisabilityId:"",CauseDisabilityId:"" };
   countries: any[] = [];  
+  benifTypeList: any[] = [];  
   religions: any = [];  
   projects: any = []; 
   Env = environment.apiUrl.replace("/api","");
@@ -25,11 +26,14 @@ export class AddFacultyComponent implements OnInit {
   qualifications: any = [];   
   selectedImage: string | ArrayBuffer | null = null;
   environment = environment.apiUrl.replace("/api", "");
+  isCorporate: boolean = false;
+  benifType:any;
   constructor(private api: HttpApiService, private route: Router, private toastr: ToastrService, private activeroute: ActivatedRoute, private datePipe: DatePipe) {
 
   }
  
   async ngOnInit(): Promise<void> {
+    this.getBenifType();
     //await this.getCountries();
     // await this.GetUserName();
   
@@ -44,6 +48,8 @@ export class AddFacultyComponent implements OnInit {
     await this.GetRegistrationDDL();
   }
   async AddFaculty() {
+    console.log(this.BeneficiaryModel);
+    
     let res: any = await this.api.AddFaculty(this.BeneficiaryModel);
       if (res.statusCode == 200) {
         this.toastr.success(res.message);
@@ -79,6 +85,12 @@ export class AddFacultyComponent implements OnInit {
       if (this.BeneficiaryModel.Date) {
         this.BeneficiaryModel.Date = this.datePipe.transform(this.BeneficiaryModel.Date, 'yyyy-MM-dd');
       }
+      if(this.BeneficiaryModel.BeneficiaryTypeId == 1 || this.BeneficiaryModel.BeneficiaryTypeId == 3 || !this.BeneficiaryModel.BeneficiaryTypeId){
+        debugger
+        this.isCorporate = false;
+      }else{
+        this.isCorporate = true;
+      }
     }
   }
   ChangeImage($event: any) {
@@ -91,6 +103,20 @@ export class AddFacultyComponent implements OnInit {
       this.countries = res.data;
     }
   }
- 
+
+  async getBenifType() {
+    let res: any = await this.api.getBenificiarytype();
+    if (res.statusCode == 200) {
+      this.benifTypeList = res.data;
+    }
+  }
+  benifTypeForm(){    
+    console.log(this.BeneficiaryModel.BeneficiaryTypeId);
+    if(this.BeneficiaryModel.BeneficiaryTypeId == 1 || this.BeneficiaryModel.BeneficiaryTypeId == 3 || this.BeneficiaryModel.BeneficiaryTypeId == "" ){
+      this.isCorporate = false;
+    }else{
+      this.isCorporate = true;
+    }
+  }
   
 }
