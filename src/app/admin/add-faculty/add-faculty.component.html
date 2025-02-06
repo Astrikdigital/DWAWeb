@@ -6,28 +6,23 @@
                 <div class="box">
                     <div class="box-body">
                         <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-1" role="tabpanel"
+                            <div class="col-lg-4 col-md-12 mb-3">
+                                <h2 class="box-title mb-1">Add Beneficiary</h2>
+                            </div>
+                            <div class="col-lg-4 col-md-4 mb-3">
+                                <label class="mb-1">Benificiary Type*</label>
+                                <select (change)="benifTypeForm()" name="Beneficiarytype" id="" [(ngModel)]="BeneficiaryModel.BeneficiaryTypeId">
+                                    <option   value="">Select Benificiary</option>
+                                    <option *ngFor="let item of benifTypeList let i = index" [ngValue]="item.Id">{{item.Title}}</option>
+                                </select>
+                            </div>
+                            <!-- Individual & Member -->
+                            <div *ngIf="!isCorporate" class="tab-pane fade show active" id="pills-1" role="tabpanel"
                                 aria-labelledby="pills-1-tab" tabindex="0">
 
                                 <div class="row mt-3 px-3">
-                                    <div class="col-lg-12 col-md-12 mb-3">
-                                        <h2 class="box-title mb-1">Add Beneficiary</h2>
-                                    </div>
                                     
-                                    <!-- <div class="col-lg-4 col-md-4 mb-2">
-                                        <label class="mb-1">Project Title*</label>
-                                        <div class="form-group">
-                                            <i class="fa-solid fa-user"></i>
-                                            <input type="text" placeholder="Enter Title" name="title"
-                                                #Title="ngModel" [(ngModel)]="BeneficiaryModel.Title" maxlength="100" [pattern]="'[a-z A-Z]*'"    required>
-                                                <ng-container *ngIf="Title.touched && !Title.value">
-                                                    <p class="error-red">Last Name is required </p>
-                                                </ng-container>
-                                                <ng-container *ngIf="Title.touched && Title.invalid && Title.value">
-                                                    <p class="error-red">Last Name should not contain number or  special characters </p>
-                                                </ng-container>  
-                                        </div>
-                                    </div> -->
+                                    
 
                                     <div class="col-lg-4 col-md-4 mb-2">
                                         <label class="mb-1">Project Title*</label>
@@ -49,21 +44,6 @@
                                             </ng-container>
                                         </div>
                                     </div>
-                                    
-
-                                    <!-- <div class="col-lg-4 col-md-4 mb-2">
-                                        <label class="mb-1">Date*</label>
-                                        <div class="form-group">
-                                            <input type="date" id="date" name="date" #Date="ngModel"
-                                                [(ngModel)]="BeneficiaryModel.Date" class="px-2" required>
-                                                <ng-container *ngIf="Date.touched && !Date.value">
-                                                    <p class="error-red">Date is required </p>
-                                                </ng-container>
-                                                <ng-container *ngIf="Date.touched && Date.invalid && Date.value">
-                                                    <p class="error-red">Date is Invalid </p>
-                                                </ng-container>    
-                                        </div>
-                                    </div> -->
 
                                     <div class="col-lg-4 col-md-4 mb-2">
                                         <label class="mb-1">Date*</label>
@@ -86,33 +66,6 @@
                                         </div>
                                     </div>
 
-
-                                    <!-- <div class="col-lg-4 col-md-4 mb-2">
-                                        <label class="mb-1">Serial No.*</label>
-                                        <div class="form-group">
-                                            <i class="fa fa-barcode"></i>
-                                            <input type="text" placeholder="Enter SeriolNo" name="seriolNo"
-                                                #SeriolNo="ngModel" [(ngModel)]="BeneficiaryModel.SeriolNo" maxlength="200"
-                                                 required>
-                                    
-                                            <ng-container *ngIf="SeriolNo.touched && !SeriolNo.value">
-                                                <p class="error-red">Seriol No is required </p>
-                                            </ng-container>
-                                        </div>
-                                    </div> -->
-
-                                    <!-- <div class="col-lg-4 col-md-4 mb-2">
-                                        <label class="mb-1">Registration/Code No.*</label>
-                                        <div class="form-group">
-                                            <i class="fa fa-tag"></i>
-                                            <input type="text" placeholder="Enter CodeNo" name="CodeNo"
-                                                #CodeNo="ngModel" [(ngModel)]="BeneficiaryModel.CodeNo" maxlength="200"
-                                                  required>
-                                            <ng-container *ngIf="CodeNo.touched && !CodeNo.value">
-                                                <p class="error-red">Registration/Code No. </p>
-                                            </ng-container>
-                                        </div>
-                                    </div> -->
 
                                     <div class="col-lg-4 col-md-4 mb-2">
                                         <label class="mb-1">CNIC*</label>
@@ -176,22 +129,7 @@
                                                 </ng-container>  
                                         </div>
                                     </div>
-
-
-                                    <!-- <div class="col-lg-4 col-md-4 mb-2">
-                                        <label class="mb-1">Date of Birth*</label>
-                                        <div class="form-group">
-                                            <input type="date" id="DOB" name="DOB" #DOB="ngModel"
-                                                [(ngModel)]="BeneficiaryModel.DOB" class="px-2" required>
-                                                <ng-container *ngIf="DOB.touched && !DOB.value">
-                                                    <p class="error-red">Date Of Birth is required </p>
-                                                </ng-container>
-                                                <ng-container *ngIf="DOB.touched && DOB.invalid && DOB.value">
-                                                    <p class="error-red">Date Of Birth is Invalid </p>
-                                                </ng-container>    
-                                        </div>
-                                    </div> -->
-
+                                 
                                     <div class="col-lg-4 col-md-4 mb-2">
                                         <label class="mb-1">Date of Birth*</label>
                                         <div class="form-group">
@@ -230,18 +168,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- <div class="col-lg-4 col-md-4 mb-2">
-                                        <label class="mb-1">Religion*</label>
-                                        <div class="form-group">
-                                            <i class="fa fa-praying-hands"></i>
-                                            <input type="text" placeholder="Enter Religion" name="Religion"
-                                                #Religion="ngModel" [(ngModel)]="BeneficiaryModel.Religion" maxlength="100" [pattern]="'[a-z A-Z]*'"    required>
-                                                <ng-container *ngIf="Religion.touched && !Religion.value">
-                                                    <p class="error-red">Religion is required </p>
-                                                </ng-container>
-                                        </div>
-                                    </div> -->
-
+                                   
                                     <div class="col-lg-4 col-md-4 mb-2">
                                         <label class="mb-1">Religion*</label>
                                         <div class="form-group">
@@ -258,17 +185,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- <div class="col-lg-4 col-md-4 mb-2">
-                                        <label class="mb-1">Qualification*</label>
-                                        <div class="form-group">
-                                            <i class="fa fa-chalkboard-teacher"></i>
-                                            <input type="text" placeholder="Enter Qualification" name="qualification"
-                                                #Qualification="ngModel" [(ngModel)]="BeneficiaryModel.Qualification" maxlength="100" [pattern]="'[a-z A-Z]*'"    required>
-                                                <ng-container *ngIf="Qualification.touched && !Qualification.value">
-                                                    <p class="error-red">Qualification is required </p>
-                                                </ng-container>  
-                                        </div>
-                                    </div> -->
+                                   
 
                                     <div class="col-lg-4 col-md-4 mb-2">
                                         <label class="mb-1">Qualification*</label>
@@ -375,20 +292,7 @@
                                                 </ng-container>  
                                         </div>
                                     </div> 
-                                    
-                                    <!-- <div class="col-lg-4 col-md-4 mb-2">
-                                        <label class="mb-1">Disability*</label>
-                                        <div class="form-group">
-                                            <i class="fas fa-wheelchair"></i>
-                                            <input type="text" placeholder="Enter Disability" name="Disability"    
-                                                #Disability="ngModel" [(ngModel)]="BeneficiaryModel.Disability"
-                                                required>
-                                                <ng-container *ngIf="Disability.touched && !Disability.value">
-                                                    <p class="error-red">Disability field is required </p>
-                                                </ng-container>    
-                                        </div>
-                                    </div> -->
-    
+                                   
                                     <div class="col-lg-4 col-md-4 mb-2">
                                         <label class="mb-1">Disability*</label>
                                         <div class="form-group">
@@ -405,20 +309,7 @@
                                         </div>
                                     </div>
                                     
-                                    <!-- <div class="col-lg-4 col-md-4 mb-2">
-                                        <label class="mb-1">Cause of Disability*</label>
-                                        <div class="form-group">
-                                            <i class="fas fa-heartbeat"></i>
-                                            <input type="text" placeholder="Cause of Disability" name="causeDisability"    
-                                                #CauseDisability="ngModel" [(ngModel)]="BeneficiaryModel.CauseDisability"
-                                                required>
-                                                <ng-container *ngIf="CauseDisability.touched && !CauseDisability.value">
-                                                    <p class="error-red">Cause of Disability is required </p>
-                                                </ng-container>  
-                                        </div>
-                                    </div> -->
-    
-
+                                    
                                     <div class="col-lg-4 col-md-4 mb-2">
                                         <label class="mb-1">Cause of Disability*</label>
                                         <div class="form-group">
@@ -477,6 +368,165 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Individual & Member -->
+
+                            <!-- Corporate -->
+                            <div *ngIf="isCorporate" class="tab-pane fade show active" id="pills-1" role="tabpanel"
+                                aria-labelledby="pills-1-tab" tabindex="0">
+                            
+                                 <ng-container *ngIf="isCorporate">
+                                    <div class="row mt-3 px-3">
+
+                                       
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label class="mb-1">Project Title*</label>
+                                            <div class="form-group">
+                                                <i class="fa-solid fa-user"></i>
+                                                <select class="form-select" name="title" 
+                                                        #Title="ngModel" [(ngModel)]="BeneficiaryModel.ProjectId" required>
+                                                    <option value="" disabled selected>Select Project Title</option>
+                                                    <option *ngFor="let project of projects" [value]="project.Id">{{ project.Title }}</option>
+                                                </select>
+                                                <!-- Error message for required field -->
+                                                <ng-container *ngIf="Title.touched && !Title.value">
+                                                    <p class="error-red">Project Title is required</p>
+                                                </ng-container>
+                                        
+                                                <!-- Error message for invalid selection -->
+                                                <ng-container *ngIf="Title.touched && Title.invalid && Title.value">
+                                                    <p class="error-red">Please select a valid project title</p>
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label class="mb-1">First Name*</label>
+                                            <div class="form-group">
+                                                <i class="fa-solid fa-user"></i>
+                                                <input type="text" placeholder="Enter First Name" name="firstname"
+                                                    #firstname="ngModel" [(ngModel)]="BeneficiaryModel.FirstName" maxlength="100" [pattern]="'[a-z A-Z]*'"    required>
+                                                    <ng-container *ngIf="firstname.touched && !firstname.value">
+                                                        <p class="error-red">First name is required </p>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="firstname.touched && firstname.invalid && firstname.value">
+                                                        <p class="error-red">first name should not contain number or  special characters </p>
+                                                    </ng-container>  
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label class="mb-1">Last Name*</label>
+                                            <div class="form-group">
+                                                <i class="fa-solid fa-user"></i>
+                                                <input type="text" placeholder="Enter Last Name" name="lastname"
+                                                    #lastname="ngModel" [(ngModel)]="BeneficiaryModel.LastName" maxlength="100" [pattern]="'[a-z A-Z]*'"    required>
+                                                    <ng-container *ngIf="lastname.touched && !lastname.value">
+                                                        <p class="error-red">Last name is required </p>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="lastname.touched && lastname.invalid && lastname.value">
+                                                        <p class="error-red">Last name should not contain number or  special characters </p>
+                                                    </ng-container>  
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label class="mb-1">Business Name*</label>
+                                            <div class="form-group">
+                                                <i class="fa-solid fa-user"></i>
+                                                <input type="text" placeholder="Enter Last Name" name="businessname"
+                                                    #businessname="ngModel" [(ngModel)]="BeneficiaryModel.BusinessName" maxlength="100" [pattern]="'[a-z A-Z]*'"    required>
+                                                    <ng-container *ngIf="businessname.touched && !businessname.value">
+                                                        <p class="error-red">Business name is required </p>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="businessname.touched && businessname.invalid && businessname.value">
+                                                        <p class="error-red">Business name should not contain number or  special characters </p>
+                                                    </ng-container>  
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label class="mb-1">Business Type*</label>
+                                            <div class="form-group">
+                                                <i class="fa fa-venus"></i>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    name="businessType" #businessType="ngModel" [(ngModel)]="BeneficiaryModel.BusinessType"
+                                                    required>
+                                                    <option value="" disabled>Select Business Type</option>
+                                                    <option value="1">Company</option>
+                                                    <option value="2">ECommerce</option>
+                                                    <option value="3">IT</option>
+                                                    <option value="4">Media</option>
+                                                    <option value="5">Telecom</option>
+                                                </select>
+                                                <ng-container *ngIf="businessType.touched && !businessType.value">
+                                                    <p class="error-red">businessType is required </p>
+                                                </ng-container>
+                                                <ng-container *ngIf="businessType.touched && businessType.invalid && businessType.value">
+                                                    <p class="error-red">businessType is Invalid </p>
+                                                </ng-container>     
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label class="mb-1">Email Address* </label>
+                                            <div class="form-group">
+                                                <i class="fa-solid fa-envelope"></i>
+                                                <input type="email" placeholder="Enter Your Email Address" name="email"
+                                                pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                                                    #emal="ngModel" [(ngModel)]="BeneficiaryModel.Email" required>
+                                                    <ng-container *ngIf="emal.touched && !emal.value">
+                                                        <p class="error-red">Email is required </p>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="emal.touched && emal.invalid && emal.value">
+                                                        <p class="error-red">Email is Invalid </p>
+                                                    </ng-container>  
+                                            </div>
+                                        </div> 
+
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label class="mb-1">Contact*</label>
+                                            <div class="form-group">
+                                                <i class="fa-solid fa-phone"></i>
+                                                <input type="text" placeholder="Enter Your Phone Number" name="phone"  maxlength="15"  [pattern]="'^[0-9]*$'"
+                                                    #phone="ngModel" [(ngModel)]="BeneficiaryModel.PhoneNo" required>
+                                                    <ng-container *ngIf="phone.touched && !phone.value">
+                                                        <p class="error-red">Phone is required </p>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="phone.touched && phone.invalid && phone.value">
+                                                        <p class="error-red">Phone is Invalid </p>
+                                                    </ng-container>   
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-4 mb-2">
+                                            <label class="mb-1">Date*</label>
+                                            <div class="form-group">
+                                                <input 
+                                                    type="date" 
+                                                    id="Date" 
+                                                    name="Date" 
+                                                    #Date="ngModel"
+                                                    [(ngModel)]="BeneficiaryModel.Date" 
+                                                    class="px-2" 
+                                                    required
+                                                >
+                                                <ng-container *ngIf="Date.touched && !Date.value">
+                                                    <p class="error-red">Date Of Birth is required </p>
+                                                </ng-container>
+                                                <ng-container *ngIf="Date.touched && Date.invalid && Date.value">
+                                                    <p class="error-red">Date</p>
+                                                </ng-container>    
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 mb-2">
+                                                <label class="mb-2 px-4">Upload Profile Picture</label>
+                                                <app-uploader [selectedImage]="BeneficiaryModel?.Image?Env+BeneficiaryModel?.Image:null" (Update)="ChangeImage($event)"></app-uploader>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <!-- Corporate -->
                         </div>
                         <div class="row justify-content-end mt-4">
                             <div class="col-md-8 text-end px-4 py-4">
