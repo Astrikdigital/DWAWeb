@@ -27,15 +27,11 @@
                             <td scope="col"><span class="fs-14 fw-600">Name</span></td>
                             <td scope="col"><span class="fs-14 fw-600">Email</span></td>  
                             <td scope="col"><span class="fs-14 fw-600">Phone</span></td>  
-
-                            <td scope="col"><span class="fs-14 fw-600">Donation Type</span></td>
-                            <td scope="col"><span class="fs-14 fw-600">Donation Detail Type</span></td>
-                            <td scope="col"><span class="fs-14 fw-600">Transaction ID</span></td>  
-                            <td scope="col"><span class="fs-14 fw-600">Attachment</span></td>  
-                            <td scope="col"><span class="fs-14 fw-600">Date</span></td>  
-                            <td scope="col"><span class="fs-14 fw-600">Amount</span></td>  
-
-                            <td scope="col"><span class="fs-14 fw-600">Status</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Type</span></td>  
+                            <td scope="col"><span class="fs-14 fw-600">Country</span></td>  
+                            <td scope="col"><span class="fs-14 fw-600">City</span></td>  
+                            <td scope="col"><span class="fs-14 fw-600">Address</span></td>  
+  
                             <td scope="col" class="text-center"><span class="fs-14 fw-600">Action</span></td>
                         </tr>
                     </thead>
@@ -58,36 +54,21 @@
                             </td> 
                             <td>
                                 <p class="text-body mb-0">{{item.PhoneNumber}}</p>
-                            </td> 
+                            </td>  
                             <td>
-                                <p class="text-body mb-0">{{item.LastDonation.DonationType}}</p>
-                            </td>
+                                <p class="text-body mb-0">{{item.Type ? item.Type : 'N/A'}}</p>
+                            </td>  
                             <td>
-                                <p class="text-body mb-0">{{item.LastDonation.DonationDetailType}}</p>
-                            </td>
+                                <p class="text-body mb-0">{{item.Country ? item.Country : 'N/A'}}</p>
+                            </td>  
                             <td>
-                                <p class="text-body mb-0">{{item.LastDonation.TransactionId ? item.LastDonation.TransactionId : 'N/A'}}</p>
-                            </td>
+                                <p class="text-body mb-0">{{item.City ? item.City : 'N/A'}}</p>
+                            </td>  
+                            <td>
+                                <p class="text-body mb-0">{{item.Address}}</p>
+                            </td>  
                             <td class="text-center">
-                                <img
-                                    [src]="item.LastDonation.Attachment ? (Env+item.LastDonation.Attachment) : '../../../assets/images/avatar/avatar-15.png'"
-                                    class="rounded-circle w-50 set-table" alt="">
-                            </td> 
-                            <td>
-                                <p class="text-body mb-0">{{item.LastDonation.Date | date}}</p>
-                            </td> 
-                            <td>
-                                <p class="text-body mb-0">
-                                 {{item.LastDonation.Amount ? item.LastDonation.Amount : 'N/A'}}
-                                </p>
-                            </td>
-                            <td>
-                                <p class="text-body mb-0 {{item.LastDonation.DonationStatus}}">
-                                 {{item.LastDonation.DonationStatus}}
-                                </p>
-                            </td>
-                            <td class="text-center">
-                                <div class="d-flex justify-content-start">
+                                <div class="">
                                     <a href="javascript:;"(click)="AddDonation(item)"    class="btn-dnote">Add Donation</a>
                                     <a href="javascript:;"(click)="EditDonor(item.Id)"    class="text-warning px-2"><i
                                             class="fa-solid fa-pen-to-square"></i></a>

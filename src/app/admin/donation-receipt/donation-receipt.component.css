@@ -29,7 +29,7 @@
     min-height: 20px;
   }
   .footer {
-    margin-top: 40px;
+    margin-top: 18px;
     font-size: 14px;
     color: #000;
     text-align: center;
@@ -86,4 +86,13 @@
 .col-set-6{
   flex: 0 0 auto;
   width: 50%;
+}
+.set-signation {
+  width: 270px;
+  margin-right: 0;
+  margin-left: auto;
+}
+.div-w100-set {
+  width: 100%;
+  margin-top: 25px;
 }

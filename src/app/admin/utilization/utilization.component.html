@@ -31,6 +31,7 @@
                                                             </ng-container>
                                                         </div>
                                                     </div>
+
                                                     <div class="col-md-4">
                                                         <label class="mb-1">Main Head *</label>
                                                         <div class="form-group">
@@ -49,33 +50,28 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <label class="mb-1">Head *</label>
+                                                        <label class="mb-1">Head </label>
                                                         <div class="form-group">
                                                             <i class="fa-solid fa-user"></i>
-                                                            <select name="Head" #Head="ngModel"
+                                                            <select name="Head"  
                                                                 [(ngModel)]="cashModel.HeadId" (ngModelChange)="ChangeHead($event)" required>
                                                                 <option value="">Select Head</option>
                                                                 <option *ngFor="let item of heads" [value]="item.Id">
                                                                     {{item.Title}}</option>
-                                                            </select>
-                                                            <ng-container *ngIf="Head.touched && !Head.value">
-                                                                <p class="error-red">Head is required </p>
-                                                            </ng-container>
+                                                            </select> 
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <label class="mb-1">Sub Head *</label>
+                                                    <div class="col-md-4" >
+                                                        <label class="mb-1">Sub Head </label>
                                                         <div class="form-group">
                                                             <i class="fa-solid fa-user"></i>
-                                                            <select name="SubHead" #SubHead="ngModel"
-                                                                [(ngModel)]="cashModel.SubHeadId"  required>
+                                                            <select name="SubHead" 
+                                                                [(ngModel)]="cashModel.SubHeadId"  >
                                                                 <option value="">Select Sub Head</option>
                                                                 <option *ngFor="let item of subheads" [value]="item.Id">
                                                                     {{item.Title}}</option>
                                                             </select>
-                                                            <ng-container *ngIf="SubHead.touched && !SubHead.value">
-                                                                <p class="error-red">Sub Head is required </p>
-                                                            </ng-container>
+                                                            
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -104,7 +100,18 @@
                                                             </ng-container>
                                                         </div>
                                                     </div>
-                                                
+                                                  <div class="col-md-4">
+                                                        <label class="mb-1">Date *</label>
+                                                        <div class="form-group">
+                                                            <i class="fa-solid fa-user"></i>
+                                                          
+                                                            <input type="date" placeholder="Enter date" name="date" #date="ngModel"
+                                                            [(ngModel)]="cashModel.Date"   required>
+                                                        <ng-container *ngIf="date.touched && !date.value">
+                                                            <p class="error-red">Date is required </p>
+                                                        </ng-container>
+                                                        </div>
+                                                    </div>
                                                 </div>
                 
                                             </div>

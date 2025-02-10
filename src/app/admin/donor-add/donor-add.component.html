@@ -25,6 +25,24 @@
                                     </div>
                                     <div class="col-lg-10 col-md-9">
                                         <div class="row">
+                                            <div class="col-md-12"><h4 class="head-set">
+                                                Persnol Detail
+                                            </h4></div>
+                                            <div class="col-md-4">
+                                                <label class="mb-1">Type *</label>
+                                                <div class="form-group">
+                                                    <i class="fa-solid fa-user"></i>
+                                                    <select name="type" #type="ngModel"
+                                                        [(ngModel)]="DonorModel.DonorTypeId"  required>
+                                                        <option value="">Select type</option>
+                                                        <option *ngFor="let item of donorTypes" [value]="item.Id">
+                                                            {{item.Title}}</option>
+                                                    </select>
+                                                    <ng-container *ngIf="type.touched && !type.value">
+                                                        <p class="error-red">type Type is required </p>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
                                             <div class="col-lg-4 col-md-4 mb-2">
                                                 <label class="mb-1">Name *</label>
                                                 <div class="form-group">
@@ -69,6 +87,38 @@
                                                         </ng-container>
                                                 </div>
                                             </div>
+                                            <div class="col-lg-4 col-md-4 mb-2">
+                                                <label class="mb-1">Country *</label>
+                                                <div class="form-group">
+                                                    <i class="fa-solid fa-user"></i>
+                                                    <select name="Country" #Country="ngModel" (ngModelChange)="ChangeCountry($event)"
+                                                        [(ngModel)]="DonorModel.CountryId"  required>
+                                                        <option value="">Select Country Type</option>
+                                                        <option *ngFor="let item of countries" [value]="item.Id">
+                                                            {{item.Country}}</option>
+                                                    </select>
+                                                    <ng-container *ngIf="Country.touched && !Country.value">
+                                                        <p class="error-red">Country is required </p>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 mb-2">
+                                                <label class="mb-1">City *</label>
+                                                <div class="form-group">
+                                                    <i class="fa-solid fa-user"></i>
+                                                    <select name="City" #City="ngModel" [disabled]="!cities.length" 
+                                                        [(ngModel)]="DonorModel.CityId"  required>
+                                                        <option value="">Select City Type</option>
+                                                        <option *ngFor="let item of cities" [value]="item.Id">
+                                                            {{item.City}}</option>
+                                                    </select>
+                                                    <ng-container *ngIf="City.touched && !City.value">
+                                                        <p class="error-red">City is required </p>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+
+
                                             <ng-container *ngIf="!DonorModel.Id">
                                                 <div class="col-md-4">
                                                     <label class="mb-1">Project *</label>
@@ -86,7 +136,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <label class="mb-1">Type *</label>
+                                                    <label class="mb-1">Income Type *</label>
                                                     <div class="form-group">
                                                         <i class="fa-solid fa-user"></i>
                                                         <select name="incometype" #incometype="ngModel"
@@ -100,7 +150,21 @@
                                                         </ng-container>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-lg-4 col-md-4 mb-2">
+                                                    <label class="mb-1">Donation Type *</label>
+                                                    <div class="form-group">
+                                                        <i class="fa-solid fa-user"></i>
+                                                        <select    name="DonationDetailType"
+                                                        #donationDetailTypeId="ngModel" [(ngModel)]="DonorModel.DonationDetailTypeId" maxlength="100" required>
+                                                        <option value="">Select Donation  Type</option>  
+                                                            <option *ngFor="let item of detailtypes" [value]="item.Id">{{item.Title}}</option>
+                                                        </select>
+                                                            <ng-container *ngIf="donationDetailTypeId.touched && !donationDetailTypeId.value">
+                                                                <p class="error-red">Donation  Type is required </p>
+                                                            </ng-container>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4" *ngIf="DonorModel.DonationDetailTypeId != 6">
                                                     <label class="mb-1">Bank *</label>
                                                     <div class="form-group">
                                                         <i class="fa-solid fa-user"></i>
@@ -116,33 +180,20 @@
                                                     </div>
                                                 </div>
                                             <div class="col-lg-4 col-md-4 mb-2">
-                                                <label class="mb-1">Donation Type *</label>
+                                                <label class="mb-1">Region *</label>
                                                 <div class="form-group">
                                                     <i class="fa-solid fa-user"></i>
                                                     <select    name="DonationType"
                                                     #donationTypeId="ngModel" [(ngModel)]="DonorModel.DonationTypeId" maxlength="100" required>
-                                                    <option value="">Select Donation Type</option> 
+                                                    <option value="">Select Region</option> 
                                                         <option *ngFor="let item of donationtypes" [value]="item.Id">{{item.Title}}</option>
                                                     </select>
                                                         <ng-container *ngIf="donationTypeId.touched && !donationTypeId.value">
-                                                            <p class="error-red">Donation Type is required </p>
+                                                            <p class="error-red">Region is required </p>
                                                         </ng-container>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4 col-md-4 mb-2">
-                                                <label class="mb-1">Donation Detail Type *</label>
-                                                <div class="form-group">
-                                                    <i class="fa-solid fa-user"></i>
-                                                    <select    name="DonationDetailType"
-                                                    #donationDetailTypeId="ngModel" [(ngModel)]="DonorModel.DonationDetailTypeId" maxlength="100" required>
-                                                    <option value="">Select Donation Detail Type</option>  
-                                                        <option *ngFor="let item of detailtypes" [value]="item.Id">{{item.Title}}</option>
-                                                    </select>
-                                                        <ng-container *ngIf="donationDetailTypeId.touched && !donationDetailTypeId.value">
-                                                            <p class="error-red">Donation Detail Type is required </p>
-                                                        </ng-container>
-                                                </div>
-                                            </div>
+                                   
                                             <ng-container *ngIf="DonorModel.DonationDetailTypeId != 6">
 
                                             <div class="col-lg-4 col-md-4 mb-2" *ngIf="DonorModel.DonationDetailTypeId != 4 && DonorModel.DonationDetailTypeId != 5">

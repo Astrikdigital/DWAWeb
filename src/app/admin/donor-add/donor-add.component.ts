@@ -15,13 +15,21 @@ import { environment } from '../../../environments/environment';
   styleUrl: './donor-add.component.css'
 })
 export class DonorAddComponent {
- DonorModel:any = {DonationDetailTypeId:"",DonationTypeId:"",InventoryId:"",DonationStatusId:1,BankId:"",IncomeTypeId:""};
+ DonorModel:any = {DonationDetailTypeId:"",DonationTypeId:"",InventoryId:"",DonationStatusId:1,BankId:"",IncomeTypeId:"",ProjectId:""
+,DonorTypeId:"",CountryId:"",CityId:""
+
+
+ };
+ cities :any = [];
   usernames:any[]=[];
   donationtypes:any[]=[];
   detailtypes:any[]=[];
   donationstatus:any[]=[];
   inventores:any[]=[];
   incometypes:any[]=[];
+  countries:any[]=[];
+  donorTypes:any[]=[];
+  
   banks:any[]=[];
   projects:any[]=[];
   Env = environment.apiUrl.replace("/api","");
@@ -30,13 +38,8 @@ export class DonorAddComponent {
 
   }
 async ngOnInit(): Promise<void> { 
-    this.GetDonationType();
-    this.GetDonationDetailType();
-    this.Inventory();
-    this.getIncomeTypes();
-    this.GetProject();
-    this.GetBank();
-    this.GetDonationStatus();
+   
+    this.GetDonorDll(); 
   this.activeroute.queryParams.subscribe(params => {
     if(params['DonorId']){
         this.DonorModel.Id  =params['DonorId']; 
@@ -48,6 +51,7 @@ async ngOnInit(): Promise<void> {
 async getDonor(){ 
   let res:any = await this.api.GetDonor({Id:this.DonorModel.Id});
   if(res.statusCode == 200){
+    if(res.data[0]?.CountryId) this.ChangeCountry(res.data[0].CountryId)
     this.DonorModel = res.data[0];  
     this.DonorModel.Date = this.datePipe.transform(this.DonorModel.Date, 'yyyy-MM-dd'); 
   }
@@ -70,34 +74,25 @@ async AddDonor(){
     this.route.navigate(['/admin/donors']);
   } else   this.toastr.error(res.message);
   return; 
+} 
+async ChangeCountry($event:any){
+  this.cities= [];
+  let res:any = await this.api.GetCityByCountryId({CountryId:$event});
+  if(res) this.cities = res.data;
 }
-async GetProject(){
-  let res:any = await this.api.GetProject();
-  if(res) this.projects = res.data;
-}
-async GetDonationType(){
-  let res:any = await this.api.GetDonationType();
-  if(res) this.donationtypes = res.data;
-}
-async GetDonationDetailType(){
-  let res:any = await this.api.GetDonationDetailType();
-  if(res) this.detailtypes = res.data;
-}
-async Inventory(){
-  let res:any = await this.api.GetInventory();
-  if(res) this.inventores = res.data;
-}
-async GetDonationStatus(){
-  let res:any = await this.api.GetDonationStatus();
-  if(res) this.donationstatus = res.data;
-}
-async getIncomeTypes(){
-  let res:any = await this.api.GetIncomeTypes();
-  if(res) this.incometypes = res.data;
-}
-async GetBank(){
-  let res:any = await this.api.GetBank();
-  if(res) this.banks = res.data;
+async GetDonorDll(){
+  let res:any = await this.api.GetDonorDll();
+  if(res.data) {
+    this.projects = res.data.project;
+    this.donationtypes = res.data.donationType;
+    this.detailtypes = res.data.donationDetailType;
+    this.inventores = res.data.inventory;
+    this.donationstatus = res.data.donationStatus;
+    this.incometypes = res.data.incomeType;
+    this.banks = res.data.bank;
+    this.countries = res.data.countries;
+    this.donorTypes = res.data.donorType;
+  }
 }
 }
 

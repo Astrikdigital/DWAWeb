@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.User?.userTypeId == 1) this.route.navigate(['/admin/beneficiary']);
+    if(this.User?.userTypeId == 1) this.route.navigate(['/admin/dashboard']);
   }
 
 async onSubmit(){ 
@@ -36,7 +36,7 @@ async onSubmit(){
     res.data.ReadCount = res?.data?.unReadCount;
     this.Store.setItem("User",res.data); 
     this.Store.setItem("Token",res.data.token);
-    if(res.data.userTypeId == 1) location.href = "/#/admin/beneficiary";   
+ location.href = "/#/admin/dashboard";   
     location.reload();
   }else this.toastr.error(res.message);
 this.IsLoader = false;

@@ -26,15 +26,7 @@ constructor(private store:StorageService,private websocketService:SignalrService
   this.EnrollmentId = parseInt(this.User?.enrollmentId);
  if(this.User.ReadCount) this.ReadCount = this.User.ReadCount; 
 }
-ngOnInit(): void {
-  this.websocketService.startConnection();  
-  this.ReceivedMessage();
- 
-  this.store.ReadCount$.subscribe(count => {  
-    if (count != null) { 
-      this.ReadCount = count; 
-    }
-  }); 
+ngOnInit(): void {  
 }
 ChangeEnrollment($event:any){ 
   this.User.enrollmentId = $event?.target?.value;

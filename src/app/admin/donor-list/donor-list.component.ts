@@ -35,10 +35,7 @@ Search:any;
   async getDonor(){
     this.store.IsLoader = true;
     let res: any = await this.api.GetDonor();
-    if(res.statusCode == 200){
-      res.data.forEach((element:any) => {
-        element.LastDonation = JSON.parse(element.LastDonation);
-      });  
+    if(res.statusCode == 200){  
       this.donors = res.data; 
        this.store.IsLoader = false;
     }

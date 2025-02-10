@@ -1,0 +1,82 @@
+.dashboard-center {
+    margin: 73px 0 0 251px;
+    background: #e9eded;
+    padding: 35px 20px;
+}
+.all-total-box .box-set {
+    width: 24%;
+    text-align: center;
+    box-shadow: 0 0 4px 1px #00000061;
+    border-bottom: 9px solid #646464; 
+    background: white; 
+    height: 120px; 
+    margin-bottom: 15px;
+    align-items: anchor-center;
+}
+.all-total-box {
+    display: flex;
+    flex-wrap: wrap;
+}
+.box-set h3 {
+    margin: 38px 0 0 0;
+    font-size: 20px;
+    font-weight: 500;
+}
+.box-set h4 {
+    margin: 0;
+    color: #646464;
+    font-size: 17px;
+}
+.all-total-box .box-set {
+    margin-right: 15px;
+}
+.box-summary {background: white;}
+.box-summary .top-head {
+    padding: 10px 20px;
+    color: white;
+    background: #958902;
+    font-weight: 500;
+    font-size: 15px;
+}
+.box-summary .li.row {
+    padding: 12px 25px;
+    border-bottom: 1px solid #80808042;
+    margin: 0 0;
+}
+.box-summary span.dark-dot {
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 0;
+}
+.box-summary span.green {
+    color: #00a700;
+}
+.box-summary span.red {
+    color: #a70000;
+}
+.box-summary span.black {
+    color: #3a3a3a;
+}
+.box-summary {
+    width: 32%;
+    box-shadow: 0 0 7px 0 #0000004f;
+    padding: 0;
+    border-radius: 5px;
+    margin: 20px 1.333% 20px 0;
+}.box-chart {
+    background: white;
+    height: 460px;
+    box-shadow: 0 0 5px 0 #0000005c;
+}
+.chart-head {
+    padding: 13px 12px;
+    background: #486a95;
+    margin: 0;
+    color: white;
+    font-weight: 500;
+}
+.box-set h4 {
+    color: #005eb1 !important;
+    font-weight: 500;
+    font-size:13px;
+}

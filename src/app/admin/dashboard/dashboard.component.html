@@ -1,0 +1,74 @@
+<div class="dashboard-center">
+    <div class="all-total-box">
+        <div class="box-set" *ngFor="let item of head">
+            <h3>
+              {{item.Value}}
+            </h3>
+            <h4>
+                {{item.Key}} 
+            </h4>
+        </div> 
+    </div>
+
+
+
+    <div class="row" style="margin-top: 45px;">
+        <div class="col-md-6">
+            <div class="box-chart">
+                <div class="chart-head row">
+                    <span class="col-md-6">MONTH WISE DONATION</span>
+                    <span class="col-md-6 text-right">Select Year <select name="" (change)="GetDashboard()" [(ngModel)]="model.DonationYear"  id="" class="chrt-select">
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                        </select></span>
+                </div>
+          
+        <div class="p4" >    <ngx-charts-bar-vertical *ngIf="chartdonation.length > 0"  [results]="chartdonation" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis"
+            [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisTickFormatting]="formatXAxisTick"
+            >
+        </ngx-charts-bar-vertical></div>
+        </div>
+    </div>
+        <div class="col-md-6">
+
+            <div class="box-chart">
+                <div class="chart-head row">
+                    <span class="col-md-6">EXPENSES OVERVIEW</span>
+                    <span class="col-md-6 text-right">Select Year <input type="month" name="expense" (change)="GetDashboard()" [(ngModel)]="model.Expense"  ></span>
+                </div>
+          
+        <div class="p4" >    <ngx-charts-bar-horizontal *ngIf="chartexpense.length > 0" [results]="chartexpense" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis"
+            [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"  [xAxisTickFormatting]="formatXAxisTick"
+        >
+        </ngx-charts-bar-horizontal></div>
+        </div>
+        </div>
+    </div>
+
+    <div class="bottom-box-set row">
+        <div class="box-summary" *ngFor="let item of summary">
+            <div class="top-head">
+             {{item.Key}}
+            </div>
+            <div class="li row">
+                <span class="col-md-6"><span class="green dark-dot">.</span> Active </span>
+                <span class="col-md-6 text-right">             {{item.ActiveValue}}
+                </span>
+            </div>
+            <div class="li row">
+                <span class="col-md-6"><span class="red dark-dot">.</span> inactive </span>
+                <span class="col-md-6 text-right"> {{item.InactiveValue}}</span>
+            </div>
+            <div class="li row">
+                <span class="col-md-6"><span class="black dark-dot">.</span> Total </span>
+                <span class="col-md-6 text-right">{{item.ActiveValue+item.InactiveValue}}</span>
+            </div>
+        </div> 
+    </div>
+</div>

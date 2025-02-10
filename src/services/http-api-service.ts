@@ -89,6 +89,9 @@ export class HttpApiService {
         if (body.Address) formData.append('Address', body.Address);
         if (body.Name) formData.append('Name', body.Name);
         if (body.Email) formData.append('Email', body.Email);
+        if (body.DonorTypeId) formData.append('DonorTypeId', body.DonorTypeId);
+        if (body.CountryId) formData.append('CountryId', body.CountryId);
+        if (body.CityId) formData.append('CityId', body.CityId);
         if (body.PhoneNumber) formData.append('PhoneNumber', body.PhoneNumber?.toString());
         if (body.PictureUrl) formData.append('PictureUrl', body.PictureUrl);
         if (body.DonationTypeId) formData.append('DonationTypeId', body.DonationTypeId);
@@ -136,6 +139,9 @@ export class HttpApiService {
 
     async GetDonor(body?: any): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/GetDonor', body)
+    }
+    async GetDashboard(body?: any): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetDashboard', body)
     }
     async GetDonation(body?: any): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/GetDonation', body)
@@ -330,6 +336,9 @@ export class HttpApiService {
     async GetBank(): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/GetBanks')
     }
+    async GetDonorDll(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetDonorDll')
+    }
     async GetInventoryUtilizationDll(): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/GetInventoryUtilizationDll')
     }
@@ -347,6 +356,9 @@ export class HttpApiService {
     }
     async getBenificiarytype(): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/get-beneficiary-type');
+    }
+    async GetCityByCountryId(body?:any): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetCityByCountryId',body);
     }
 
 }

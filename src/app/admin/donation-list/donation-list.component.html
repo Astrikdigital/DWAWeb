@@ -84,7 +84,9 @@
                              
                             <td>
                                 <div class="d-flex justify-content-start">
-                              
+                                    <a   href="/#/donation-receipt?DonationId={{item.Id}}" target="_blank"  class="text-blue px-2">
+                                        <i class="fa-solid fa-receipt"></i>
+                                    </a> 
                                     <a *ngIf="item.DonationStatusId == 2"  href="javascript:;"(click)="ViewDpnation(item.Id)"    class="text-warning px-2">
                                         <i class="fa-regular fa-eye"></i>
                                     </a> 

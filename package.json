@@ -26,6 +26,7 @@
     "@microsoft/signalr": "^8.0.7",
     "@ng-bootstrap/ng-bootstrap": "^17.0.1",
     "@ng-select/ng-select": "^13.9.1",
+    "@swimlane/ngx-charts": "^22.0.0-alpha.0",
     "bootstrap": "^5.3.3",
     "feather-icons": "^4.29.2",
     "moment": "^2.30.1",

@@ -33,8 +33,9 @@ export class UtilizationComponent implements OnInit {
     this.heads = this.ddl.head.filter((x:any)=>x.MainHeadId == $event);
   }
   ChangeHead($event:any){
-    if($event==1) this.subheads = this.ddl.employee; 
-    else this.subheads = this.ddl.subhead.filter((x:any)=>x.HeadId == $event);
+    // if($event==1) this.subheads = this.ddl.employee; 
+    // else
+    this.subheads = this.ddl.subhead.filter((x:any)=>x.HeadId == $event);
   }
   ngOnInit(): void {
     this.GetInventoryUtilization();
@@ -69,10 +70,11 @@ export class UtilizationComponent implements OnInit {
       "transactionTypeId": 2,
       "bankId": this.cashModel.BankId,
       "amount": this.cashModel.Amount,
-      "projectId": this.cashModel.ProjectId,
+      "Date": this.cashModel.Date,
+      "projectId": this.cashModel.ProjectId ?  this.cashModel.ProjectId : null,
       "mainHeadId": this.cashModel.MainHeadId,
       "headId": this.cashModel.HeadId,
-      "subHeadId": this.cashModel.SubHeadId
+      "subHeadId": this.cashModel.SubHeadId ? this.cashModel.SubHeadId: null
     }
     let res:any = await this.api.InsertUpdateTransaction(obj);
     if(res.statusCode == 200){

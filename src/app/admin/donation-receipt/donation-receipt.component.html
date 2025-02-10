@@ -10,7 +10,7 @@
 
     <div class="row-set">
     <div class="section col-set-6">
-      <label>Receipt No.:</label>
+      <label>Receipt No:</label>
       <div class="input-placeholder">{{randomNumber}}</div>
     </div>
 
@@ -32,25 +32,29 @@
       <div class="input-placeholder">{{DonationModel.PhoneNumber}}</div>
     </div>
 </div>
+<div class="row-set"> 
+<div class="section col-set-6">
+    <label>Donation Value:</label>
+    <div class="input-placeholder">{{DonationModel.Amount ? DonationModel.Amount : DonationModel.Quantity +' '+DonationModel.InventoryName}}</div>
+  </div>
+  <div class="section col-set-6">
+    <label>Email:</label>
+    <div class="input-placeholder">{{DonationModel.Email ? DonationModel.Email :'-'}}</div>
+  </div>
+</div>
     <div class="section">
       <label>Address:</label>
       <div class="input-placeholder">{{DonationModel.Address}}</div>
     </div>
 
 
-    <div class="section">
-      <label>Donation Value:</label>
-      <div class="input-placeholder">{{DonationModel.Amount ? DonationModel.Amount : DonationModel.Quantity +' '+DonationModel.InventoryName}}</div>
-    </div>
+  
 
     <div class="section">
       <label>Purpose of Donation:</label>
       <div class="input-placeholder">{{DonationModel.Project}}</div>
     </div>
-    <div class="section ">
-        <label>Signature</label>
-        <div class="input-placeholder">_:</div>
-      </div>
+ 
     <div class="section">
       <label>Donation Via:</label>
       <div class="donation-methods">
@@ -62,7 +66,12 @@
             {{item.Title}}</span> 
       </div>
     </div>
-  
+<div class="div-w100-set">
+    <div class="set-signation ">
+        <label>Signature</label>
+        <div class="input-placeholder"></div>
+      </div>
+</div>
     <p class="footer">Your generosity transforms lives and inspires hope. Together, we can bring change to create a brighter future.</p>
     <hr>
     <p class="footer highlight">Pakistan Independent Living Centre</p>

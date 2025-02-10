@@ -18,6 +18,12 @@ export class SidebarComponent {
 
   admin: any[] = [
     {
+      "Title": "Dashboard",
+      "IsChild": false,
+      "Icon": "fa-solid fa-gauge",
+      "Route": "/admin/dashboard"
+    },
+    {
       "Title": "Donor",
       "IsChild": false,
       "Icon": "fas fa-user-plus",
