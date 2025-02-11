@@ -383,5 +383,16 @@ export class HttpApiService {
     async getDepositSlip(body?:any): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/get-all-bank-deposit',body)
     }
+
+    async bankdepositSlip(body: any): Promise<any> {
+        debugger
+        const formData = new FormData();
+        if (body.TransactionId) formData.append('TransactionId', body.TransactionId);
+        if (body.BankId) formData.append('BankId', body.BankId);
+        if (body.DocSlip) formData.append('DocSlip', body.DocSlip);
+ 
+        return await this.httpService.postFormData<any>('Admin/InsertUpdateBankDeposit', formData)
+
+    }
     
 }

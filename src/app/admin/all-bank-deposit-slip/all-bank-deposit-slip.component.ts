@@ -9,9 +9,9 @@ import { environment } from '../../../environments/environment';
 import { HttpApiService } from '../../../services/http-api-service';
 import { StorageService } from '../../../services/local-storage.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DepositSlipModalComponent } from '../deposit-slip-modal/deposit-slip-modal.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DeletePopupComponent } from '../../shared/delete-popup/delete-popup.component';
-
 @Component({
   selector: 'app-all-bank-deposit-slip',
   standalone: true,
@@ -28,6 +28,8 @@ export class AllBankDepositSlipComponent {
   banks: any = [];
   transactionType: any = [];
   donors: any = [];
+  depositBtn: boolean = false;
+  selectedIds: number[] = [];
   depositSlips:any = [];
   constructor(private api: HttpApiService, private router: Router, private dialog: MatDialog, private toastr: ToastrService, private store: StorageService) {
   }
@@ -82,6 +84,21 @@ export class AllBankDepositSlipComponent {
       this.donors = res.data.donors;
     }
   }
+
+  
+  update(checked: boolean, id: number) {
+    if (checked) {
+      this.selectedIds.push(id);
+    } else {
+      this.selectedIds = this.selectedIds.filter(selectedId => selectedId !== id);
+    }
+    console.log(this.selectedIds.join(','));
+    if (this.selectedIds.length > 0) {
+      this.depositBtn = true;
+    } else {
+      this.depositBtn = false;
+    }
+  }
   async GetDepositBankSlip() {
     let res: any = await this.api.GetDepositBankSlip(this.modelDeposit);
     if (res.statusCode == 200) {
@@ -90,15 +107,19 @@ export class AllBankDepositSlipComponent {
       if (res.data.length) this.modelDeposit.length = res?.data[0].Count; else this.modelDeposit.length = 0;
     }
   }
-  selectedIds: number[] = [];
+  
 
-  update(checked: boolean, id: number) {
-    if (checked) {
-      this.selectedIds.push(id);
-    } else {
-      this.selectedIds = this.selectedIds.filter(selectedId => selectedId !== id);
-    }
+  deposit() {
     console.log(this.selectedIds.join(','));
+    let dialogDelete = this.dialog.open(DepositSlipModalComponent, {
+      data: this.selectedIds, width: '800px',
+    });
+    dialogDelete.afterClosed().subscribe(async (result) => {
+      if (result) {
+        debugger
+        this.getDepositSlip();
+      }
+    })
   }
  OpenDeleteModal(Id:any){
     let dialogDelete =  this.dialog.open(DeletePopupComponent, {
