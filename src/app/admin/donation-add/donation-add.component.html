@@ -85,7 +85,7 @@
                                                 </ng-container>
                                             </div>
                                         </div>
-                                    <div class="col-md-4" *ngIf="DonationModel.DonationDetailTypeId != 6">
+                                    <div class="col-md-4" *ngIf="!([4,5,6].indexOf(parseInt(DonationModel.DonationDetailTypeId)) > -1)">
                                         <label class="mb-1">Bank *</label>
                                         <div class="form-group">
                                             <i class="fa-solid fa-user"></i>

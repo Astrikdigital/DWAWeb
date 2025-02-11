@@ -1,6 +1,6 @@
 <div class="dashboard-center">
     <div class="all-total-box">
-        <div class="box-set" *ngFor="let item of head">
+        <div   *ngFor="let item of head;let i=index;" class="box-set box-set{{i}}">
             <h3>
               {{item.Value}}
             </h3>
@@ -52,23 +52,14 @@
     </div>
 
     <div class="bottom-box-set row">
-        <div class="box-summary" *ngFor="let item of summary">
+        <div  *ngFor="let item of summary;let i = index;" class="box-summary clr{{i}}">
             <div class="top-head">
              {{item.Key}}
             </div>
-            <div class="li row">
-                <span class="col-md-6"><span class="green dark-dot">.</span> Active </span>
-                <span class="col-md-6 text-right">             {{item.ActiveValue}}
-                </span>
-            </div>
-            <div class="li row">
-                <span class="col-md-6"><span class="red dark-dot">.</span> inactive </span>
-                <span class="col-md-6 text-right"> {{item.InactiveValue}}</span>
-            </div>
-            <div class="li row">
-                <span class="col-md-6"><span class="black dark-dot">.</span> Total </span>
-                <span class="col-md-6 text-right">{{item.ActiveValue+item.InactiveValue}}</span>
-            </div>
+            <div class="li row" *ngFor="let detal of item.detail">
+                <span class="col-md-6">{{detal.Key}} </span>
+                <span class="col-md-6 text-right">{{detal.Value}}</span>
+            </div> 
         </div> 
     </div>
 </div>

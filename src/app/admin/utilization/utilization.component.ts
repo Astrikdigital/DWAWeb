@@ -22,6 +22,7 @@ export class UtilizationComponent implements OnInit {
   mainhead:any =[];
   heads:any =[];
   ddl:any = {};
+  BankDetail:any = {};
   subheads:any =[];
   employee:any =[];
   banks:any =[];
@@ -101,6 +102,9 @@ export class UtilizationComponent implements OnInit {
 
     }
     this.store.IsLoader = false;
+  }
+  ChangeBank(Id:any){
+    this.BankDetail = this.banks.find((x:any)=>x.Id == Id);
   }
   async GetDebitTransactions(){
     this.store.IsLoader = true;

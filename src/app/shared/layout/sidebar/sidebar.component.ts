@@ -48,7 +48,7 @@ export class SidebarComponent {
      "Route": "/admin/inventory"
    },
    {
-    "Title": "Inventory Utilization",
+    "Title": "Utilization",
     "IsChild": false,
     "Icon": "fas fa-user-plus",
     "Route": "/admin/utilization"

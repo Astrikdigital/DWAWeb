@@ -34,9 +34,9 @@ input[type=text], input[type=password] {
   }
   
   img.avatar {
-    width: 120px;
+    width: 220px;
     border-radius: 50%;
-    height: 120px;
+    height: 100px;
   }
   
   .container {

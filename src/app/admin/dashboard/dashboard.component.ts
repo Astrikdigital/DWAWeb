@@ -35,6 +35,7 @@ constructor(private api:HttpApiService){
   showLabels = true; 
 chartdonation:any= [];
 chartexpense:any= [];
+summarydetail:any= [];
 head:any= [];
 summary:any= []; 
   month = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(new Date());
@@ -55,10 +56,14 @@ async GetDashboard(){
    this.head = res?.data?.head;  
    this.chartdonation = res?.data?.chartdonation;  
    this.chartexpense = res?.data?.chartexpense;  
-   this.summary = res?.data?.summary;  
+   res?.data?.summary.forEach((item:any) => {
+    item.detail = res?.data?.summarydetail?.filter((x:any)=>x.HeadId == item.Value);
+   });
+   this.summary = res?.data?.summary;   
   }
 }
 formatXAxisTick(value: any): string {
   return value ? value.toLocaleString() : 'N/A';
 }
+ 
 }
