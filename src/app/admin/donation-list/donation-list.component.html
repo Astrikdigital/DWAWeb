@@ -27,10 +27,7 @@
                             <div class="search-btn">
                                 <button (click)="GetDonation()">Search</button>
                             </div>
-                        </div>
-
-
-
+                        </div> 
                     </div> 
                 </div>
             </div>
@@ -49,9 +46,9 @@
                             <td scope="col"><span class="fs-14 fw-600">Name</span></td>
                             <td scope="col"><span class="fs-14 fw-600">Amount</span></td>  
                             <td scope="col"><span class="fs-14 fw-600">Date</span></td>   
-                            <td scope="col"><span class="fs-14 fw-600">Donation Type</span></td>
-                            <td scope="col"><span class="fs-14 fw-600">Detail Type</span></td>   
-                            <td scope="col"><span class="fs-14 fw-600">Donation Status</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Region</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Type</span></td>   
+                            <td scope="col"><span class="fs-14 fw-600">Status</span></td>
                             <td scope="col"><span class="fs-14 fw-600">Transaction ID</span></td>  
                             <td scope="col"><span class="fs-14 fw-600">Attachment</span></td>  
                             <td scope="col"><span class="fs-14 fw-600">Inventory</span></td>  
@@ -83,7 +80,9 @@
                             </select>
                                 <p  *ngIf="item.DonationStatusId == 2" class="text-body mb-0 {{item.DonationStatus}}">{{item.DonationStatus ? item.DonationStatus : 'N/A'}}</p> </td>
                             <td>  <p class="text-body mb-0">{{item.TransactionId ? item.TransactionId : 'N/A'}}</p> </td>
-                            <td>  <a [href]="Env+item.Attachment" target="_blank">View</a> </td>
+                            <td> 
+                                <ng-container *ngIf="!item.Attachment">N/A</ng-container>
+                                <a *ngIf="item.Attachment" [href]="Env+item.Attachment" target="_blank">View</a> </td>
                             <td> <ng-container *ngIf="!item.Inventory">-</ng-container> <img *ngIf="item.Inventory" [src]="Env+item.Inventory" width="65px" height="65px" alt=""></td>
                             <td>  <p class="text-body mb-0">{{item.Quantity ? item.Quantity : 'N/A'}}</p> </td>
                              
