@@ -1,0 +1,116 @@
+<div class="content-wrapper" style="min-height: 533.5px;">
+    <div class="container-full">
+        <!-- Main content -->
+        <section class="content">
+            <div class="box">
+                <div class="box-body">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-lg-3">
+                            <h3 class="fw-600 box-title mb-4 mt-4">Transaction Report</h3>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center  justify-content-start">
+                        <div class="col-lg-4 col-md-4 mb-2 mt-3">
+                            <div class="form-group">
+                                <label for="" class="mb-1">Select Bank</label>
+                                <select name="" id="" [(ngModel)]="model.bankId">
+                                    <option value="">Select Bank</option>
+                                    @for (bank of banks; track bank.id) {
+                                    <option value="{{bank.Id}}">{{bank.Title}}</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 mb-2 mt-3">
+                            <div class="form-group">
+                                <label for="" class="mb-1">Select Transaction Type</label>
+                                <select name="" id="" [(ngModel)]="model.transactionTypeId">
+                                    <option value="">Select Transaction Type</option>
+                                    @for (transactionType of transactionType; track transactionType.id) {
+                                    <option value="{{transactionType.Id}}">{{transactionType.Title}}</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="search-btn">
+                                <button (click)="getTransaction()">Search</button>
+                            </div>
+                        </div> 
+                    </div> 
+                </div>
+            </div>
+
+            <mat-paginator [length]="model.length"
+            [pageSize]="model.PageSize"
+            [pageSizeOptions]="[50,100,500]"
+            (page)="getPagination($event)"
+            aria-label="Select page">
+            </mat-paginator>
+            <div class="table-responsive rounded-4">
+                <table class="table table-bordered table-hover ">
+                    <thead class="table-secondary">
+                        <tr>
+                            <td scope="col" style="width: 90px;">S#</td>
+                            <td scope="col"><span class="fs-14 fw-600">Donor</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Project</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Bank</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Account#</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Head</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">MainHead</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">SubHead</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Transaction Type</span></td>
+                            <td scope="col"><span class="fs-14 fw-600">Amount</span></td>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(this.transactionList.length == 0){
+                        <tr>
+                            <td colspan="16" class="text-center">No Record </td>
+                        </tr>
+                        }
+                        @for (item of transactionList; let i = $index; track item.id) {
+                        <tr>
+                            <td>
+                                <p class="text-body mb-0">{{i+1}} </p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0">{{item?.Donor}} </p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0"> {{item?.Project}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0">{{item?.Bank}} </p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0"> {{item?.AccountNumber}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0"> {{item?.Head}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0"> {{item?.MainHead}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0"> {{item?.SubHead}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0"> {{item?.TransactionType}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0"> {{item?.Amount}}</p>
+                            </td>
+                            
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+</div>
