@@ -7,3 +7,6 @@ a.btn-dnote,a.btn-dnote:hover {
     border-radius: 11px;
     cursor: pointer;
 }
+td a.link-href {
+    color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)) !important; 
+}

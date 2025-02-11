@@ -69,8 +69,12 @@ async getDonation(){
     this.DonationModel = res.data[0];  
     this.DonationModel.Date = this.datePipe.transform(this.DonationModel.Date, 'yyyy-MM-dd'); 
     this.Attachment = this.DonationModel?.Attachment.split("//")[1];
+    
   }
 } 
+parseInt(Id?:any){
+ return parseInt(Id);
+}
 Upload(event:any){  
   this.DonationModel.AttachmentDocument = event.target.files[0];  
   this.Attachment = this.DonationModel.AttachmentDocument.name;

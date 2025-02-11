@@ -1,0 +1,51 @@
+.box-colms {
+    width: 350px;
+    text-align: center;
+    border: 1px solid #2222223b;
+    margin-right: 10px;
+    padding: 10px 2px;
+    border-radius: 8px;
+    box-shadow: 0 0 4px 0 #22222294;
+}
+.box-rows {
+    display: flex;
+    flex-wrap: wrap; 
+    margin-bottom: 20px;
+}
+.dnr-heads-vw {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0077bf;
+    font-family: system-ui;
+}
+.dnr-bdy-vw {
+    font-size: 16px;
+    font-weight: 500;
+    color: #424242;
+    font-family: system-ui;
+    padding: 1px 0;
+}
+.box-set0 {
+    border-color: #0069b4 !important;
+}
+.box-set1 {
+    border-color: #0069b4 !important;
+}
+.box-set2 {
+    border-color: #0069b4 !important;
+}
+.box-set3 {
+    border-color: #0069b4 !important;
+}
+.box-set4 {
+    border-color: #0069b4 !important;
+}
+.box-set5 {
+    border-color: #0069b4 !important;
+}
+.box-set6 {
+    border-color: #0069b4 !important;
+}
+.box-set7 {
+    border-color: #0069b4 !important;
+}

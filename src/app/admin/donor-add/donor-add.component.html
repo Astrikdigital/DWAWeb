@@ -13,7 +13,32 @@
                                     <div class="col-lg-12 col-md-12 mb-3">
                                         <h2 class="box-title mb-1">Add Donor</h2>
                                     </div>
-                                     
+                                     <div class="box-rows" *ngIf="IsView">
+                                        <div class="box-colms">
+                                            <div class="dnr-heads-vw">
+                                              Total Donations
+                                            </div> 
+                                            <div class="dnr-bdy-vw">
+                                             {{DonorModel.TotalDonation}}
+                                            </div>
+                                        </div>
+                                        <div class="box-colms">
+                                            <div class="dnr-heads-vw">
+                                                Total Donation Amount
+                                            </div> 
+                                            <div class="dnr-bdy-vw">
+                                                {{DonorModel.TotalDonationAmount ? DonorModel.TotalDonationAmount   : 'N/A'}}
+                                            </div>
+                                        </div>
+                                        <div class="box-colms">
+                                            <div class="dnr-heads-vw">
+                                                Total Donation In-Kind Quantity
+                                            </div> 
+                                            <div class="dnr-bdy-vw">
+                                                {{DonorModel.TotalDonationQuantity ? DonorModel.TotalDonationQuantity : 'N/A'}}
+                                            </div>
+                                        </div>
+                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-2 col-md-3 m-0 p-0 mb-2">
@@ -21,7 +46,7 @@
 
                                         <app-uploader
                                             [selectedImage]="DonorModel?.PictureUrl ? Env+DonorModel?.PictureUrl : null"
-                                            (Update)="ChangeImage($event)"></app-uploader>
+                                            (Update)="ChangeImage($event)" ></app-uploader>
                                     </div>
                                     <div class="col-lg-10 col-md-9">
                                         <div class="row">
@@ -32,7 +57,7 @@
                                                 <label class="mb-1">Type *</label>
                                                 <div class="form-group">
                                                     <i class="fa-solid fa-user"></i>
-                                                    <select name="type" #type="ngModel"
+                                                    <select name="type" #type="ngModel" [disabled]="IsView"
                                                         [(ngModel)]="DonorModel.DonorTypeId"  required>
                                                         <option value="">Select type</option>
                                                         <option *ngFor="let item of donorTypes" [value]="item.Id">
@@ -47,7 +72,7 @@
                                                 <label class="mb-1">Name *</label>
                                                 <div class="form-group">
                                                     <i class="fa-solid fa-user"></i>
-                                                    <input type="text" placeholder="Enter Name" name="Name"
+                                                    <input type="text" placeholder="Enter Name" name="Name" [disabled]="IsView"
                                                         #Name="ngModel" [(ngModel)]="DonorModel.Name" maxlength="100" required>
                                                         <ng-container *ngIf="Name.touched && !Name.value">
                                                             <p class="error-red">Name is required </p>
@@ -58,7 +83,7 @@
                                                 <label class="mb-1">Email *</label>
                                                 <div class="form-group">
                                                     <i class="fa-solid fa-user"></i>
-                                                    <input type="text" placeholder="Enter Email" name="Email"
+                                                    <input type="text" placeholder="Enter Email" name="Email" [disabled]="IsView"
                                                         #Email="ngModel" [(ngModel)]="DonorModel.Email" maxlength="100" required>
                                                         <ng-container *ngIf="Email.touched && !Email.value">
                                                             <p class="error-red">Email is required </p>
@@ -69,7 +94,7 @@
                                                 <label class="mb-1">Phone Number *</label>
                                                 <div class="form-group">
                                                     <i class="fa-solid fa-user"></i>
-                                                    <input type="number" placeholder="Enter PhoneNumber" name="PhoneNumber"
+                                                    <input type="number" placeholder="Enter PhoneNumber" name="PhoneNumber" [disabled]="IsView"
                                                         #PhoneNumber="ngModel" [(ngModel)]="DonorModel.PhoneNumber" maxlength="100" required>
                                                         <ng-container *ngIf="PhoneNumber.touched && !PhoneNumber.value">
                                                             <p class="error-red">PhoneNumber is required </p>
@@ -80,7 +105,7 @@
                                                 <label class="mb-1">Address *</label>
                                                 <div class="form-group">
                                                     <i class="fa-solid fa-user"></i>
-                                                    <input type="text" placeholder="Enter Address" name="Address"
+                                                    <input type="text" placeholder="Enter Address" name="Address" [disabled]="IsView"
                                                         #Address="ngModel" [(ngModel)]="DonorModel.Address"   required>
                                                         <ng-container *ngIf="Address.touched && !Address.value">
                                                             <p class="error-red">Address is required </p>
@@ -91,7 +116,7 @@
                                                 <label class="mb-1">Country *</label>
                                                 <div class="form-group">
                                                     <i class="fa-solid fa-user"></i>
-                                                    <select name="Country" #Country="ngModel" (ngModelChange)="ChangeCountry($event)"
+                                                    <select name="Country" #Country="ngModel" (ngModelChange)="ChangeCountry($event)" [disabled]="IsView"
                                                         [(ngModel)]="DonorModel.CountryId"  required>
                                                         <option value="">Select Country Type</option>
                                                         <option *ngFor="let item of countries" [value]="item.Id">
@@ -106,7 +131,7 @@
                                                 <label class="mb-1">City *</label>
                                                 <div class="form-group">
                                                     <i class="fa-solid fa-user"></i>
-                                                    <select name="City" #City="ngModel" [disabled]="!cities.length" 
+                                                    <select name="City" #City="ngModel" [disabled]="!cities.length || IsView"   
                                                         [(ngModel)]="DonorModel.CityId"  required>
                                                         <option value="">Select City Type</option>
                                                         <option *ngFor="let item of cities" [value]="item.Id">
@@ -129,7 +154,7 @@
                                                     <label class="mb-1">Project *</label>
                                                     <div class="form-group">
                                                         <i class="fa-solid fa-user"></i>
-                                                        <select name="project" #Project="ngModel"
+                                                        <select name="project" #Project="ngModel" [disabled]="IsView"
                                                             [(ngModel)]="DonorModel.ProjectId"  required>
                                                             <option value="">Select Project</option>
                                                             <option *ngFor="let item of projects" [value]="item.Id">
@@ -144,7 +169,7 @@
                                                     <label class="mb-1">Income Type *</label>
                                                     <div class="form-group">
                                                         <i class="fa-solid fa-user"></i>
-                                                        <select name="incometype" #incometype="ngModel"
+                                                        <select name="incometype" #incometype="ngModel" [disabled]="IsView"
                                                             [(ngModel)]="DonorModel.IncomeTypeId"  required>
                                                             <option value="">Select Income Type</option>
                                                             <option *ngFor="let item of incometypes" [value]="item.Id">
@@ -160,7 +185,7 @@
                                                     <div class="form-group">
                                                         <i class="fa-solid fa-user"></i>
                                                         <select    name="DonationDetailType"
-                                                        #donationDetailTypeId="ngModel" [(ngModel)]="DonorModel.DonationDetailTypeId" maxlength="100" required>
+                                                        #donationDetailTypeId="ngModel" [(ngModel)]="DonorModel.DonationDetailTypeId" maxlength="100"  [disabled]="IsView" required>
                                                         <option value="">Select Donation  Type</option>  
                                                             <option *ngFor="let item of detailtypes" [value]="item.Id">{{item.Title}}</option>
                                                         </select>
@@ -173,7 +198,7 @@
                                                     <label class="mb-1">Bank *</label>
                                                     <div class="form-group">
                                                         <i class="fa-solid fa-user"></i>
-                                                        <select name="bank" #bank="ngModel"
+                                                        <select name="bank" #bank="ngModel" [disabled]="IsView"
                                                             [(ngModel)]="DonorModel.BankId"  required>
                                                             <option value="">Select Type</option>
                                                             <option *ngFor="let item of banks" [value]="item.Id">
@@ -188,7 +213,7 @@
                                                 <label class="mb-1">Region *</label>
                                                 <div class="form-group">
                                                     <i class="fa-solid fa-user"></i>
-                                                    <select    name="DonationType"
+                                                    <select    name="DonationType" [disabled]="IsView"
                                                     #donationTypeId="ngModel" [(ngModel)]="DonorModel.DonationTypeId" maxlength="100" required>
                                                     <option value="">Select Region</option> 
                                                         <option *ngFor="let item of donationtypes" [value]="item.Id">{{item.Title}}</option>
@@ -205,7 +230,7 @@
                                                 <label class="mb-1">Transaction ID *</label>
                                                 <div class="form-group">
                                                     <i class="fa-solid fa-user"></i>
-                                                    <input type="text" placeholder="Enter Transaction ID" name="transactionId"
+                                                    <input type="text" placeholder="Enter Transaction ID" [disabled]="IsView" name="transactionId"
                                                         #transactionId="ngModel" [(ngModel)]="DonorModel.TransactionId" maxlength="100"  >
                                                        
                                                 </div>
@@ -214,7 +239,7 @@
                                                 <label class="mb-1">Donation Amount *</label>
                                                 <div class="form-group">
                                                     <i class="fa-solid fa-user"></i>
-                                                    <input type="number" placeholder="Enter Donation Amount" name="DonationAmount"
+                                                    <input type="number" placeholder="Enter Donation Amount" name="DonationAmount" [disabled]="IsView"
                                                         #DonationAmount="ngModel" [(ngModel)]="DonorModel.Amount" maxlength="100" required>
                                                         <ng-container *ngIf="DonationAmount.touched && !DonationAmount.value">
                                                             <p class="error-red">Donation Amount ID is required </p>
@@ -228,7 +253,7 @@
                                                 <div class="form-group">
                                                     <i class="fa-solid fa-user"></i>
                                                     <select    name="InventoryId"
-                                                    #InventoryId="ngModel" [(ngModel)]="DonorModel.InventoryId" maxlength="100" required>
+                                                    #InventoryId="ngModel" [(ngModel)]="DonorModel.InventoryId" [disabled]="IsView" maxlength="100" required>
                                                     <option value="">Select Inventory</option>  
                                                         <option *ngFor="let item of inventores" [value]="item.Id"><img [src]="Env+item.Image" width="50px" height="50px" alt=""> {{item.ItemName}}</option>
                                                     </select>
@@ -241,7 +266,7 @@
                                                 <label class="mb-1">Quantity *</label>
                                                 <div class="form-group">
                                                     <i class="fa-solid fa-user"></i>
-                                                    <input type="number" placeholder="Enter Quantity" name="Quantity"
+                                                    <input type="number" placeholder="Enter Quantity" name="Quantity" [disabled]="IsView"
                                                     #Quantity="ngModel" [(ngModel)]="DonorModel.Quantity" maxlength="100" required>
                                                         <ng-container *ngIf="Quantity.touched && !Quantity.value">
                                                             <p class="error-red">Quantity is required </p>
@@ -253,7 +278,7 @@
                                                 <label class="mb-1">Date *</label>
                                                 <div class="form-group">
                                                     <i class="fa-solid fa-user"></i>
-                                                    <input type="date" placeholder="Enter Date" name="Date"
+                                                    <input type="date" placeholder="Enter Date" name="Date" [disabled]="IsView"
                                                         #Date="ngModel" [(ngModel)]="DonorModel.Date" maxlength="100" required>
                                                         <ng-container *ngIf="Date.touched && !Date.value">
                                                             <p class="error-red">Date ID is required </p>
@@ -278,7 +303,7 @@
                                             </div> -->
                                             <div class="col-md-4">
                                                 <label class="mb-1">Attachment *</label> 
-                                                <input type="file" (change)="Upload($event)" [(ngModel)]="DonorModel.Attachment" >
+                                                <input type="file"  [disabled]="IsView"(change)="Upload($event)" [(ngModel)]="DonorModel.Attachment" >
                                             </div>
                                         </ng-container>
                                         </div>
@@ -294,12 +319,64 @@
                            
                             </div>
                         </div>
-                        <div class="row justify-content-end mt-4">
+                        <div class="row justify-content-end mt-4" *ngIf="!IsView" >
                             <div class="col-md-8 text-end px-4 py-4">
-                                <button href="javascript:;" class="cmp-btn" [disabled]="form.invalid" (click)="AddDonor()" >Submit</button>
+                                <button href="javascript:;" class="cmp-btn"  [disabled]="form.invalid" (click)="AddDonor()" >Submit</button>
                             </div>
                         </div>
-
+                   
+                        <div class="table-responsive rounded-4" *ngIf="IsView">
+                            <div class="head-dnations">
+                                <h4>Donations</h4>
+                            </div>
+                            <table class="table table-bordered table-hover ">
+                                <thead class="table-secondary">
+                                    <tr> 
+                                        <td scope="col"><span class="fs-14 fw-600">Project</span></td>
+                                        <td scope="col"><span class="fs-14 fw-600">Region</span></td>  
+                                        <td scope="col"><span class="fs-14 fw-600">Type</span></td>  
+                                        <td scope="col"><span class="fs-14 fw-600">Amount/Quantity</span></td>  
+                                        <td scope="col"><span class="fs-14 fw-600">Inventory</span></td>  
+                                        <td scope="col"><span class="fs-14 fw-600">Status</span></td>  
+                                        <td scope="col"><span class="fs-14 fw-600">Date</span></td>  
+                                        <td scope="col"><span class="fs-14 fw-600">Transaction ID</span></td>   
+               
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngIf="!donations?.length">
+                                        <td colspan="10" class="text-center">No Record </td>
+                                    </tr>
+            
+                                    <tr *ngFor="let item of donations;"> 
+                                        <td>
+                                            <p class="text-body mb-0">{{item.Project}}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-body mb-0">{{item.DonationType}}</p>
+                                        </td> 
+                                        <td>
+                                            <p class="text-body mb-0">{{item.DetailType}}</p>
+                                        </td>  
+                                        <td>
+                                            <p class="text-body mb-0">{{item.Amount ? item.Amount : item.Quantity ? item.Quantity :'N/A'}}</p>
+                                        </td>  
+                                        <td>
+                                            <p class="text-body mb-0">{{item.InventoryName ? item.InventoryName : 'N/A'}}</p>
+                                        </td>  
+                                        <td>
+                                            <p class="text-body mb-0">{{item.DonationStatus ? item.DonationStatus : 'N/A'}}</p>
+                                        </td>  
+                                        <td>
+                                            <p class="text-body mb-0">{{item.Date | date}}</p>
+                                        </td>   
+                                        <td>
+                                            <p class="text-body mb-0">{{item.TransactionId ?item.Transaction:'N/A'}}</p>
+                                        </td>   
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </form>

@@ -25,11 +25,12 @@ export class DonorAddComponent {
   donationtypes:any[]=[];
   detailtypes:any[]=[];
   donationstatus:any[]=[];
+  donations:any = [];
   inventores:any[]=[];
   incometypes:any[]=[];
   countries:any[]=[];
   donorTypes:any[]=[];
-  
+  IsView:any = false;
   banks:any[]=[];
   projects:any[]=[];
   Env = environment.apiUrl.replace("/api","");
@@ -41,6 +42,10 @@ async ngOnInit(): Promise<void> {
    
     this.GetDonorDll(); 
   this.activeroute.queryParams.subscribe(params => {
+    if(params['IsView']){
+      this.IsView = params['IsView']; 
+    // this.getDonor();
+  } 
     if(params['DonorId']){
         this.DonorModel.Id  =params['DonorId']; 
       this.getDonor();
@@ -49,11 +54,13 @@ async ngOnInit(): Promise<void> {
 }
 
 async getDonor(){ 
-  let res:any = await this.api.GetDonor({Id:this.DonorModel.Id,PageNumber:0,PageSize:2});
+  let res:any = await this.api.GetDonor({Id:this.DonorModel.Id,PageNumber:0,PageSize:2,IsView:this.IsView ? this.IsView : false});
   if(res.statusCode == 200){
     if(res.data[0]?.CountryId) this.ChangeCountry(res.data[0].CountryId)
-    this.DonorModel = res.data[0];  
+    this.DonorModel = res.data?.donor[0];  
+    this.donations = res.data?.donations;  
     this.DonorModel.Date = this.datePipe.transform(this.DonorModel.Date, 'yyyy-MM-dd'); 
+    if(this.DonorModel.CountryId) this.ChangeCountry(this.DonorModel.CountryId);
   }
 }
 ChangeUserName($event: any) {  
