@@ -82,7 +82,19 @@ export const routes: Routes = [
             { 
                 path: 'utilization',
                 loadComponent: () => import('./admin/utilization/utilization.component').then(m => m.UtilizationComponent),   
-            } 
+            },
+            {
+                path: 'transactions',
+                loadComponent: () => import('./admin/all-transactions/all-transactions.component').then(m => m.AllTransactionsComponent),   
+            },
+            {
+                path: 'bank-deposit-slip',
+                loadComponent: () => import('./admin/all-bank-deposit-slip/all-bank-deposit-slip.component').then(m => m.AllBankDepositSlipComponent),   
+            },
+            // {
+            //     path: 'add-transaction',
+            //     loadComponent: () => import('./admin/add-transaction/add-transaction.component').then(m => m.AddTransactionComponent),   
+            // }
         ]
     }
 

@@ -19,7 +19,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
   styleUrl: './all-faculty.component.css'
 })
 export class AllFacultyComponent implements OnInit {
-  beneficiaryModel: any = { PageNumber: 0,PageSize:50 };
+  beneficiaryModel: any = { PageNumber: 0,PageSize:50, CountryId: "", CityId: "" };
   beneficiaries: any[] = [];
   lastScrollTop = 0;
   isLoading: boolean = false;

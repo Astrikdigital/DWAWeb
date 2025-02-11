@@ -64,7 +64,19 @@ export class SidebarComponent {
       "IsChild": false,
       "Icon": "fas fa-user-plus",
       "Route": "/admin/volunteers"
-    }
+    },
+    {
+      "Title": "Transaction Report",
+      "IsChild": false,
+      "Icon": "fas fa-user-plus",
+      "Route": "/admin/transactions"
+    },
+    {
+      "Title": "Bank Deposit Slip",
+      "IsChild": false,
+      "Icon": "fas fa-user-plus",
+      "Route": "/admin/bank-deposit-slip"
+    } 
 
 
   ];

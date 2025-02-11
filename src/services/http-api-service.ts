@@ -29,7 +29,8 @@ export class HttpApiService {
         if (body.Id) formData.append('Id', body.Id);
         if (body.CNIC)formData.append('CNIC', body.CNIC);
         if (body.GenderId)formData.append('GenderId', body.GenderId);
-        if (body.Name)formData.append('Name', body.Name);
+        if (body.FirstName)formData.append('FirstName', body.FirstName);
+        if (body.LastName)formData.append('LastName', body.LastName);
         if (body.FatherName)formData.append('FatherName', body.FatherName);
         if (body.Address)formData.append('Address', body.Address);
         if (body.DOB)formData.append('DOB', body.DOB);
@@ -45,8 +46,8 @@ export class HttpApiService {
         if (body.CauseDisabilityId)formData.append('CauseDisabilityId', body.CauseDisabilityId);
         if (body.Reference)formData.append('Reference', body.Reference);
         if (body.NeedsRemarks)formData.append('NeedsRemarks', body.NeedsRemarks);
-        if (body.FirstName)formData.append('FirstName', body.FirstName);
-        if (body.LastName)formData.append('LastName', body.LastName);
+        if (body.CountryId)formData.append('CountryId', body.CountryId);
+        if (body.CityId)formData.append('CityId', body.CityId);
         if (body.BusinessName)formData.append('BusinessName', body.BusinessName);
         if (body.BusinessType)formData.append('BusinessType', body.BusinessType);
         if (body.BeneficiaryTypeId)formData.append('BeneficiaryTypeId', body.BeneficiaryTypeId);
@@ -362,6 +363,18 @@ export class HttpApiService {
     async GetCountry(): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/GetCountry');
     }
+    async getAllCnic(body?:any): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-all-cnic',body);
+    }  
+    async GetAllTransactions(body?:any): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetAllTransactions',body);
+    }
 
+    async getTransactions(body?:any): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-all-transactions',body)
+    }
+    async getDepositSlip(body?:any): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-all-bank-deposit',body)
+    }
     
 }

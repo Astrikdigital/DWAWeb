@@ -76,31 +76,32 @@
                                         
                                     </div>
                                 </td>
-                                <td scope="col" width="350">
+                                <td scope="col" width="300">
                                     <span class="text-dark fw-600">Name</span>
-                                    <p class="text-danger fw-600 mb-0">{{item.Name}}</p>
+                                    <p class="text-danger fw-600 mb-0">{{item.FirstName}} {{item.LastName}}</p>
+                                </td>
+                                <td scope="col"  class="text-center" width="300">
+                                    <span class="text-dark fw-600">Email</span>
+                                    <p class="text-body mb-0">{{item.Email}}</p>
                                 </td>
 
+                               
+                                <!-- <td scope="col" width="350">
+                                    <span class="text-dark fw-600">Needs and Remarks</span>
+                                    <p class="text-danger fw-600 mb-0">{{item.NeedsRemarks}}</p>
+                                </td> -->
+
+                                <td scope="col" width="350">
+                                    <span class="text-dark fw-600">Project</span>
+                                    <p class="text-danger fw-600 mb-0">{{item.ProjectTitle}}</p>
+                                </td>
+                                <td scope="col" width="200">
+                                    <span class="text-dark fw-600">Type</span>
+                                    <p class="text-danger fw-600 mb-0">{{item.BeneficiaryType}}</p>
+                                </td>
                                 <td scope="col"  class="text-center" width="200">
                                     <span class="text-dark fw-600">Date</span>
                                     <p class="text-body mb-0">{{item.Date | date}}</p>
-                                </td>
-                                <td scope="col"  class="text-center" width="200">
-                                    <span class="text-dark fw-600">Registration/Code  No.</span>
-                                    <p class="text-body mb-0">{{item.CodeNo}}</p>
-                                </td>
-                                <td scope="col" width="350">
-                                    <span class="text-dark fw-600">Needs and Remarks</span>
-                                    <p class="text-danger fw-600 mb-0">{{item.NeedsRemarks}}</p>
-                                </td>
-
-                                <td scope="col" width="350">
-                                    <span class="text-dark fw-600">Disability</span>
-                                    <p class="text-danger fw-600 mb-0">{{item.DisabilityTitle}}</p>
-                                </td>
-                                <td scope="col" width="350">
-                                    <span class="text-dark fw-600">Cause of Disability</span>
-                                    <p class="text-danger fw-600 mb-0">{{item.CauseDisabilityTitle}}</p>
                                 </td>
                                 <td scope="col" class="text-center" width="80">
                                     <span class="text-dark fw-600 d-block mb-1">Action</span>
