@@ -115,9 +115,9 @@ export class AllBankDepositSlipComponent {
       data: this.selectedIds, width: '800px',
     });
     dialogDelete.afterClosed().subscribe(async (result) => {
-      if (result) {
-        debugger
+      if (result) { 
         this.getDepositSlip();
+        this.GetDepositBankSlip();
       }
     })
   }
