@@ -7,16 +7,18 @@ import { environment } from '../../../environments/environment';
 import { HttpApiService } from '../../../services/http-api-service';
 import { StorageService } from '../../../services/local-storage.service';
 import { DeletePopupComponent } from '../../shared/delete-popup/delete-popup.component';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-all-volunteer',
   standalone: true,
-  imports: [RouterLink,CommonModule],
+  imports: [RouterLink,CommonModule,MatPaginatorModule,FormsModule],
   templateUrl: './all-volunteer.component.html',
   styleUrl: './all-volunteer.component.css'
 })
 export class AllVolunteerComponent {
-  
+  model:any = {PageNumber:0,PageSize:50};
   baseUrl:string= environment.apiUrl
     volunteerList:any=[];
     Env = environment.apiUrl.replace("/api","");
@@ -29,10 +31,11 @@ export class AllVolunteerComponent {
     }
   
     async getVolunteer(){
-      this.store.IsLoader = true;
-      let res: any = await this.api.getVolunteers();
+      this.store.IsLoader = true; 
+      let res: any = await this.api.getVolunteers(this.model);
       if(res.statusCode == 200){  
          this.volunteerList = res.data;
+       if(res.data.length)  this.model.length = res.data[0].Count;
       }
       this.store.IsLoader = false;
     }
@@ -43,7 +46,11 @@ export class AllVolunteerComponent {
         { queryParams: { volunteerId: id } }
       );
     }
-  
+    getPagination($event:any){
+      this.model.PageNumber  = $event.pageIndex
+      this.model.PageSize  = $event.pageSize;
+          this.getVolunteer();
+        }
     OpenDeleteModal(Id:any){
       let dialogDelete =  this.dialog.open(DeletePopupComponent, {
         data:Id,    width: '530px',

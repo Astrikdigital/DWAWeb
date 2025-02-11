@@ -27,13 +27,18 @@ export class AddFacultyComponent implements OnInit {
   selectedImage: string | ArrayBuffer | null = null;
   environment = environment.apiUrl.replace("/api", "");
   isCorporate: boolean = false;
-  benifType:any;
+  benifType:any;cities:any[]=[];
   constructor(private api: HttpApiService, private route: Router, private toastr: ToastrService, private activeroute: ActivatedRoute, private datePipe: DatePipe) {
 
   }
- 
+  async ChangeCountry($event:any){
+    this.cities= [];
+    let res:any = await this.api.GetCityByCountryId({CountryId:$event});
+    if(res) this.cities = res.data;
+  }
   async ngOnInit(): Promise<void> {
     this.getBenifType();
+    this.GetCountry();
     //await this.getCountries();
     // await this.GetUserName();
   
@@ -72,9 +77,12 @@ export class AddFacultyComponent implements OnInit {
     }
   }
 
-  async getBeneficiary(Id: any) {
-    debugger;
-    let res: any = await this.api.getBeneficiary({ Id: Id });
+async  GetCountry(){
+    let res:any = await this.api.getCountries();
+    if(res) this.countries = res.data;
+  }
+  async getBeneficiary(Id: any) { 
+    let res: any = await this.api.getBeneficiary({ Id: Id,PageNumber:0,PageSize:2 });
     if (res.statusCode == 200) {
       debugger
       this.BeneficiaryModel = res.data[0];

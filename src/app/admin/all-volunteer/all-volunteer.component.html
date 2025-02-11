@@ -14,23 +14,30 @@
                         </div>
                     </div>
 
-                    <!-- <div class="row align-items-center  justify-content-start">
+                    <div class="row align-items-center  justify-content-start">
                         <div class="col-lg-4 col-md-4 mb-2 mt-3">
                             <div class="form-group">
-                                <label for="" class="mb-1">Search Employee</label>
-                                <input type="search" placeholder="Search Employee">
+                                <label for="" class="mb-1">Search</label>
+                                <input type="search" [(ngModel)]="model.SearchText"
+                                    placeholder="Search by name"> 
                             </div>
+      
                         </div>
                         <div class="col-lg-2">
                             <div class="search-btn">
-                                <button>Search</button>
+                                <button (click)="getVolunteer()">Search</button>
                             </div>
-                        </div>
-                    </div> -->
+                        </div> 
+                    </div> 
                 </div>
             </div>
 
-
+            <mat-paginator [length]="model.length"
+            [pageSize]="model.PageSize"
+            [pageSizeOptions]="[50,100,500]"
+            (page)="getPagination($event)"
+            aria-label="Select page">
+            </mat-paginator>
             <div class="table-responsive rounded-4">
                 <table class="table table-bordered table-hover ">
                     <thead class="table-secondary">
@@ -53,7 +60,7 @@
                     <tbody>
                         @if(this.volunteerList.length == 0){
                         <tr>
-                            <td colspan="8" class="text-center">No Record </td>
+                            <td colspan="16" class="text-center">No Record </td>
                         </tr>
                         }
                         @for (item of volunteerList; track item.id) {

@@ -49,7 +49,7 @@ async ngOnInit(): Promise<void> {
 }
 
 async getDonor(){ 
-  let res:any = await this.api.GetDonor({Id:this.DonorModel.Id});
+  let res:any = await this.api.GetDonor({Id:this.DonorModel.Id,PageNumber:0,PageSize:2});
   if(res.statusCode == 200){
     if(res.data[0]?.CountryId) this.ChangeCountry(res.data[0].CountryId)
     this.DonorModel = res.data[0];  

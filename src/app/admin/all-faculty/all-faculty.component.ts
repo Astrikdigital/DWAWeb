@@ -9,16 +9,17 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { StorageService } from '../../../services/local-storage.service';
 import { firstValueFrom } from 'rxjs';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-all-faculty',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgFor, RouterLink, MatDialogModule],
+  imports: [CommonModule, FormsModule, NgFor, RouterLink, MatDialogModule,MatPaginatorModule],
   templateUrl: './all-faculty.component.html',
   styleUrl: './all-faculty.component.css'
 })
 export class AllFacultyComponent implements OnInit {
-  beneficiaryModel: any = { PageNumber: 1 };
+  beneficiaryModel: any = { PageNumber: 0,PageSize:50 };
   beneficiaries: any[] = [];
   lastScrollTop = 0;
   isLoading: boolean = false;
@@ -32,6 +33,12 @@ export class AllFacultyComponent implements OnInit {
   constructor(private api: HttpApiService, private router: Router, private dialog: MatDialog, private toastr: ToastrService,private store:StorageService) {
 
   }
+  getPagination($event:any){
+    this.beneficiaryModel.PageNumber  = $event.pageIndex
+    this.beneficiaryModel.PageSize  = $event.pageSize;
+        this.getBeneficiary();
+      }
+     
   ngOnInit(): void {
     this.getBeneficiary();
   }
@@ -52,28 +59,13 @@ export class AllFacultyComponent implements OnInit {
       this.getBeneficiary();
     }
   }
-  @HostListener('window:scroll', ['$event'])
-  onScroll(event: any): void {
-    const currentScrollTop = window.scrollY;
-    if (currentScrollTop > this.lastScrollTop && !this.isLoading && this.beneficiaries.length != this.TotalRecord) {
-      const scrollPosition = window.innerHeight + currentScrollTop;
-      const documentHeight = document.documentElement.scrollHeight;
-      if (scrollPosition >= documentHeight - 100) {
-        this.beneficiaryModel.PageNumber = this.beneficiaryModel?.PageNumber + 1;
-        this.getBeneficiary(true);
-      }
-    }
-    this.lastScrollTop = currentScrollTop;
-  }
-  async getBeneficiary(IsPagination: any = false) {
-    debugger
+  
+  async getBeneficiary() { 
     //this.store.IsLoader = true;
     let res: any = await this.api.getBeneficiary(this.beneficiaryModel);
     if (res.statusCode == 200) {
-      if (!IsPagination) { this.beneficiaries = res.data ; } else {
-        this.beneficiaries.push(...res.data);
-      }
-      this.TotalRecord = res.data[0].TotalRecords;
+      this.beneficiaries = res.data;
+      this.beneficiaryModel.length = res.data[0].Count;
       //this.store.IsLoader = false;
     }
   }

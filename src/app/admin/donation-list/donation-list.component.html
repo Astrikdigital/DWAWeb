@@ -14,27 +14,32 @@
                         </div>
                     </div>
 
-                    <!-- <div class="row align-items-center  justify-content-start">
+                     <div class="row align-items-center  justify-content-start">
                         <div class="col-lg-4 col-md-4 mb-2 mt-3">
                             <div class="form-group">
-                                <label for="" class="mb-1">Search Donor’s data </label>
-                                <input type="search" [(ngModel)]="DonorModel.SearchText"
-                                    placeholder="Search Donor's data"> 
+                                <label for="" class="mb-1">Search</label>
+                                <input type="search" [(ngModel)]="model.SearchText"
+                                    placeholder="Search by name"> 
                             </div>
 
                         </div>
                         <div class="col-lg-2">
                             <div class="search-btn">
-                                <button (click)="getDonors()">Search</button>
+                                <button (click)="GetDonation()">Search</button>
                             </div>
                         </div>
 
 
 
-                    </div> -->
+                    </div> 
                 </div>
             </div>
-
+            <mat-paginator [length]="this.model.length"
+            [pageSize]="this.model.PageSize"
+            [pageSizeOptions]="[50,100,500]"
+            (page)="getPagination($event)"
+            aria-label="Select page">
+            </mat-paginator>
 
             <div class="table-responsive rounded-4">
                 <table class="table table-bordered table-hover ">

@@ -58,13 +58,13 @@ if(!this.DonationModel.DonorId && !this.DonationModel.Id) await this.GetDonors()
 }
 
 async GetDonors(){ 
-  let res:any = await this.api.GetDonor();
+  let res:any = await this.api.GetDonor({PageNumber:0,PageSize:500});
   if(res.statusCode == 200){
     this.donors = res.data;  
   }
 } 
 async getDonation(){ 
-  let res:any = await this.api.GetDonation({Id:this.DonationModel.Id});
+  let res:any = await this.api.GetDonation({Id:this.DonationModel.Id,PageNumber:0,PageSize:2});
   if(res.statusCode == 200){
     this.DonationModel = res.data[0];  
     this.DonationModel.Date = this.datePipe.transform(this.DonationModel.Date, 'yyyy-MM-dd'); 
@@ -100,7 +100,7 @@ async GetProject(){
   if(res) this.projects = res.data;
 }
 async Inventory(){
-  let res:any = await this.api.GetInventory();
+  let res:any = await this.api.GetInventory({PageNumber:0,PageSize:500});
   if(res) this.inventores = res.data;
 }
 async getIncomeTypes(){

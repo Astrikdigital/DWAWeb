@@ -126,7 +126,12 @@
                                     </div>
                                 </div>
                             </form>
-                        
+                            <mat-paginator [length]="this.modelTransaction.length"
+                            [pageSize]="this.modelTransaction.PageSize"
+                            [pageSizeOptions]="[50,100,500]"
+                            (page)="getPaginationTransaction($event)"
+                            aria-label="Select page">
+                            </mat-paginator>
                         
                             <div class="table-responsive rounded-4">
                                 <table class="table table-bordered table-hover ">
@@ -241,6 +246,12 @@
                                     </div>
                                 </div>
                             </form>
+                            <mat-paginator [length]="this.modelInventory.length"
+                            [pageSize]="this.modelInventory.PageSize"
+                            [pageSizeOptions]="[50,100,500]"
+                            (page)="getPaginationInventory($event)"
+                            aria-label="Select page">
+                            </mat-paginator>
                             <div class="table-responsive rounded-4">
                                 <table class="table table-bordered table-hover ">
                                     <thead class="table-secondary">

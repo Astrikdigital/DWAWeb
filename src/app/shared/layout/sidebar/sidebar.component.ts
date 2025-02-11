@@ -30,7 +30,7 @@ export class SidebarComponent {
       "Route": "/admin/donors"
     },
     {
-      "Title": "income",
+      "Title": "Income",
       "IsChild": false,
       "Icon": "fas fa-user-plus",
       "Route": "/admin/income"

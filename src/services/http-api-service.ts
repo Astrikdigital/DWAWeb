@@ -58,8 +58,8 @@ export class HttpApiService {
     async getAllUsers(body: any): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/get-users', body)
     }
-    async getAllEmployee(): Promise<any> {
-        return await this.httpService.getAsync<any>('Admin/get-employee')
+    async getAllEmployee(body?:any): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-employee',body)
     }
     async getAllQueries(body: any): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/get-help-center-query', body)
@@ -170,8 +170,8 @@ export class HttpApiService {
     async GetDonationStatus(): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/get-donation-status')
     }
-    async GetInventory(): Promise<any> {
-        return await this.httpService.getAsync<any>('Admin/GetInventory')
+    async GetInventory(body?:any): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetInventory',body)
     }
     async UpdateDonationStatus(body?: any): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/UpdateDonationStatus', body)
@@ -186,9 +186,7 @@ export class HttpApiService {
     async GetSemesterStatus(): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/get-semester-status');
     }
-    async AddInventoryComponent(): Promise<any> {
-        return await this.httpService.getAsync<any>('Admin/GetInventory');
-    }
+   
     async getDesignation(): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/get-designation');
     }
@@ -288,8 +286,8 @@ export class HttpApiService {
         return await this.httpService.getAsync<any>('Admin/DeleteTableRow', body);
     }
 
-    async getVolunteers(): Promise<any> {
-        return await this.httpService.getAsync<any>('Admin/get-volunteer')
+    async getVolunteers(body?:any): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-volunteer',body)
     }
 
     async AddVolunteer(body: any): Promise<any> {
@@ -361,4 +359,9 @@ export class HttpApiService {
         return await this.httpService.getAsync<any>('Admin/GetCityByCountryId',body);
     }
 
+    async GetCountry(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetCountry');
+    }
+
+    
 }

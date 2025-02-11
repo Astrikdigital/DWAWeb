@@ -35,15 +35,15 @@
                         <div class="col-xl-3 col-lg-4 col-12 mt-3">
                             <div class="form-group">
                                 <i class="fa-solid fa-magnifying-glass"></i>
-                                <input type="seacrh" [(ngModel)]="beneficiaryModel.SerachText" placeholder="" />
+                                <input type="seacrh" [(ngModel)]="beneficiaryModel.searchText" placeholder="Search by name" />
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-lg-4 col-12 mt-3">
+                        <!-- <div class="col-xl-3 col-lg-4 col-12 mt-3">
                             <div class="form-group">
                                 <input type="date" id="" name="date" [(ngModel)]="beneficiaryModel.DateOfJoining"  class="px-2" />
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-lg-2">
                             <div class="search-btn">
                                 <button (click)="getBeneficiary()">Search</button>
@@ -53,7 +53,12 @@
                     </div>
                 </div>
             </div>
-
+            <mat-paginator [length]="this.beneficiaryModel.length"
+            [pageSize]="this.beneficiaryModel.PageSize"
+            [pageSizeOptions]="[50,100,500]"
+            (page)="getPagination($event)"
+            aria-label="Select page">
+            </mat-paginator>
             <div class="box pull-up px-1 py-2 mb-3" *ngFor="let item of beneficiaries;let i =index;">
                 <div class="table-responsive rounded-3">
                     <table class="table mb-0 py-0 px-0">

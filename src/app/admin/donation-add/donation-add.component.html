@@ -38,21 +38,6 @@
                                             </ng-container>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <label class="mb-1">Bank *</label>
-                                        <div class="form-group">
-                                            <i class="fa-solid fa-user"></i>
-                                            <select name="bank" #bank="ngModel"
-                                                [(ngModel)]="DonationModel.BankId"  required>
-                                                <option value="">Select Type</option>
-                                                <option *ngFor="let item of banks" [value]="item.Id">
-                                                    {{item.Title}}</option>
-                                            </select>
-                                            <ng-container *ngIf="bank.touched && !bank.value">
-                                                <p class="error-red">Bank is required </p>
-                                            </ng-container>
-                                        </div>
-                                    </div>
                                     <div class="col-lg-4 col-md-4 mb-2" *ngIf="!IsDonar">
                                         <label class="mb-1">Donor *</label>
                                         <div class="form-group">
@@ -68,38 +53,68 @@
                                             </ng-container>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 mb-2">
-                                        <label class="mb-1">Donation Type *</label>
+                                    <div class="col-md-4">
+                                        <label class="mb-1">Income Type *</label>
                                         <div class="form-group">
                                             <i class="fa-solid fa-user"></i>
-                                            <select name="DonationType" #donationTypeId="ngModel"
-                                                [(ngModel)]="DonationModel.DonationTypeId" maxlength="100" required>
-                                                <option value="">Select Donation Type</option>
-                                                <option *ngFor="let item of donationtypes" [value]="item.Id">
+                                            <select name="incometype" #incometype="ngModel"
+                                                [(ngModel)]="DonationModel.IncomeTypeId"  required>
+                                                <option value="">Select Income Type</option>
+                                                <option *ngFor="let item of incometypes" [value]="item.Id">
                                                     {{item.Title}}</option>
                                             </select>
-                                            <ng-container *ngIf="donationTypeId.touched && !donationTypeId.value">
-                                                <p class="error-red">Donation Type is required </p>
+                                            <ng-container *ngIf="incometype.touched && !incometype.value">
+                                                <p class="error-red">Income Type is required </p>
                                             </ng-container>
                                         </div>
                                     </div>
                                    
                                         <div class="col-lg-4 col-md-4 mb-2">
-                                            <label class="mb-1">Donation Detail Type *</label>
+                                            <label class="mb-1">Donation Type *</label>
                                             <div class="form-group">
                                                 <i class="fa-solid fa-user"></i>
-                                                <select name="donationDetailTypeId" #donationDetailTypeId="ngModel"
+                                                <select name="donatioTypeId" #donatioTypeId="ngModel"
                                                     [(ngModel)]="DonationModel.DonationDetailTypeId"  maxlength="100"
                                                     required>
-                                                    <option value="">Select Donation Detail Type</option>
+                                                    <option value="">Select Donation Type</option>
                                                     <option *ngFor="let item of detailtypes" [value]="item.Id">
                                                         {{item.Title}}</option>
                                                 </select>
-                                                <ng-container *ngIf="donationDetailTypeId.touched && !donationDetailTypeId.value">
-                                                    <p class="error-red">Donation Detail Type is required </p>
+                                                <ng-container *ngIf="donatioTypeId.touched && !donatioTypeId.value">
+                                                    <p class="error-red">Donation Type is required </p>
                                                 </ng-container>
                                             </div>
                                         </div>
+                                    <div class="col-md-4" *ngIf="DonationModel.DonationDetailTypeId != 6">
+                                        <label class="mb-1">Bank *</label>
+                                        <div class="form-group">
+                                            <i class="fa-solid fa-user"></i>
+                                            <select name="bank" #bank="ngModel"
+                                                [(ngModel)]="DonationModel.BankId"  required>
+                                                <option value="">Select Type</option>
+                                                <option *ngFor="let item of banks" [value]="item.Id">
+                                                    {{item.Title}}</option>
+                                            </select>
+                                            <ng-container *ngIf="bank.touched && !bank.value">
+                                                <p class="error-red">Bank is required </p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 mb-2">
+                                        <label class="mb-1">Region *</label>
+                                        <div class="form-group">
+                                            <i class="fa-solid fa-user"></i>
+                                            <select name="DonationType" #donationTypeId="ngModel"
+                                                [(ngModel)]="DonationModel.DonationTypeId" maxlength="100" required>
+                                                <option value="">Select Region</option>
+                                                <option *ngFor="let item of donationtypes" [value]="item.Id">
+                                                    {{item.Title}}</option>
+                                            </select>
+                                            <ng-container *ngIf="donationTypeId.touched && !donationTypeId.value">
+                                                <p class="error-red">Region is required </p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
                                         <ng-container *ngIf="DonationModel.DonationDetailTypeId != 6"> 
                                         <div class="col-lg-4 col-md-4 mb-2" *ngIf="DonationModel.DonationDetailTypeId != 4 && DonationModel.DonationDetailTypeId != 5">
                                             <label class="mb-1">Transaction ID *</label>

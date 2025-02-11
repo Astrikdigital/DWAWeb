@@ -8,11 +8,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { StorageService } from '../../../services/local-storage.service';
 import { environment } from '../../../environments/environment';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-donor-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgFor,RouterLink,NgIf],
+  imports: [CommonModule, FormsModule, NgFor,RouterLink,NgIf,MatPaginatorModule],
   templateUrl: './donor-list.component.html',
   styleUrl: './donor-list.component.css'
 })
@@ -24,19 +25,25 @@ Search:any;
   
     Env = environment.apiUrl.replace("/api","");
   TotalRecord:number = 0;
-  UserModel:any = {PageNumber:1,PageSize:50};
+  model:any = {PageNumber:0,PageSize:50};
   constructor(private api:HttpApiService,private router:Router,private dialog:MatDialog,private toastr:ToastrService,private store:StorageService){
 
 }
   ngOnInit(): void {
     this.getDonor();    
   }
-  
+  getPagination($event:any){
+    this.model.PageNumber  = $event.pageIndex
+    this.model.PageSize  = $event.pageSize;
+        this.getDonor();
+      }
+     
   async getDonor(){
     this.store.IsLoader = true;
-    let res: any = await this.api.GetDonor();
+    let res: any = await this.api.GetDonor(this.model);
     if(res.statusCode == 200){  
       this.donors = res.data; 
+      if(res.data.length) this.model.length = res.data[0].Count; 
        this.store.IsLoader = false;
     }
   }

@@ -309,7 +309,36 @@
                                         </div>
                                     </div>
                                     
-                                    
+                                    <div class="col-lg-4 col-md-4 mb-2">
+                                        <label class="mb-1">Country *</label>
+                                        <div class="form-group">
+                                            <i class="fa-solid fa-user"></i>
+                                            <select name="Country" #Country="ngModel" (ngModelChange)="ChangeCountry($event)"
+                                                [(ngModel)]="BeneficiaryModel.CountryId"  required>
+                                                <option value="">Select Country Type</option>
+                                                <option *ngFor="let item of countries" [value]="item.Id">
+                                                    {{item.Country}}</option>
+                                            </select>
+                                            <ng-container *ngIf="Country.touched && !Country.value">
+                                                <p class="error-red">Country is required </p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 mb-2">
+                                        <label class="mb-1">City *</label>
+                                        <div class="form-group">
+                                            <i class="fa-solid fa-user"></i>
+                                            <select name="City" #City="ngModel" [disabled]="!cities.length" 
+                                                [(ngModel)]="BeneficiaryModel.CityId"  required>
+                                                <option value="">Select City Type</option>
+                                                <option *ngFor="let item of cities" [value]="item.Id">
+                                                    {{item.City}}</option>
+                                            </select>
+                                            <ng-container *ngIf="City.touched && !City.value">
+                                                <p class="error-red">City is required </p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
                                     <div class="col-lg-4 col-md-4 mb-2">
                                         <label class="mb-1">Cause of Disability*</label>
                                         <div class="form-group">

@@ -4,11 +4,12 @@ import { StorageService } from '../../../services/local-storage.service';
 import { HttpApiService } from '../../../services/http-api-service';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-utilization',
   standalone: true,
-  imports: [MatTabsModule,  NgFor,NgIf,FormsModule],
+  imports: [MatTabsModule,  NgFor,NgIf,FormsModule,MatPaginatorModule],
   templateUrl: './utilization.component.html',
   styleUrl: './utilization.component.css'
 })
@@ -26,6 +27,8 @@ export class UtilizationComponent implements OnInit {
   banks:any =[];
   projects:any =[];
   beneficiary:any = [];
+  modelTransaction:any = {PageNumber:0,PageSize:50};
+  modelInventory:any = {PageNumber:0,PageSize:50};
   constructor(private store:StorageService,private api:HttpApiService,private cdRef: ChangeDetectorRef){
 
   }
@@ -43,6 +46,12 @@ export class UtilizationComponent implements OnInit {
     this.GetInventoryUtilizationDll();
     
   }
+
+  getPaginationInventory($event:any){
+    this.modelInventory.PageNumber  = $event.pageIndex
+    this.modelInventory.PageSize  = $event.pageSize;
+        this.GetInventoryUtilization();
+      }
   async GetInventoryUtilizationDll(){ 
     let res: any = await this.api.GetInventoryUtilizationDll();
     if(res.statusCode == 200){  
@@ -85,17 +94,20 @@ export class UtilizationComponent implements OnInit {
   }
   async GetInventoryUtilization(){
     this.store.IsLoader = true;
-    let res: any = await this.api.GetInventoryUtilization();
+    let res: any = await this.api.GetInventoryUtilization(this.modelInventory);
     if(res.statusCode == 200){  
        this.inventories = res.data;
+      if(res.data.length) this.modelInventory.length = res.data[0].Count;
+
     }
     this.store.IsLoader = false;
   }
   async GetDebitTransactions(){
     this.store.IsLoader = true;
-    let res: any = await this.api.GetDebitTransactions();
+    let res: any = await this.api.GetDebitTransactions(this.modelTransaction);
     if(res.statusCode == 200){  
        this.transactions = res.data;
+       if(res.data.length)  this.modelTransaction.length = res.data[0].Count;
     }
     this.store.IsLoader = false;
   }
@@ -110,4 +122,10 @@ else{
 }
 this.cdRef.detectChanges();
  }
+ getPaginationTransaction($event:any){
+ this.modelTransaction.PageNumber  = $event.pageIndex
+this.modelTransaction.PageSize  = $event.pageSize;
+    this.GetDebitTransactions();
+  }
+ 
 }

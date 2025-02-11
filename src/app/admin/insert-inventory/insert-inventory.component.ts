@@ -18,8 +18,7 @@ export class InsertInventoryComponent {
   InventoryModel: any = { nationalityId: "", genderId: "", countryResidenceId: "" };
   FacultyModel: any = { nationalityId: "", genderId: "", countryResidenceId: "" };
   countries: any[] = [];
-  programs: any[] = [];
-  usernames: any[] = [];
+  programs: any[] = []; 
   religions: any = [];  
   projects: any = []; 
   disabilities: any = []; 
@@ -33,15 +32,12 @@ export class InsertInventoryComponent {
 
   }
 
-  async ngOnInit(): Promise<void> {
-   
-    await this.GetUserName();
+  async ngOnInit(): Promise<void> { 
   
     this.activeroute.queryParams.subscribe(params => {
       
       if (params['FacultyId']) {
-        this.FacultyModel.id  =params['ProgramId']; 
-        
+        this.FacultyModel.id  =params['ProgramId'];  
       }
     });
   
@@ -73,13 +69,6 @@ export class InsertInventoryComponent {
  
   ChangeImage($event: any) {
     this.InventoryModel.attachProfilePicture = $event;
-  }
-
-  async GetUserName() {
-    let res: any = await this.api.AddInventoryComponent();
-    if (res.statusCode == 200) {
-      this.usernames = res.data;
-    }
-  }
+  } 
 
 }

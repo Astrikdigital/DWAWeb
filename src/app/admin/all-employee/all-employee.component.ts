@@ -7,11 +7,13 @@ import { StorageService } from '../../../services/local-storage.service';
 import { environment } from '../../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { DeletePopupComponent } from '../../shared/delete-popup/delete-popup.component';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-all-employee',
   standalone: true,
-  imports: [RouterLink,CommonModule],
+  imports: [RouterLink,CommonModule,MatPaginatorModule,FormsModule],
   templateUrl: './all-employee.component.html',
   styleUrl: './all-employee.component.css'
 })
@@ -19,7 +21,7 @@ export class AllEmployeeComponent {
 baseUrl:string= environment.apiUrl
   employeeList:any=[];
   Env = environment.apiUrl.replace("/api","");
-
+  model:any = {PageNumber:0,PageSize:50};
  constructor(private api:HttpApiService,private router:Router,private dialog:MatDialog,private toastr:ToastrService,private store:StorageService){
 
 }
@@ -27,13 +29,12 @@ baseUrl:string= environment.apiUrl
     this.getEmployee();
   }
 
-  async getEmployee(){
-    this.store.IsLoader = true;
-    let res: any = await this.api.getAllEmployee();
+  async getEmployee(){ 
+    let res: any = await this.api.getAllEmployee(this.model);
     if(res.statusCode == 200){  
        this.employeeList = res.data;
-    }
-    this.store.IsLoader = false;
+      if(res.data.length) this.model.length = res.data[0].Count;
+    } 
   }
 
   EditEmployee(id:any) {
@@ -53,6 +54,12 @@ baseUrl:string= environment.apiUrl
       } 
     })
   }
+  getPagination($event:any){
+    this.model.PageNumber  = $event.pageIndex
+    this.model.PageSize  = $event.pageSize;
+        this.getEmployee();
+      }
+     
   async DeleteDonor(Id:any){
     this.store.IsLoader = true;
     let res:any = await this.api.deleteDynamicRow({tableName:'Employee',Id:Id});
