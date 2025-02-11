@@ -35,7 +35,7 @@ constructor(private activeroute:ActivatedRoute,private api:HttpApiService,privat
     if(res) this.detailtypes = res.data;
   }
   async getDonation(){ 
-    let res:any = await this.api.GetDonation({Id:this.DonationModel.Id});
+    let res:any = await this.api.GetDonation({Id:this.DonationModel.Id,PageNumber:0,PageSize:10});
     if(res.statusCode == 200){
       this.DonationModel = res.data[0];  
       this.title.setTitle(this.DonationModel.Project);

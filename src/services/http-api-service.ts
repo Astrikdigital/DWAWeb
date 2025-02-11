@@ -17,9 +17,13 @@ export class HttpApiService {
         return await this.httpService.getAsync<any>('Common/get-all-cities', { stateId: stateId });
     }
     async GetRegistrationDDL(): Promise<any> {
-        return await this.httpService.getAsync<any>('Admin/get-beneficiaryddl')
-
-    } async DownloadExcel(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/get-beneficiaryddl');
+    }
+    async GetDepositBankSlip(body?:any): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetDepositBankSlip',body);
+    }
+    
+    async DownloadExcel(): Promise<any> {
         return await this.httpService.getAsync<any>('admin/download-excel')
     }
     async AddFaculty(body: any): Promise<any> {
@@ -158,6 +162,9 @@ export class HttpApiService {
     }
     async DeleteTableRow(body: any): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/DeleteTableRow', body)
+    }
+    async DeleteDepositBankSlip(body: any): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/DeleteDepositBankSlip', body)
     }
     async GetDonationType(): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/get-donation-type')
