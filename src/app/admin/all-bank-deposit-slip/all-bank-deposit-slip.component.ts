@@ -9,6 +9,7 @@ import { environment } from '../../../environments/environment';
 import { HttpApiService } from '../../../services/http-api-service';
 import { StorageService } from '../../../services/local-storage.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DepositSlipModalComponent } from '../deposit-slip-modal/deposit-slip-modal.component';
 
 @Component({
   selector: 'app-all-bank-deposit-slip',
@@ -26,6 +27,8 @@ export class AllBankDepositSlipComponent {
   banks: any = [];
   transactionType: any = [];
   donors: any = [];
+  depositBtn: boolean = false;
+  selectedIds: number[] = [];
 
   constructor(private api: HttpApiService, private router: Router, private dialog: MatDialog, private toastr: ToastrService, private store: StorageService) {
   }
@@ -74,8 +77,7 @@ export class AllBankDepositSlipComponent {
     }
   }
 
-  selectedIds: number[] = [];
-
+  
   update(checked: boolean, id: number) {
     if (checked) {
       this.selectedIds.push(id);
@@ -83,6 +85,26 @@ export class AllBankDepositSlipComponent {
       this.selectedIds = this.selectedIds.filter(selectedId => selectedId !== id);
     }
     console.log(this.selectedIds.join(','));
+    if (this.selectedIds.length > 0) {
+      this.depositBtn = true;
+    } else {
+      this.depositBtn = false;
+    }
+  }
+
+  
+
+  deposit() {
+    console.log(this.selectedIds.join(','));
+    let dialogDelete = this.dialog.open(DepositSlipModalComponent, {
+      data: this.selectedIds, width: '800px',
+    });
+    dialogDelete.afterClosed().subscribe(async (result) => {
+      if (result) {
+        debugger
+        this.getDepositSlip();
+      }
+    })
   }
 
 }

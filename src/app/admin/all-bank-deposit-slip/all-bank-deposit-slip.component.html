@@ -28,6 +28,11 @@
                                 <button (click)="getDepositSlip()">Search</button>
                             </div>
                         </div> 
+                        <div class="col-lg-2" *ngIf="depositBtn">
+                            <div class="search-btn">
+                                <button (click)="deposit()" >Deposit</button>
+                            </div>
+                        </div> 
                     </div> 
                 </div>
             </div>
@@ -67,7 +72,7 @@
                         @for (item of transactionSlipList; let i = $index; track item.id) {
                         <tr>
                             <td>
-                                <mat-checkbox (change)="update($event.checked, item.Id)">
+                                <mat-checkbox name="item.Id" (change)="update($event.checked, item.Id)">
                                 </mat-checkbox>
                             </td>
                             <td>
