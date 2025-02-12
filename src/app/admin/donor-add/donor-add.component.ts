@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpApiService } from '../../../services/http-api-service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule, DatePipe, NgFor } from '@angular/common';
 import { UploaderComponent } from '../../shared/uploader/uploader.component';
@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-donor-add',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgFor, UploaderComponent],
+  imports: [CommonModule, FormsModule, NgFor, UploaderComponent,RouterLink],
   templateUrl: './donor-add.component.html',
   styleUrl: './donor-add.component.css'
 })
@@ -101,5 +101,8 @@ async GetDonorDll(){
     this.donorTypes = res.data.donorType;
   }
 }
+parseInt(Id?:any){
+  return parseInt(Id);
+ }
 }
 

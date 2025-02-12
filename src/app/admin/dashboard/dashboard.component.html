@@ -1,4 +1,11 @@
-<div class="dashboard-center">
+<div class="content-wrapper" style="background: #e9eded !important; ">
+    <div class="container-full">
+        <!-- Main content -->
+        <section class="content">
+
+
+
+ 
     <div class="all-total-box">
         <div   *ngFor="let item of head;let i=index;" class="box-set box-set{{i}}">
             <h3>
@@ -17,7 +24,9 @@
             <div class="box-chart">
                 <div class="chart-head row">
                     <span class="col-md-6">MONTH WISE DONATION</span>
-                    <span class="col-md-6 text-right">Select Year <select name="" (change)="GetDashboard()" [(ngModel)]="model.DonationYear"  id="" class="chrt-select">
+                    <span class="col-md-6 text-right">Select Year 
+                        
+                        <select name="" (change)="GetDashboard()" [(ngModel)]="model.DonationYear"  id="" class="chrt-select">
                             <option value="2019">2019</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
@@ -26,6 +35,10 @@
                             <option value="2024">2024</option>
                             <option value="2025">2025</option>
                             <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
                         </select></span>
                 </div>
           
@@ -55,6 +68,7 @@
         <div  *ngFor="let item of summary;let i = index;" class="box-summary clr{{i}}">
             <div class="top-head">
              {{item.Key}}
+             <a href=""></a>
             </div>
             <div class="li row" *ngFor="let detal of item.detail">
                 <span class="col-md-6">{{detal.Key}} </span>
@@ -62,4 +76,7 @@
             </div> 
         </div> 
     </div>
+ 
+</section>
+</div>
 </div>

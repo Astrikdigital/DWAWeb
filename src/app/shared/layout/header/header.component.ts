@@ -5,6 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { Subject } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,7 @@ export class HeaderComponent implements OnInit {
   ReadCount:any = 0; 
   Notifications:any[]=[];
   StudentEnrollments:any[]=[];
-constructor(private store:StorageService,private websocketService:SignalrService,private rouer:Router){
+constructor(private store:StorageService,private websocketService:SignalrService,private rouer:Router,private auth: AuthService){
   this.User = store.getItem("User");  
   this.StudentEnrollments = this.User.studentEnrollment; 
   this.EnrollmentId = parseInt(this.User?.enrollmentId);
@@ -57,10 +58,11 @@ ReceivedMessage(): void {
     button?.click();
   }
   ChangePassword(){ 
-    if(this.User?.userTypeId == 1)  this.rouer.navigate(['/admin/change-password']);
-    else if(this.User?.userTypeId == 2) this.rouer.navigate(['/faculty/change-password']);
-    else if(this.User?.userTypeId == 3) this.rouer.navigate(['/student/change-password']); 
+    this.rouer.navigate(['/admin/change-password']); 
     this.closePopup();
+  }
+  Logout() {
+    this.auth.logout();
   }
   TargetNotification(){
     if(this.User?.userTypeId == 1)  this.rouer.navigate(['/admin/notification']);

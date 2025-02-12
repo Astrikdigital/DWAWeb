@@ -194,7 +194,7 @@
                                                             </ng-container>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4" *ngIf="DonorModel.DonationDetailTypeId != 6">
+                                                <div class="col-md-4"  *ngIf="!([4,6].indexOf(parseInt(DonorModel.DonationDetailTypeId)) > -1)" >
                                                     <label class="mb-1">Bank *</label>
                                                     <div class="form-group">
                                                         <i class="fa-solid fa-user"></i>
@@ -326,9 +326,16 @@
                         </div>
                    
                         <div class="table-responsive rounded-4" *ngIf="IsView">
-                            <div class="head-dnations">
-                                <h4>Donations</h4>
-                            </div>
+<div class="row mb-3">
+    <div class="col-md-6">
+        <div class="head-dnations">
+            <h4>Donations</h4>
+        </div> 
+    </div>
+    <div class="col-md-6 text-right">
+        <button href="javascript:;" routerLink="/admin/add-donation" [queryParams]="{ DonorId: DonorModel.Id, Donor: DonorModel.Name }"class="cmp-btn" type="button" >Add Donation</button>
+    </div>
+</div>
                             <table class="table table-bordered table-hover ">
                                 <thead class="table-secondary">
                                     <tr> 

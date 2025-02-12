@@ -19,6 +19,10 @@ export const routes: Routes = [
         loadComponent: () => import('./admin/admin.component').then(m => m.AdminComponent), canActivate: [AuthGuard],
         children: [  
             {
+                path: 'change-password',
+                loadComponent: () => import('./shared/change-password/change-password.component').then(m => m.ChangePasswordComponent),   
+            }, 
+            {
                 path: 'dashboard',
                 loadComponent: () => import('./admin/dashboard/dashboard.component').then(m => m.DashboardComponent),   
             },

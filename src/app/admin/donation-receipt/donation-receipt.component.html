@@ -1,6 +1,6 @@
 <div class="receipt-container">
+    <img src="../../../assets/logo.png" alt="" class="img-set-logo">
     <h1>Donation Receipt</h1>
-
     <div class="header-info row-set">
       <p><strong>Official Website:</strong> <a href="https://pilcentre.org"> pilcentre.org</a></p>
       <p style="margin-left: 16px;"><strong>Contact #:</strong> +92 303 9277999</p>
@@ -51,8 +51,8 @@
   
 
     <div class="section">
-      <label>Purpose of Donation:</label>
-      <div class="input-placeholder">{{DonationModel.Project}}</div>
+      <label>{{DonationModel.PurposeOfDonation ? 'Purpose of Donation': "Project"}}:</label>
+      <div class="input-placeholder">{{DonationModel.PurposeOfDonation ? DonationModel.PurposeOfDonation: DonationModel.Project }}</div>
     </div>
  
     <div class="section">
@@ -74,5 +74,5 @@
 </div>
     <p class="footer">Your generosity transforms lives and inspires hope. Together, we can bring change to create a brighter future.</p>
     <hr>
-    <p class="footer highlight">Pakistan Independent Living Centre</p>
+    <p class="footer highlight">Disabled WelFare Association</p>
   </div>

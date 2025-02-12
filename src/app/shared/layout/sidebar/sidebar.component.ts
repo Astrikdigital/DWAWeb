@@ -68,13 +68,13 @@ export class SidebarComponent {
     {
       "Title": "Transaction Report",
       "IsChild": false,
-      "Icon": "fas fa-user-plus",
+      "Icon": "fa-solid fa-tent-arrow-left-right",
       "Route": "/admin/transactions"
     },
     {
       "Title": "Bank Deposit Slip",
       "IsChild": false,
-      "Icon": "fas fa-user-plus",
+      "Icon": "fa-solid fa-building-columns",
       "Route": "/admin/bank-deposit-slip"
     } 
 

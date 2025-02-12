@@ -210,4 +210,6 @@ td p.Approved {
 }
 .mat-mdc-tab-labels {
     width: 25% !important;
+}td a.link-href {
+    color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)) !important; 
 }

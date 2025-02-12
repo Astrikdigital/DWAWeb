@@ -170,7 +170,7 @@
                         
                         </mat-tab>
                         <mat-tab label="In-Kind">
-                            <form #form="ngForm">
+                            <form #ngform="ngForm">
                                 <div class="box">
                                     <div class="box-body">
                                         <div class="tab-content" id="pills-tabContent">
@@ -241,8 +241,8 @@
                                         </div>
                                         <div class="row justify-content-end mt-4">
                                             <div class="col-md-8 text-end px-4 py-4">
-                                                <button href="javascript:;"   class="cmp-btn" [disabled]="form.invalid"
-                                                    (click)="AddInventoryUtilization(form)">Submit</button>
+                                                <button href="javascript:;"   class="cmp-btn" [disabled]="ngform.invalid"
+                                                    (click)="AddInventoryUtilization(ngform)">Submit</button>
                                             </div>
                                         </div>
                 
