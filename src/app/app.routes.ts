@@ -91,6 +91,29 @@ export const routes: Routes = [
                 path: 'bank-deposit-slip',
                 loadComponent: () => import('./admin/all-bank-deposit-slip/all-bank-deposit-slip.component').then(m => m.AllBankDepositSlipComponent),   
             },
+            {
+                path: 'banks',
+                loadComponent: () => import('./admin/settings/banks/banks.component').then(m => m.BanksComponent),   
+            },
+            {
+                path: 'projects',
+                loadComponent: () => import('./admin/settings/projects/projects.component').then(m => m.ProjectsComponent),   
+            },
+            {
+                path: 'main-head',
+                loadComponent: () => import('./admin/settings/main-head/main-head.component').then(m => m.MainHeadComponent),   
+            },
+            {
+                path: 'head',
+                loadComponent: () => import('./admin/settings/head/head.component').then(m => m.HeadComponent),   
+            },
+            {
+                path: 'sub-head',
+                loadComponent: () => import('./admin/settings/sub-head/sub-head.component').then(m => m.SubHeadComponent),   
+            },
+
+
+
             // {
             //     path: 'add-transaction',
             //     loadComponent: () => import('./admin/add-transaction/add-transaction.component').then(m => m.AddTransactionComponent),   

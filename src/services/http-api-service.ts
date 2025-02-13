@@ -333,7 +333,23 @@ export class HttpApiService {
         return await this.httpService.getAsync<any>('Admin/GetIncomeTypes')
     }
     async GetBank(): Promise<any> {
-        return await this.httpService.getAsync<any>('Admin/GetBanks')
+        return await this.httpService.getAsync<any>(`Admin/GetBanks`)
+    }
+    async GetBankById(Id?:any): Promise<any> {
+        return await this.httpService.getAsync<any>(`Admin/GetBanksById?Id=${Id}`)
+    }
+    async GetHeadById(Id?:any): Promise<any> {
+        return await this.httpService.getAsync<any>(`Admin/GetHeadById?Id=${Id}`)
+    }
+    async GetMainHeadById(Id?:any): Promise<any> {
+        return await this.httpService.getAsync<any>(`Admin/GetMainHeadById?Id=${Id}`)
+    }
+    async GetSubHeadById(Id?:any): Promise<any> {
+        return await this.httpService.getAsync<any>(`Admin/GetSubHeadById?Id=${Id}`)
+    }
+
+    async GetProjectById(Id?:any): Promise<any> {
+        return await this.httpService.getAsync<any>(`Admin/GetProjectById?Id=${Id}`)
     }
     async GetDonorDll(): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/GetDonorDll')
@@ -386,6 +402,27 @@ export class HttpApiService {
  
         return await this.httpService.postFormData<any>('Admin/InsertUpdateBankDeposit', formData)
 
+    }
+    async AddUpdateBank(body:any): Promise<any> {
+        return await this.httpService.post<any>('Admin/InsertUpdateBank',body)
+    }
+    async AddUpdateProject(body:any): Promise<any> {
+        return await this.httpService.post<any>('Admin/Insert-Update-Project',body)
+    }
+    async AddUpdateHead(body:any): Promise<any> {
+        return await this.httpService.post<any>('Admin/Insert-Update-Head',body)
+    }
+    async AddUpdateSubHead(body:any): Promise<any> {
+        return await this.httpService.post<any>('Admin/Insert-Update-SubHead',body)
+    }
+    async AddUpdateMainHead(body:any): Promise<any> {
+        return await this.httpService.post<any>('Admin/Insert-Update-MainHead',body)
+    }
+    async GetHead(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetHead')
+    }
+    async GetSubHead(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetSubHead')
     }
     
 }

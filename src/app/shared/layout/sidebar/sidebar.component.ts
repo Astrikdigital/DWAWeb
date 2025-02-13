@@ -76,7 +76,42 @@ export class SidebarComponent {
       "IsChild": false,
       "Icon": "fas fa-user-plus",
       "Route": "/admin/bank-deposit-slip"
+    },
+    {
+      "Title": "Settings",
+      "IsChild": true,
+      "Icon": "fas fa-user-plus",
+      "Childs":[ 
+      {
+          "Title":"Banks",
+          "Icon": "fa-solid fa-chalkboard-user",
+          "Route":"/admin/banks"
+      },
+        {
+            "Title":"Project",
+            "Icon": "fa-solid fa-plus",
+            "Route":"/admin/projects"
+        },
+        {
+            "Title":"Main Head",
+            "Icon": "fa-solid fa-plus",
+            "Route":"/admin/main-head"
+        },  
+        {
+            "Title":"Head",
+            "Icon": "fa-solid fa-plus",
+            "Route":"/admin/head"
+        },  
+        {
+            "Title":"Sub Head",
+            "Icon": "fa-solid fa-plus",
+            "Route":"/admin/sub-head"
+        },  
+        
+        
+    ]
     } 
+
 
 
   ];

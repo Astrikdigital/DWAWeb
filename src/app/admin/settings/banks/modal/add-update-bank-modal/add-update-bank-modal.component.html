@@ -1,0 +1,73 @@
+<h2 mat-dialog-title>Add Update Bank</h2>
+<mat-dialog-content>
+    <div class="row">
+        <div class="col-lg-12">
+            <form #form="ngForm">
+                <div class="box">
+                    <div class="box-body">
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-1" role="tabpanel"
+                                aria-labelledby="pills-1-tab" tabindex="0">
+                                <div class="row mt-3 px-3">
+                                    <div class="col-lg-6 col-md-6 mb-2">
+                                        <label class="mb-1">Bank Name</label>
+                                        <div class="form-group">
+                                            <i class="fa fa-chalkboard-teacher"></i>
+                                            <input type="text" name="Title" [(ngModel)]="model.Title" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 mb-2">
+                                        <label class="mb-1">IBAN#</label>
+                                        <div class="form-group">
+                                            <i class="fa fa-chalkboard-teacher"></i>
+                                            <input type="text" name="IBAN" [(ngModel)]="model.IBAN" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3 px-3">
+                                    <div class="col-lg-6 col-md-6 mb-2">
+                                        <label class="mb-1">Account#</label>
+                                        <div class="form-group">
+                                            <i class="fa fa-chalkboard-teacher"></i>
+                                            <input type="text" name="Account" [(ngModel)]="model.Account" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 mb-2">
+                                        <label class="mb-1">Branch Name</label>
+                                        <div class="form-group">
+                                            <i class="fa fa-chalkboard-teacher"></i>
+                                            <input type="text" name="BranchName" [(ngModel)]="model.BranchName" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3 px-3">
+                                    <div class="col-lg-6 col-md-6 mb-2">
+                                        <label class="mb-1">Branch Code</label>
+                                        <div class="form-group">
+                                            <i class="fa fa-chalkboard-teacher"></i>
+                                            <input type="text" name="BranchCode" [(ngModel)]="model.BranchCode" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 mb-2">
+                                        <label class="mb-1">Balance Amount</label>
+                                        <div class="form-group">
+                                            <i class="fa fa-money"></i>
+                                            <input type="text" name="Amount" [(ngModel)]="model.Amount" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <div class="div-right">
+        <button class="cmp-btn" (click)="SaveChanges()" >Save</button>
+        <button class="cancel-btn" (click)="cancel()">Cancel</button>
+    </div>
+</mat-dialog-actions>
