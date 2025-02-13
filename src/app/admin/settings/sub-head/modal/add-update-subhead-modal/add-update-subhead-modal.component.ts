@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 @Component({
   selector: 'app-add-update-subhead-modal',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, MatFormFieldModule,MatDialogTitle,MatDialogContent,MatDialogActions,MatDialogClose,FormsModule],
+  imports: [CommonModule, MatDialogModule, MatFormFieldModule,MatDialogTitle,MatDialogContent,MatDialogActions,FormsModule],
   templateUrl: './add-update-subhead-modal.component.html',
   styleUrl: './add-update-subhead-modal.component.css'
 })

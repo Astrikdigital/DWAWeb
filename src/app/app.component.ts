@@ -18,7 +18,7 @@ import { NgHttpLoaderComponent, Spinkit } from 'ng-http-loader';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HttpClientModule,NgFor,NgIf,RouterLink,AngularEditorModule,NgHttpLoaderComponent],
+  imports: [RouterOutlet,HttpClientModule,NgIf,AngularEditorModule,NgHttpLoaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers: [HttpService, AlertService, StorageService,AuthService,AuthApiService,HttpApiService,DatePipe,SignalrService,AuthGuard,

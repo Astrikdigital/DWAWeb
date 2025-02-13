@@ -10,7 +10,7 @@ import { UploaderComponent } from '../../shared/uploader/uploader.component';
 @Component({
   selector: 'app-insert-inventory',
   standalone: true,
-  imports: [FormsModule,NgFor,CommonModule,UploaderComponent],
+  imports: [FormsModule,CommonModule,UploaderComponent],
   templateUrl: './insert-inventory.component.html',
   styleUrl: './insert-inventory.component.css'
 })

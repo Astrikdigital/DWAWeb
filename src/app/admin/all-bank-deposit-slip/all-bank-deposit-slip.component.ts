@@ -15,7 +15,7 @@ import { DeletePopupComponent } from '../../shared/delete-popup/delete-popup.com
 @Component({
   selector: 'app-all-bank-deposit-slip',
   standalone: true,
-  imports: [RouterLink, CommonModule, MatPaginatorModule, FormsModule, MatCheckboxModule,MatTabsModule,NgFor],
+  imports: [CommonModule, MatPaginatorModule, FormsModule, MatCheckboxModule,MatTabsModule,NgFor],
   templateUrl: './all-bank-deposit-slip.component.html',
   styleUrl: './all-bank-deposit-slip.component.css'
 })

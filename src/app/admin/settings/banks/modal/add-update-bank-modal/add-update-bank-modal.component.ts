@@ -12,7 +12,7 @@ import { StorageService } from '../../../../../../services/local-storage.service
 @Component({
   selector: 'app-add-update-bank-modal',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, MatFormFieldModule,MatDialogTitle,MatDialogContent,MatDialogActions,MatDialogClose,FormsModule],
+  imports: [CommonModule, MatDialogModule, MatFormFieldModule,MatDialogTitle,MatDialogContent,MatDialogActions,FormsModule],
   templateUrl: './add-update-bank-modal.component.html',
   styleUrl: './add-update-bank-modal.component.css'
 })

@@ -12,11 +12,11 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-delete-popup',
   standalone: true,
-  imports: [CommonModule,RouterLink, MatDialogModule,   MatFormFieldModule,
+  imports: [CommonModule, MatDialogModule,   MatFormFieldModule,
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
-    MatDialogClose],
+    ],
   templateUrl: './delete-popup.component.html',
   styleUrl: './delete-popup.component.css'
 })

@@ -10,7 +10,7 @@ import { AuthService } from '../../../../auth/auth.service';
 @Component({
   selector: 'app-header',
   standalone: true, 
-  imports:[NgFor,NgIf,RouterLink,FormsModule],
+  imports:[NgFor,NgIf,FormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
   providers:[SignalrService]

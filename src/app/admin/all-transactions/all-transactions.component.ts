@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-all-transactions',
   standalone: true,
-  imports: [RouterLink, CommonModule, MatPaginatorModule, FormsModule],
+  imports: [CommonModule, MatPaginatorModule, FormsModule],
   templateUrl: './all-transactions.component.html',
   styleUrl: './all-transactions.component.css'
 })

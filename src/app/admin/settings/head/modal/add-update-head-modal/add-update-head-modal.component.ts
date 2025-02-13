@@ -11,7 +11,7 @@ import { AddUpdateBankModalComponent } from '../../../banks/modal/add-update-ban
 @Component({
   selector: 'app-add-update-head-modal',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, MatFormFieldModule,MatDialogTitle,MatDialogContent,MatDialogActions,MatDialogClose,FormsModule],
+  imports: [CommonModule, MatDialogModule, MatFormFieldModule,MatDialogTitle,MatDialogContent,MatDialogActions,FormsModule],
   templateUrl: './add-update-head-modal.component.html',
   styleUrl: './add-update-head-modal.component.css'
 })

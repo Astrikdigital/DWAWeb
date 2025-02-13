@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 @Component({
   selector: 'app-add-update-project-modal',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, MatFormFieldModule,MatDialogTitle,MatDialogContent,MatDialogActions,MatDialogClose,FormsModule],
+  imports: [CommonModule, MatDialogModule, MatFormFieldModule,MatDialogTitle,MatDialogContent,MatDialogActions,FormsModule],
   templateUrl: './add-update-project-modal.component.html',
   styleUrl: './add-update-project-modal.component.css'
 })

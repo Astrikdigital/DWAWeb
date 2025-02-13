@@ -11,7 +11,7 @@ import { StorageService } from '../../../services/local-storage.service';
 @Component({
   selector: 'app-all-user',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgFor,RouterLink,NgIf,DeletePopupComponent],
+  imports: [CommonModule, FormsModule, NgFor,RouterLink,NgIf],
   templateUrl: './all-user.component.html',
   styleUrl: './all-user.component.css'
 })

@@ -11,11 +11,10 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-deposit-slip-modal',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatDialogModule, MatFormFieldModule,
+  imports: [CommonModule, MatDialogModule, MatFormFieldModule,
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
-    MatDialogClose,
     FormsModule,
   ],
   templateUrl: './deposit-slip-modal.component.html',
