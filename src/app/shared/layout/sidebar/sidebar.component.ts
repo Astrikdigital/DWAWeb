@@ -80,31 +80,31 @@ export class SidebarComponent {
     {
       "Title": "Settings",
       "IsChild": true,
-      "Icon": "fas fa-user-plus",
+      "Icon": "fas fa-cog",
       "Childs":[ 
       {
           "Title":"Banks",
-          "Icon": "fa-solid fa-chalkboard-user",
+          "Icon": "fa-solid fa-cog",
           "Route":"/admin/banks"
       },
         {
             "Title":"Project",
-            "Icon": "fa-solid fa-plus",
+            "Icon": "fa-solid fa-cog",
             "Route":"/admin/projects"
         },
         {
             "Title":"Main Head",
-            "Icon": "fa-solid fa-plus",
+            "Icon": "fa-solid fa-cog",
             "Route":"/admin/main-head"
         },  
         {
             "Title":"Head",
-            "Icon": "fa-solid fa-plus",
+            "Icon": "fa-solid fa-cog",
             "Route":"/admin/head"
         },  
         {
             "Title":"Sub Head",
-            "Icon": "fa-solid fa-plus",
+            "Icon": "fa-solid fa-cog",
             "Route":"/admin/sub-head"
         },  
         

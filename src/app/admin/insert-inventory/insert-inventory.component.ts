@@ -56,7 +56,6 @@ export class InsertInventoryComponent {
   }
       
   async GetRegistrationDDL() {
-    debugger
     let res: any = await this.api.GetRegistrationDDL();
     if (res.statusCode == 200) {
       this.projects = res.data.project;

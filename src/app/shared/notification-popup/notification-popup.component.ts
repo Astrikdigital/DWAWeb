@@ -13,7 +13,6 @@ export class NotificationPopupComponent implements OnInit {
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,public dialogRef: MatDialogRef<NotificationPopupComponent>) { 
-    debugger
     this.SelectedObj = data;
   }
  ngOnInit(): void {

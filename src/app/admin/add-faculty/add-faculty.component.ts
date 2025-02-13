@@ -85,7 +85,6 @@ export class AddFacultyComponent implements OnInit {
   async getBeneficiary(Id: any) {
     let res: any = await this.api.getBeneficiary({ Id: Id, PageNumber: 0, PageSize: 2 });
     if (res.statusCode == 200) {
-      debugger
       this.BeneficiaryModel = res.data[0];
       if (this.BeneficiaryModel.DOB) {
         this.BeneficiaryModel.DOB = this.datePipe.transform(this.BeneficiaryModel.DOB, 'yyyy-MM-dd');
@@ -100,7 +99,6 @@ export class AddFacultyComponent implements OnInit {
         this.BeneficiaryModel.CityId = this.BeneficiaryModel.CityId;
       }
       if (this.BeneficiaryModel.BeneficiaryTypeId == 1 || this.BeneficiaryModel.BeneficiaryTypeId == 3 || !this.BeneficiaryModel.BeneficiaryTypeId) {
-        debugger
         this.isCorporate = false;
       } else {
         this.isCorporate = true;
@@ -134,7 +132,6 @@ export class AddFacultyComponent implements OnInit {
   }
 
   async ChangeCountry($event: any) {
-    debugger
     this.cities = [];
     let res: any = await this.api.GetCityByCountryId({ CountryId: $event });
     if (res) this.cities = res.data;

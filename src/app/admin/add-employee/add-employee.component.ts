@@ -122,7 +122,6 @@ export class AddEmployeeComponent {
       this.store.IsLoader = true;
       let res: any = await this.api.AddEmployee(this.FacultyModel);
         if (res.statusCode == 200 && res.isSuccess) {
-          debugger
           this.toastr.success(res.message);
           this.route.navigate(['/admin/employees']);
         } else   this.toastr.error(res.message);

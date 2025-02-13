@@ -129,7 +129,6 @@ export class AddVolunteerComponent {
         );
         let res: any = await this.api.AddVolunteer(this.VolunteerModel);
           if (res.statusCode == 200 && res.isSuccess) {
-            debugger
             this.toastr.success(res.message);
             this.route.navigate(['/admin/volunteers']);
           } else   this.toastr.error(res.message);
@@ -169,7 +168,6 @@ export class AddVolunteerComponent {
           }  
 
           if(this.VolunteerModel.AvailabilityDayIds){
-            debugger
             this.selectedDays = this.VolunteerModel.AvailabilityDayIds.split(',');
             this.selectedDays = this.selectedDays.map(Number);
             console.log(this.selectedDays);

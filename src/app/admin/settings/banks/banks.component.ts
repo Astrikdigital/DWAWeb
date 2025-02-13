@@ -60,7 +60,6 @@ export class BanksComponent implements OnInit {
     });
     dialogDelete.afterClosed().subscribe(async (result) => {
       if (result) {
-        debugger
         this.GetRegistrationDDL();
       }
     })

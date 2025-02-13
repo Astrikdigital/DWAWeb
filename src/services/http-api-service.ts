@@ -234,7 +234,6 @@ export class HttpApiService {
     }
 
     async AddEmployee(body: any): Promise<any> {
-        debugger
         const formData = new FormData();
         if (body.Id) formData.append('Id', body.Id);
         // Append nullable integer properties
@@ -282,13 +281,11 @@ export class HttpApiService {
     }
 
     async getEmpById(Id?: any): Promise<any> {
-        debugger
         return await this.httpService.getAsync<any>(`Admin/get-employee-by-id?Id=${Id}`)
 
     }
 
     async getVolunteerById(Id?: any): Promise<any> {
-        debugger
         return await this.httpService.getAsync<any>(`Admin/get-volunteer-by-id?Id=${Id}`)
 
     }
@@ -302,7 +299,6 @@ export class HttpApiService {
     }
 
     async AddVolunteer(body: any): Promise<any> {
-        debugger
         const formData = new FormData();
         if (body.Id) formData.append('Id', body.Id);
         if (body.ProjectAssigmentId) formData.append('ProjectAssigmentId', body.ProjectAssigmentId);
@@ -404,7 +400,6 @@ export class HttpApiService {
     }
 
     async bankdepositSlip(body: any): Promise<any> {
-        debugger
         const formData = new FormData();
         if (body.TransactionId) formData.append('TransactionId', body.TransactionId);
         if (body.BankId) formData.append('BankId', body.BankId);

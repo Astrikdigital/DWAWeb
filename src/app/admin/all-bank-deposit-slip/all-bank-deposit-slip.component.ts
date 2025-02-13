@@ -102,7 +102,6 @@ export class AllBankDepositSlipComponent {
   async GetDepositBankSlip() {
     let res: any = await this.api.GetDepositBankSlip(this.modelDeposit);
     if (res.statusCode == 200) {
-      debugger
       this.depositSlips = res?.data;
       if (res.data.length) this.modelDeposit.length = res?.data[0].Count; else this.modelDeposit.length = 0;
     }
