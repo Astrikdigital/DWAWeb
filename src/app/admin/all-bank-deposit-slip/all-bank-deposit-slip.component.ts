@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,16 +10,17 @@ import { HttpApiService } from '../../../services/http-api-service';
 import { StorageService } from '../../../services/local-storage.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DepositSlipModalComponent } from '../deposit-slip-modal/deposit-slip-modal.component';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { DeletePopupComponent } from '../../shared/delete-popup/delete-popup.component';
 @Component({
   selector: 'app-all-bank-deposit-slip',
   standalone: true,
-  imports: [RouterLink, CommonModule, MatPaginatorModule, FormsModule, MatCheckboxModule],
+  imports: [RouterLink, CommonModule, MatPaginatorModule, FormsModule, MatCheckboxModule,MatTabsModule,NgFor],
   templateUrl: './all-bank-deposit-slip.component.html',
   styleUrl: './all-bank-deposit-slip.component.css'
 })
 export class AllBankDepositSlipComponent {
-
+  modelDeposit: any = {PageNumber: 0, PageSize: 50 };
   model: any = { donorId: "", PageNumber: 0, PageSize: 50 };
   baseUrl: string = environment.apiUrl
   transactionSlipList: any = [];
@@ -29,12 +30,13 @@ export class AllBankDepositSlipComponent {
   donors: any = [];
   depositBtn: boolean = false;
   selectedIds: number[] = [];
-
+  depositSlips:any = [];
   constructor(private api: HttpApiService, private router: Router, private dialog: MatDialog, private toastr: ToastrService, private store: StorageService) {
   }
   ngOnInit(): void {
     this.GetRegistrationDDL();
     this.getDepositSlip();
+    this.GetDepositBankSlip();
   }
   async getDepositSlip() {
     this.store.IsLoader = true;
@@ -52,6 +54,12 @@ export class AllBankDepositSlipComponent {
     this.model.PageSize = $event.pageSize;
     this.getDepositSlip();
   }
+  getDepositPagination($event: any) {
+    this.modelDeposit.PageNumber = $event.pageIndex
+    this.modelDeposit.PageSize = $event.pageSize;
+    this.GetDepositBankSlip();
+  }
+  
 
   editTransaction(id: any) {
     this.router.navigate(
@@ -91,7 +99,14 @@ export class AllBankDepositSlipComponent {
       this.depositBtn = false;
     }
   }
-
+  async GetDepositBankSlip() {
+    let res: any = await this.api.GetDepositBankSlip(this.modelDeposit);
+    if (res.statusCode == 200) {
+      debugger
+      this.depositSlips = res?.data;
+      if (res.data.length) this.modelDeposit.length = res?.data[0].Count; else this.modelDeposit.length = 0;
+    }
+  }
   
 
   deposit() {
@@ -100,11 +115,28 @@ export class AllBankDepositSlipComponent {
       data: this.selectedIds, width: '800px',
     });
     dialogDelete.afterClosed().subscribe(async (result) => {
-      if (result) {
-        debugger
+      if (result) { 
         this.getDepositSlip();
+        this.GetDepositBankSlip();
       }
     })
   }
-
+ OpenDeleteModal(Id:any){
+    let dialogDelete =  this.dialog.open(DeletePopupComponent, {
+      data:Id,    width: '530px',
+    }); 
+    dialogDelete.afterClosed().subscribe(async (result) => {
+      if (result.Id) {
+        this.DeleteDepositBankSlip(result.Id);
+      } 
+    })
+  }
+  async DeleteDepositBankSlip(Id:any){
+    let res:any = await this.api.DeleteDepositBankSlip({Id:Id});
+    if(res.statusCode == 200) {
+      this.toastr.success("Delete Successfully");
+      this.getDepositSlip();
+      this.GetDepositBankSlip();
+    }
+  }
 }

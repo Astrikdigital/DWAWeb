@@ -96,3 +96,8 @@
   width: 100%;
   margin-top: 25px;
 }
+img.img-set-logo {
+  width: 160px;
+  position: absolute;
+  top: 15px;
+}

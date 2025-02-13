@@ -69,8 +69,7 @@ export class AllFacultyComponent implements OnInit {
       //this.store.IsLoader = false;
     }
   }
-  EditFaculty(id: any) {
-    debugger
+  EditFaculty(id: any) { 
     this.router.navigate(
       ['/admin/add-beneficiary'],
       { queryParams: { BeneficiaryId: id } }

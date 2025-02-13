@@ -67,7 +67,12 @@
                                     [src]="item.PictureUrl ? (Env+item.PictureUrl) : '../../../assets/images/avatar/avatar-15.png'"
                                     class="rounded-circle w-80 set-table" alt="">
                             </td>
-                            <td>  <p class="text-body mb-0">{{item.Name ? item.Name : 'N/A'}}</p> </td>
+                            <td> 
+                                
+
+                                <a class="mb-0 link-href" href="javascript:;" routerLink="/admin/add-donor" [queryParams]="{DonorId:item.DonorId,IsView:true}">  {{item.Name}}</a>
+                           
+                            </td>
                             <td>  <p class="text-body mb-0">{{item.Amount ? item.Amount : 'N/A'}}</p> </td>
                             <td>  <p class="text-body mb-0">{{item.Date | date}}</p> </td>
                             <td>  <p class="text-body mb-0">{{item.DonationType ?item.DonationType : 'N/A'}}</p> </td>

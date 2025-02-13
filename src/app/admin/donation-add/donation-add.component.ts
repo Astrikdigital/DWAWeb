@@ -65,7 +65,7 @@ async GetDonors(){
 } 
 async getDonation(){ 
   let res:any = await this.api.GetDonation({Id:this.DonationModel.Id,PageNumber:0,PageSize:2});
-  if(res.statusCode == 200){
+  if(res.statusCode == 200){ 
     this.DonationModel = res.data[0];  
     this.DonationModel.Date = this.datePipe.transform(this.DonationModel.Date, 'yyyy-MM-dd'); 
     this.Attachment = this.DonationModel?.Attachment.split("//")[1];

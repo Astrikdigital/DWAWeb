@@ -10,9 +10,9 @@
     </a>
   </div>
   <!-- Header Navbar -->
-  <nav class="navbar navbar-static-top shadow-sm py-2">
+  <nav class="navbar navbar-static-top shadow-sm py-2 row" >
     <!-- Sidebar toggle button-->
-    <div class="app-menu">
+    <div class="app-menu col-md-1">
       <ul class="header-megamenu nav">
         <li class="btn-group nav-item">
           <a href="javascript:;" class="waves-effect waves-light nav-link push-btn ctm-btn ms-0" data-toggle="push-menu"
@@ -20,6 +20,9 @@
             <i class="fa-solid fa-bars"></i>
             <!-- <i data-feather="menu"></i> -->
           </a>
+        </li>
+        <li>
+          
         </li>
         <!-- <li class="btn-group d-lg-inline-flex d-none">
           <div class="app-menu">
@@ -37,9 +40,13 @@
           </div>
         </li> -->
       </ul>
+    
     </div>
-
-    <div class="navbar-custom-menu r-side">
+    <div class="rowimg col-md-8" style="text-align: center;">
+      <img style="    width: 292px; 
+        align-content: center;" src="../../../../assets/eSWSBm.png" alt=""> 
+    </div>
+    <div class="navbar-custom-menu r-side col-md-3">
       <ul class="nav navbar-nav" >
         <li class="w-300 d-lg-block mb-md-2 d-none" *ngIf="User?.userTypeId == 3">
           <select class="form-select mt-2 bg-white border-0 py-3 fw-600 text-dark mb-3" [(ngModel)]="EnrollmentId"
@@ -58,36 +65,37 @@
             </label>
           </a>
         </li>
-        <li class="dropdown notifications-menu btn-group d-lg-block d-none">
+        <!-- <li class="dropdown notifications-menu btn-group d-lg-block d-none">
           <a href="javascript:;" class="waves-effect waves-light  svg-bt-icon bg-transparent" (click)="TargetNotification()" data-bs-toggle="dropdown"
             title="Notifications">
             <div *ngIf="ReadCount && User?.userTypeId != 1" class="readcount">
               {{ReadCount}}
-            </div>
-            <!-- <i data-feather="bell"></i> -->
+            </div> 
             <i class="fa-regular fa-bell"></i>
             <div class="pulse-wave"></div>
           </a>
           
-        </li>
-        <li class="btn-group nav-item d-xl-inline-flex d-none">
+        </li> -->
+        <!-- <li class="btn-group nav-item d-xl-inline-flex d-none">
           <a href="javascript:;" class="waves-effect waves-light nav-link  svg-bt-icon" title="" id="live-chat">
-            <!-- <i data-feather="message-circle"></i> -->
+        
             <i class="fa-regular fa-comment"></i>
           </a>
-        </li>
+        </li> -->
 
 
 
         <li class="btn-group nav-item d-xl-inline-flex d-none">
-          <a href="javascript:;" data-provide="fullscreen" class="waves-effect waves-light nav-link  svg-bt-icon" title="Full Screen">
-            <!-- <i data-feather="maximize"></i> -->
+          <!-- <a href="javascript:;" data-provide="fullscreen" class="waves-effect waves-light nav-link  svg-bt-icon" title="Full Screen">
+ 
             <i class="fa-solid fa-expand"></i>
-          </a>
+          </a> -->
         </li>
 
         <!-- User Account-->
-        <li class="dropdown user user-menu">
+        <li class="dropdown user user-menu" style="
+        margin-right: 0;
+        margin-left: auto;">
           <a href="javascript:;"
             class="waves-effect waves-light dropdown-toggle w-auto l-h-12 bg-transparent p-0 no-shadow" title="User"
             data-bs-toggle="modal" data-bs-target="#quick_user_toggle">
@@ -142,7 +150,7 @@
         </div>
         <div class="dropdown-divider my-30"></div>
         <div>
-          <div class="d-flex align-items-center mb-30">
+          <!-- <div class="d-flex align-items-center mb-30">
             <div class="me-15 bg-primary-light h-50 w-50 l-h-60 rounded text-center">
               <span class="icon-Library fs-24"><span class="path1"></span><span class="path2"></span></span>
             </div>
@@ -159,7 +167,7 @@
               <a href="javascript:;" (click)="TargetNotification()" class="text-dark hover-danger mb-1 fs-16">My Notifications</a>
               <span class="text-fade">Updates and Tasks</span>
             </div>
-          </div>
+          </div> -->
           <!-- <div class="d-flex align-items-center mb-30">
                   <div class="me-15 bg-danger-light h-50 w-50 l-h-60 rounded text-center">
                       <span class="icon-Write fs-24">
@@ -181,6 +189,17 @@
               <a href="javascript:;"  (click)="ChangePassword()" class="text-dark hover-danger mb-1 fs-16">Password</a>
               <span class="text-fade">Change Password</span>
             </div>
+          </div>
+          <div class="d-flex align-items-center mb-30">
+            <div class="me-15 bg-danger-light h-50 w-50 l-h-60 rounded text-center">
+              <span class="icon-Write fs-24">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i>
+              </span>
+            </div>
+            <div class="d-flex flex-column fw-500">
+              <a href="javascript:;" (click)="Logout()" class="text-dark hover-danger mb-1 fs-16">Logout</a> 
+            </div>
+          
           </div>
           <!-- <div class="d-flex align-items-center mb-30">
                   <div class="me-15 bg-success-light h-50 w-50 l-h-60 rounded text-center">
