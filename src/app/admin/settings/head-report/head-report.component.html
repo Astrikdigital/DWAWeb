@@ -1,0 +1,141 @@
+<div class="content-wrapper" style="min-height: 533.5px;">
+    <div class="container-full">
+        <!-- Main content -->
+        <section class="content">
+            <div class="box">
+                <div class="box-body">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-lg-3">
+                            <h3 class="fw-600 box-title mb-4 mt-4">Head Report</h3>
+                        </div>
+                        <!-- <div class="col-lg-3 d-flex justify-content-end">
+                            <a href="javascript:;" (click)="addupdatemodal()" class="cmp-btn">
+                              <i class="fa fa-plus me-15"></i>Add Bank</a>
+                        </div> -->
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <div class="table-responsive rounded-4">
+                <table class="table table-bordered table-hover ">
+                    <thead class="table-secondary">
+                        <tr>
+                            <td scope="col" style="width: 90px;"></td>
+                            <td scope="col"><span class="fs-14 fw-600">Name</span></td>
+                            <td scope="col" style="width: 90px;"><span class="fs-14 fw-600">Amount</span></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="!MainHeads?.length">
+                            <td colspan="8" class="text-center">No Record </td>
+                        </tr>
+
+                        <ng-container *ngFor="let item of MainHeads let i = index;">
+                        <tr>
+                            <td class="text-center">
+                                <span class="action-btn" (click)="toogleMainhead(item.Id,i)" *ngIf="activeIndex !== i">
+                                    +
+                                </span>
+                                <span class="action-btn" (click)="toogleMainhead(item.Id,i)" *ngIf="activeIndex === i">
+                                    -
+                                </span>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0">{{item.MainHead}}</p>
+                            </td>
+                            <td>
+                                <p class="text-body mb-0">{{item.Total | number}}</p>
+                            </td>
+                        </tr>
+
+                        <tr *ngIf="activeIndex === i">
+                            <td colspan="8">
+                            <table class="table table-bordered table-hover ">
+                                <thead class="table-secondary">
+                                    <tr>
+                                        <td scope="col" style="width: 90px;"></td>
+                                        <td scope="col"><span class="fs-14 fw-600">Main Head</span></td>
+                                        <td scope="col"><span class="fs-14 fw-600">Head</span></td>
+                                        <td scope="col" style="width: 90px;"><span class="fs-14 fw-600">Amount</span></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngIf="!Heads?.length">
+                                        <td colspan="8" class="text-center">No Record </td>
+                                    </tr>
+            
+                                    <ng-container *ngFor="let head of Heads let i = index;">
+                                        <tr >
+                                            <td class="text-center">
+                                                <span class="action-btn" (click)="toggleHead(item.Id, head.Id, i)" *ngIf="activeHeadIndex !== i">
+                                                    +
+                                                </span>
+                                                <span class="action-btn" (click)="toggleHead(item.Id, head.Id,i)" *ngIf="activeHeadIndex === i">
+                                                    -
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <p class="text-body mb-0">{{head.MainHead}}</p>
+                                            </td>   
+                                            <td>
+                                                <p class="text-body mb-0">{{head.Head}}</p>
+                                            </td>
+                                            <td>
+                                                <p class="text-body mb-0">{{head.Total | number}}</p>
+                                            </td>
+                                        </tr>
+                                        <tr *ngIf="activeHeadIndex === i">
+                                            <td colspan="8">
+                                                <table class="table table-bordered table-hover ">
+                                                    <thead class="table-secondary">
+                                                        <tr>
+                                                            <td scope="col" style="width: 90px;"></td>
+                                                            <td scope="col"><span class="fs-14 fw-600">Main Head</span></td>
+                                                            <td scope="col"><span class="fs-14 fw-600">Head</span></td>
+                                                            <td scope="col"><span class="fs-14 fw-600">Sub Head</span></td>
+                                                            <td scope="col" style="width: 90px;"><span class="fs-14 fw-600">Amount</span></td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngIf="!SubHeads?.length">
+                                                            <td colspan="8" class="text-center">No Record </td>
+                                                        </tr>
+                                                        <ng-container *ngFor="let subhead of SubHeads let i = index;">
+                                                            <tr>
+                                                                <td class="text-center"></td>
+                                                                <td>
+                                                                    <p class="text-body mb-0">{{subhead.MainHead}}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <p class="text-body mb-0">{{subhead.Head}}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <p class="text-body mb-0">{{subhead.SubHead}}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <p class="text-body mb-0">{{subhead.Total | number}}</p>
+                                                                </td>
+                                                            </tr>
+                                                        </ng-container>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                            </td>
+                        </tr>
+
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </div>
+
+</div>

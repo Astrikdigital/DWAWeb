@@ -115,6 +115,10 @@ export const routes: Routes = [
                 path: 'sub-head',
                 loadComponent: () => import('./admin/settings/sub-head/sub-head.component').then(m => m.SubHeadComponent),   
             },
+            {
+                path: 'head-report',
+                loadComponent: () => import('./admin/settings/head-report/head-report.component').then(m => m.HeadReportComponent),   
+            },
 
 
 

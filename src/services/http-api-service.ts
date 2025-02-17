@@ -429,5 +429,16 @@ export class HttpApiService {
     async GetSubHead(): Promise<any> {
         return await this.httpService.getAsync<any>('Admin/GetSubHead')
     }
-    
+
+    async GetMainHead(): Promise<any> {
+        return await this.httpService.getAsync<any>('Admin/GetReportMainHead')
+    }
+    async GetReportHeadByMainHeadId(MainHeadId?: any): Promise<any> {
+        return await this.httpService.getAsync<any>(`Admin/GetReportHeadByMainHeadId?MainHeadId=${MainHeadId}`);
+    }
+
+    async GetReportSubHead(HeadId?:any,MainHeadId?: any): Promise<any> {
+        return await this.httpService.getAsync<any>(`Admin/GetReportSubHead?HeadId=${HeadId}&MainHeadId=${MainHeadId}`);
+    }
+
 }

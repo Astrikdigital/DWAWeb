@@ -82,7 +82,12 @@ export class SidebarComponent {
       "IsChild": true,
       "Icon": "fas fa-cog",
       "Childs":[ 
-      {
+        {
+          "Title":"Head Report",
+          "Icon": "fa-solid fa-cog",
+          "Route":"/admin/head-report"
+      },
+        {
           "Title":"Banks",
           "Icon": "fa-solid fa-cog",
           "Route":"/admin/banks"
